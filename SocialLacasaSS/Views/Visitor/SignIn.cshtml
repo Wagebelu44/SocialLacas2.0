@@ -1,0 +1,407 @@
+﻿
+@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @{
+        Html.RenderPartial("_VisitorTopMenu");
+    }
+</div>
+<input type="hidden" value="@Session["isAdmin"]" id="hdnIsAdmin"/>
+    <div id="signInModal" class="modal fade-scale" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <!-- <h4 class="modal-title"></h4> -->
+                </div>
+                <div class="modal-body">
+                    <div class="well signInWell">
+                        <h2 class="align-left h2_font"><strong>Sign In</strong></h2>
+                        <div class="underline">
+                            <div class="line"></div>
+                        </div>
+                        <form method="post" action="/auth">
+
+
+                            <div class="form-group">
+                                <label style="display:none;" for="username" class="control-label">Username</label>
+                                <input type="text" class="form-control" id="txtusername" name="LoginForm[username]" placeholder="Username">
+                            </div>
+                            <div class="form-group">
+                                <label style="display:none;" for="password" class="control-label">Password</label>
+                                <input type="password" class="form-control" id="txtpassword" name="LoginForm[password]" placeholder="Password">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="LoginForm[remember]" value="1" id="remember">Remember me
+                                </label>
+                            </div>
+
+
+                            <input type="hidden" name="_csrf" value="Oi06lb-nIJ_HW6kVGNUiZZNH4HWJ8qZHx9Nu3gq6iVRNaA-45cNT5qgP4yIt-Elc4nDSPfmZ_nWQhgHzXszgHA==">
+                            @*<button type="submit" class="btn btn-primary">Sign in</button>*@
+                            <input type="button" class="btn btn-primary" value="Sign in" onclick="LoginUser();" />
+                            @* <span class="pull-right pull-right-middle">Do not have an account? <a href="/Visitor/SignUp">Sign up</a></span>*@
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="mainBanner">
+        <div class="welcome">
+            <div class="welcome__icon welcome__icon--1">
+                <img src="//i.imgur.com/hIfQRGj.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--2">
+                <img src="//i.imgur.com/EgMVWNg.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--3">
+                <img src="//i.imgur.com/HOCW0x8.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--4">
+                <img src="//i.imgur.com/PQKUXEb.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--5">
+                <img src="//i.imgur.com/Cji2uO3.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--6">
+                <img src="//i.imgur.com/iC66wo7.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--7">
+                <img src="//i.imgur.com/samx1nf.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--8">
+                <img src="//i.imgur.com/SRHgVle.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--9">
+                <img src="//i.imgur.com/Uw99fbM.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--10">
+                <img src="//i.imgur.com/iy4P8Si.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--11">
+                <img src="//i.imgur.com/KH8w4FY.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--12">
+                <img src="//i.imgur.com/dj6p5kX.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--13">
+                <img src="//i.imgur.com/5ie0l5t.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--14">
+                <img src="//i.imgur.com/jh0NSvw.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--15">
+                <img src="//i.imgur.com/2C2vkOl.png" alt="icon">
+            </div>
+            <div class="welcome__icon welcome__icon--16">
+                <img src="//i.imgur.com/MVdQfMC.png" alt="icon">
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="main-sec-con">
+                        <h1>SocialLacasa.com <br>Agencies' #1 Destination <br>Social Media Messaging Services</h1>
+                        <p>Tired of looking at hundreds of panels with services that simply doesnt work? Check our Major Services for Social Media with the Best Quality and Quickest Delivery</p>
+
+
+
+                        <p class="headerSmallText"><b style="color:#ff8400; font-weight:bold">⚡</b> The Most Reliable Panel on the market with <b style="color:#ff8400; font-weight:bold">+100000</b> Orders until now!</p>
+
+
+                        <a href="#" data-toggle="modal" data-target="#signInModal">Sign In</a>
+                    </div>
+                    <!-- <ul>
+                      <li>Starting at 0.02$ / 1,000 for Real Instagram Likes / Views</li>
+                      <li>YouTube Views Provider - Social Media Traffic</li>
+                      <li>Perfect for Resellers, Agencies & PR`s</li>
+                      <li>450+ Services and Auto options</li>
+                      <li>Daily Updates - 99.7% Uptime Over 3 Years!</li>
+                      <li>Full API Support for Panel Owners</li>
+                      <br>
+                      <li>The Most Powerfull Panel on the market with more than 493372 orders until now!</li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="counter-section">
+        <div class="container">
+            <div class="row couterHeader">
+                <div class="col-sm-4">
+                    <div class="statBox type1">
+                        <div class="visual">
+                            <i class="fa fa-user-plus"></i>
+                        </div>
+                        <div class="detail">
+                            <span class="texCounter">Active Members</span>
+                            <span class="valueCounter">7.2K+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="statBox type2">
+                        <div class="visual">
+                            <i class="fa fa-line-chart"></i>
+                        </div>
+                        <div class="detail">
+                            <span class="texCounter">Total Orders on SocialLacasa</span>
+                            <span class="valueCounter">+100000</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="statBox type3">
+                        <div class="visual">
+                            <i class="fa fa-dollar"></i>
+                        </div>
+                        <div class="detail">
+                            <span class="texCounter">Prices Starting at</span>
+                            <span class="valueCounter">$0.01 / 1,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="single-abt likes">
+                        <div class="abt-img">
+                            <!-- <img class="img-responsive topImg" src="//i.imgur.com/DilPzl4.png"> -->
+                            <i class="fa fa-heart"></i>
+                        </div>
+                        <div class="abt-text">
+                            <h2>Likes</h2>
+                            <p>Likes for all social networks <br>We have the BEST Likes Services on the market.</p>
+                            <a href="/visitor/services">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="single-abt followers">
+                        <div class="abt-img">
+                            <!-- <img class="img-responsive" src="//i.imgur.com/h3DkIik.png"> -->
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <div class="abt-text">
+                            <h2>Followers</h2>
+                            <p>Gain followers Fast and Easy <br> Fast Delivery <br>High Quality Users</p>
+                            <a href="/visitor/services">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="single-abt views">
+                        <div class="abt-img">
+                            <!-- <img src="//i.imgur.com/lJ8jbyH.png" class="img-responsive"> -->
+                            <i class="fa fa-video"></i>
+                        </div>
+                        <div class="abt-text">
+                            <h2>Views</h2>
+                            <p>Get views for your posts to <br> increase the number in your <br> statistics and attract new audience.</p>
+                            <a href="/visitor/services">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-4">
+                    <div class="single-abt comments">
+                        <div class="abt-img">
+                            <!-- <img class="img-responsive topImg" src="//i.imgur.com/o0sjTbW.png"> -->
+                            <i class="fa fa-comments"></i>
+                        </div>
+                        <div class="abt-text">
+                            <h2>Comments</h2>
+                            <p>Random Positive, Custom or even Emoji! <br> Boost Your Posts <br> new reviews and comments? <br> Now it is easy like never before.</p>
+                            <a href="/visitor/services">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="single-abt visits">
+                        <div class="abt-img">
+                            <!-- <img class="img-responsive" src="//i.imgur.com/OV51iR0.png"> -->
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="abt-text">
+                            <h2>Social Signals</h2>
+                            <p>Increase your results with our powerfull Website Traffic Services. <br> Boost your SEO with our Social Signals packs </p>
+                            <a href="/visitor/services">Explore More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+
+                </div>
+            </div>
+            <!-- <div class="row">
+                        <div class="row about-row about-row1">
+                            <div class="col-sm-6">
+                                <h2>Social Media Marketing</h2>
+                                <p>SMM (Social Media Marketing) Services Provider for social networking sites such as Instagram, Facebook, YouTube etc.. for promoting your Brand / Products, At SMMKings we offer Instagram reseller panel prices, as well as other cheap smm services. If you are looking for the most competitive SMM panel, SMMKings has experienced workers with years of experience and are guaranteed to give you and amazing experience and results, thats the most important.
+
+            Anyone who is involved in the field of marketing would have noticed a sudden shift to the use of social media to engage with customers. Social networking sites such as Facebook, Twitter, YouTube, and increasingly Instagram, are becoming the hottest new places to get in touch with their clients. If you are in marketing or even have an online business, then you should know all about this trend so that you too can make use of it to further your interests. As a matter of fact, this is becoming so important that there are plenty of social media jobs available.</p>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="imgBg imgBg1">
+                                <img class="img-responsive bottomImg" src="//i.imgur.com/ybDTni3.jpg">
+                                <img class="img-responsive topImg" src="//i.imgur.com/ybDTni3.jpg">
+                              </div>
+                            </div>
+                        </div>
+                        <div class="row about-row about-row2">
+                            <div class="col-sm-6">
+                                <div class="imgBg imgBg2">
+                                  <img class="img-responsive bottomImg" src="//i.imgur.com/5He9SfK.jpg">
+                                  <img class="img-responsive topImg" src="//i.imgur.com/5He9SfK.jpg">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <h2>SMMKings Panel Features</h2>
+                                <ul class="headerListing">
+                                    <li>Instagram Likes Starting at 0.02$/1,000</li>
+                                    <li>Instagram Views Starting at 0.02$/1,000</li>
+                                    <li>Instagram Followers Starting at 0.2$/1,000</li>
+                                    <li>450+ Cheap SMM Services</li>
+                                  <li>YouTube Unique Views - Mobile IOS / NRV™ Niche Related Views</li>
+                                    <li>Wide Options for Instagram Panel, IGTV and much more!</li>
+                                    <li>100% Automated System</li>
+                                    <li>Perfect for PR`s , Agencies and Resellers</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div> -->
+        </div>
+    </section>
+
+    <section class="who-we-are">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h2>Who We Are</h2>
+                    <p>SocialLacasa.com Powered by SocialLacasa <br> is a provider of great social meadia services</p>
+                    <p>WorldWide Usage by TOP Social Media Agencies &amp; PR`s</p>
+                    <p>We have a professional and Cheap SMM Panel ready to serve you anytime you need with instant start and amazing speed to deliver your SMM work with efficacy and speed. We are waiting for your orders starting today and please note that we accept auto payments for your orders and we have API to serve any SMM Reseller around the globe.</p>
+                    <p>What are you still waiting for ? start placing your Orders now on our Panel for the CHEAPEST ever and if you need anything else please contact us Via Support.</p>
+                </div>
+                <div class="col-sm-5">
+                    <img class="whoWeAreImg" src="//i.imgur.com/9p994D0.png">
+                    <!-- <img class="whoWeAreImg" src="//i.imgur.com/qC0YvKe.png"> -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="very-clear">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="single-clr">
+                        <div class="single-img">
+                            <img src="//i.imgur.com/ETFJinc.jpg" class="img-responsive">
+                        </div>
+                        <div class="single-clr-con">
+                            <p>It is very clear to see that Social Media Marketing has become a treasured tool in the scheme of things these days. Considering that more and more people are doing online work and are buying products on the internet, marketers cannot afford to neglect social networking sites to get in touch with customers.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="single-clr">
+                        <div class="single-img">
+                            <img src="//i.imgur.com/AQ9UxXy.jpg" class="img-responsive">
+                        </div>
+                        <div class="single-clr-con">
+                            <p>Running a favored affiliate, reseller, and associate program could help you dominate a marketing niche online. These programs can appeal to more customers online, and they would lure them into joining our service as affiliates. It is a win-win situation for you and your client.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="single-clr">
+                        <div class="single-img">
+                            <img src="//i.imgur.com/10Y73h4.jpg" class="img-responsive">
+                        </div>
+                        <div class="single-clr-con">
+                            <p>
+                                Are you still looking for cheap social media service with instant delivery? We will provide you all kind of social media followers & Likes at cheap price and instant Delivery with our tools and great services.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="row clearRow clearRow1">
+                        <div class="col-sm-6">
+                            <div class="imgBgVeryClear imgBgVeryClear1">
+                              <img src="//i.imgur.com/ETFJinc.jpg" class="img-responsive bottomImg">
+                              <img src="//i.imgur.com/ETFJinc.jpg" class="img-responsive topImg">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>It is very clear to see that social marketing has become a treasured tool in the scheme of things these days. Considering that more and more people are doing online work and are buying products on the internet, marketers cannot afford to neglect social networking sites to get in touch with customers.</p>
+                            <p>With Using of SMMKings, You can promote you to different social media entries to bring in a broader audience to your customer base, when we sell a social media reseller panel, we guarantee that you will see and increase in your client base. It also means that you can have plenty of help to market your products or services using these media.</p>
+                            <p>In this day and age, it is necessary to have a website that promotes you business online is something that is necessary, this enhances the scope of your customer base and in turn, widens your scope to people on a global scale. If you can bring more people to access your site, you will increase your potential client base and increase traffic to your site and eventually, promote your brand properly. Make sure your website is attractive, simple, neat and targets your customer's needs. Only then can you shamelessly promote it.</p>
+                        </div>
+                    </div>
+                    <div class="row clearRow clearRow2">
+                        <div class="col-sm-6">
+                            <p>Running a favored affiliate, reseller, and associate program could help you dominate a marketing niche online. These programs can appeal to more customers online, and they would lure them into joining our service as affiliates. It is a win-win situation for you and your client.</p>
+                            <p>We will also guide you through the necessary enhancements on your strategies that will help increase the traffic to your website.</p>
+                            <p>SocialLacasa.comis SMM PANEL for SMM RESELLER PANEL.</p>
+                            <p>Our main aim is to provide Social Media Services for the entire market.</p>
+                            <p>We have the cheapest instagram likes, Instagram TV, youtube views and facebook services in the market and we provide Instagram Reseller Panel and a social media reseller panel to resellers in the globe.</p>
+                            <p>SMM is our only goal and we do it with passion and great perspective to serve our resellers the best possible way.</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="imgBgVeryClear imgBgVeryClear2">
+                              <img src="//i.imgur.com/ZNS0H4u.jpg" class="img-responsive bottomImg">
+                              <img src="//i.imgur.com/ZNS0H4u.jpg" class="img-responsive topImg">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearRow  clearRow3">
+                        <div class="col-sm-6">
+                            <div class="imgBgVeryClear imgBgVeryClear3">
+                              <img src="//i.imgur.com/10Y73h4.jpg" class="img-responsive bottomImg">
+                              <img src="//i.imgur.com/10Y73h4.jpg" class="img-responsive topImg">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>Facebook is also our goal for social media panel and we use our experience to help smm reseller for the best panel experience and exposure all around the globe.</p>
+                            <p>Social Media Panel is all we do and reseller panel is all we care about, We`ll soon release the Facebook Watch Views services.</p>
+                            <p>If you are looking for a real panel to help you maximize your SMM exposure, SMMKings is the right place for you.</p>
+                            <p>Dont find any other SMM Reseller panel, we have every service you need with the CHEAPEST price you will ever think about.</p>
+                            <p>SMMKings is the world's largest and cheapest Social Media panel for resellers - Facebook, Instagram, Twitter, YouTube views &amp; more! </p>
+                            <p>Also, we are world's largest instant automated server smm reseller panel for facebook likes,Facebook Watch , Instagram TV Views, instagram likes, youtube views and much more.</p>
+                            <p>Are you still looking for cheap social media service with instant delivery? We will provide you all kind of social media followers &amp; Likes at cheap price and instant Delivery with our tools and great services.</p>
+                <p>Get <a href="http://bit.ly/SMMScript"> SMM Panel Script</a> and start your own SMM Reseller business</p>
+            </div>
+                    </div>-->
+        </div>
+    </section>
+
+
+</div>
+
+
+
+<script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
+
+
+
+@section Scripts
+{
+
+    <script src="@Url.Content("~/Custom/JS/SignIn.js")"></script>
+}

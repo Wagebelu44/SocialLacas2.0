@@ -1,0 +1,302 @@
+﻿
+@{
+                /**/
+
+                ViewBag.Title = "NewOrder";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @{
+        Html.RenderPartial("_UserTopMenu");
+    }
+</div>
+<div>
+    @{
+        Html.RenderPartial("_sidenav");
+    }
+</div>
+<div class="content-wrapper user">
+    <div>
+        <input type="hidden" value='@Session["UserId"]' id="hdnUserId" />
+
+        @*   <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <div style="height:12px;"></div>
+                                <div class="well" style="color:#311873;font-family:inherit;font-weight:bold;text-align:center;border-radius:6px;">
+                                    <h4 style="text-align: center; font-size: 23px;"><span style="color: rgb(51, 51, 51); text-align: start;"><b><font color="#5F2C91">Facebook Post Likes - 20k Max at $0.14/k!</font></b></span></h4><h4 style="text-align: center; font-size: 21px;"><span style="color: rgb(51, 51, 51); text-align: start;"><b><font color="#ff0000">Tik Tok services are back!</font></b></span></h4><h4 style="text-align: center; font-size: 23px;"><span style="color: rgb(51, 51, 51); text-align: start;"><b><font color="#5F2C91">Twitch Followers now at $3/k!</font></b></span></h4>
+                </div>
+            </div>
+                        </div>
+                    </div>*@
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-2 centered">
+                    <div class="well">
+                        <form action="/" method="post" id="order-form">
+
+
+
+                            @*  <div class="form-group">
+                                    <label for="orderform-category" class="control-label">Category</label>
+                                    @Html.DropDownList("CatagoryName", (SelectList)ViewBag.CatagoryName)
+
+                                    <select class="form-control" id="orderform-category" name="OrderForm[category]">
+                                            <option value="64" selected="">✌  Wizards ✌</option>
+                                            <option value="17">Facebook - Page Likes</option>
+                                            <option value="48">Facebook - Country Targeted Page Likes</option>
+                                            <option value="16">Facebook - Post Likes</option>
+                                            <option value="19">Facebook Auto Likes - 30 Day Membership</option>
+                                            <option value="15">Facebook - Views &amp; Live Stream Views</option>
+                                            <option value="55">Facebook - Events</option>
+                                            <option value="14">Facebook - Other Services</option>
+                                            <option value="1">Instagram Followers - Guaranteed</option>
+                                            <option value="2">Instagram Followers - No Refill</option>
+                                            <option value="3">Instagram Followers - Country Targeted</option>
+                                            <option value="52">Instagram Followers - Per Minute</option>
+                                            <option value="4">Instagram Likes</option>
+                                            <option value="5">Instagram Likes - Country Targeted</option>
+                                            <option value="41">Instagram Likes - Per Minute</option>
+                                            <option value="6">Instagram Views</option>
+                                            <option value="43">Instagram Views - Country Targeted</option>
+                                            <option value="7">Instagram Comments</option>
+                                            <option value="8">Instagram  Live</option>
+                                            <option value="44">Instagram TV</option>
+                                            <option value="38">Instagram Mentions</option>
+                                            <option value="9">Instagram - Auto Likes | Views | Comments</option>
+                                            <option value="42">Instagram Auto Likes - Per Minute</option>
+                                            <option value="10">♛ Instagram Auto Likes + Views - 7 Day Membership</option>
+                                            <option value="35">♛ Instagram Auto Likes + Views - 30 Day Membership</option>
+                                            <option value="21">Instagram Auto Views - 7 Day Membership</option>
+                                            <option value="20">Instagram Auto Views - 30 Day Membership</option>
+                                            <option value="53">Arabic Instagram Services / خدمات عربية</option>
+                                            <option value="45">Twitter Followers</option>
+                                            <option value="18">Twitter - Other Services</option>
+                                            <option value="12">Youtube Views</option>
+                                            <option value="60">YouTube Views - Country Targeted</option>
+                                            <option value="11">Youtube - Shares</option>
+                                            <option value="58">YouTube Comments</option>
+                                            <option value="57">YouTube - Other Services</option>
+                                            <option value="23">Soundcloud</option>
+                                            <option value="26">Google Plus</option>
+                                            <option value="33">Linkedin</option>
+                                            <option value="36">Mixcloud</option>
+                                            <option value="24">IMDB</option>
+                                            <option value="29">Periscope</option>
+                                            <option value="25">Pinterest</option>
+                                            <option value="37">Radiojavan</option>
+                                            <option value="49">Reddit</option>
+                                            <option value="27">Spotify</option>
+                                            <option value="31">Telegram</option>
+                                            <option value="50">Tik Tok</option>
+                                            <option value="47">Twitch</option>
+                                            <option value="30">Tumblr</option>
+                                            <option value="61">Twitch Clip Views</option>
+                                            <option value="62">Twitch Video(VOD) Views</option>
+                                            <option value="63">Twitch Channel Total Views</option>
+                                            <option value="40">Website Traffic</option>
+                                        </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="service" class="control-label">Service (Price / 1000)</label>
+                                    <select id="orderform-service" class="form-control" name="OrderForm[service]">
+                                        <option data-type="0" value="1118">⭐ Instagram View - 1m Max — $0.001</option>
+                                        <option data-type="0" value="1116">⭐ Instagram Likes - 2.5k Max — $0.017</option>
+                                        <option data-type="0" value="1119">⭐ Instagram Views - 500k Max — $0.002</option>
+                                        <option data-type="0" value="1117">⭐ Instagram Followers - 5k Max - No Refill — $0.10</option>
+                                        <option data-type="0" value="1115">⭐ Facebook Video Views S4 - Speed 300k - 500k — $0.13</option>
+                                        <option data-type="0" value="1113">⭐ Instagram Followers - 30k Max — $0.55</option>
+                                        <option data-type="0" value="1129">Instagram Likes - 4k Max — $0.05</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group fields" id="service_description">
+                                    <label for="service_description" class="control-label">Description</label>
+                                    <div class="panel-body border-solid border-rounded">Instant Start<br>1,000,000/day speed<br>Lifetime Guaranteed<br>100 Minimum order<br>1,000,000 Maximum order</div>
+                                </div> *@
+                            <div class="form-group">
+                                <label for="orderform-category" class="control-label">Category</label>
+                                @Html.DropDownList("CatagoryName", (SelectList)ViewBag.CatagoryName, new { @class = " form-control zero-pad", onchange = "BindServices()" })
+
+
+                            </div>
+                            <div class="form-group">
+                                <label for="service" class="control-label">Service (Price / 1000)</label>
+
+
+                                <select id="ddlServices" class="form-control"><option value="0">--Select --</option></select>
+
+                            </div>
+
+                            <div class="form-group fields" id="service_description">
+                                <label for="service_description" class="control-label">Description</label>
+                                <textarea class="form-control" id="dvDescription">Instant Start<br>1,000,000/day speed<br>Lifetime Guaranteed<br>100 Minimum order<br>1,000,000 Maximum order</textarea>
+                            </div>
+
+                            <div id="fields">
+                                <div class="form-group hidden fields" id="order_user_name">
+                                    <label class="control-label" for="field-orderform-fields-user_name">Username</label>
+                                    <input class="form-control w-full" name="OrderForm[user_name]" value="" type="text" id="field-orderform-fields-user_name">
+                                </div>
+                                <div class="form-group fields" id="order_link">
+                                    <label class="control-label" for="field-orderform-fields-link">Link</label>
+                                    <input class="form-control" name="OrderForm[link]" value="" type="text" id="field-orderform-fields-link">
+                                </div>
+                                <div class="form-group fields" id="order_quantity">
+                                    <label class="control-label" for="field-orderform-fields-quantity">Quantity</label>
+                                    <input class="form-control" name="OrderForm[quantity]" value="" type="text" id="field-orderform-fields-quantity">
+                                </div>
+                                <div class="form-group hidden fields" id="order_keywords">
+                                    <label class="control-label" for="field-orderform-fields-keywords">Keywords (1 per line)</label>
+                                    <textarea class="form-control" name="OrderForm[keywords]" id="field-orderform-fields-keywords" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group hidden fields" id="order_comment">
+                                    <label class="control-label" for="field-orderform-fields-comment">Comments (1 per line)</label>
+                                    <textarea class="form-control" name="OrderForm[comment]" id="field-orderform-fields-comment" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group hidden fields" id="order_mentionUsernames">
+                                    <label class="control-label" for="field-orderform-fields-mentionUsernames">Usernames (1 per line)</label>
+                                    <textarea class="form-control" name="OrderForm[mentionUsernames]" id="field-orderform-fields-mentionUsernames" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group hidden fields" id="order_usernames">
+                                    <label class="control-label" for="field-orderform-fields-usernames">Usernames (1 per line)</label>
+                                    <textarea class="form-control w-full" name="OrderForm[usernames]" id="field-orderform-fields-usernames" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group hidden fields" id="order_usernames_custom">
+                                    <label class="control-label" for="field-orderform-fields-usernames_custom">Usernames (1 per line)</label>
+                                    <textarea class="form-control" name="OrderForm[usernames_custom]" id="field-orderform-fields-usernames_custom" cols="30" rows="10"></textarea>
+                                </div>
+                                <div class="form-group hidden fields" id="order_username">
+                                    <label class="control-label" for="field-orderform-fields-username">Username</label>
+                                    <input class="form-control" name="OrderForm[username]" value="" type="text" id="field-orderform-fields-username">
+                                </div>
+                                <div class="form-group hidden fields" id="order_mediaUrl">
+                                    <label class="control-label" for="field-orderform-fields-mediaUrl">Media URL</label>
+                                    <input class="form-control" name="OrderForm[mediaUrl]" value="" type="text" id="field-orderform-fields-mediaUrl">
+                                </div>
+                                <div class="form-group hidden fields" id="order_hashtag">
+                                    <label class="control-label" for="field-orderform-fields-hashtag">Hashtag</label>
+                                    <input class="form-control" name="OrderForm[hashtag]" value="" type="text" id="field-orderform-fields-hashtag">
+                                </div>
+                                <div class="form-group hidden fields" id="order_hashtags">
+                                    <label class="control-label" for="field-orderform-fields-hashtags">Hashtags (1 per line)</label>
+                                    <textarea class="form-control" name="OrderForm[hashtags]" id="field-orderform-fields-hashtags" cols="30" rows="10"></textarea>
+                                </div>
+                                <div id="dripfeed">
+                                    <div class="form-group fields hidden" id="order_check">
+                                        <label class="control-label has-depends " for="field-orderform-fields-check">
+                                            <input name="OrderForm[check]" value="1" type="checkbox" id="field-orderform-fields-check">
+                                            Drip-feed
+                                        </label>
+                                        <div class="hidden depend-fields" id="dripfeed-options" data-depend="field-orderform-fields-check">
+                                            <div class="form-group">
+                                                <label class="control-label" for="field-orderform-fields-runs">Runs</label>
+                                                <input class="form-control" name="OrderForm[runs]" value="" type="text" id="field-orderform-fields-runs">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="field-orderform-fields-interval">Interval (in minutes)</label>
+                                                <input class="form-control" name="OrderForm[interval]" value="" type="text" id="field-orderform-fields-interval">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label" for="field-orderform-fields-total-quantity">Total quantity</label>
+                                                <input class="form-control" name="OrderForm[total_quantity]" value="" type="text" id="field-orderform-fields-total-quantity" readonly="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group hidden fields" id="order_posts">
+                                    <label class="control-label" for="field-orderform-fields-posts">New posts</label>
+                                    <input class="form-control" name="OrderForm[posts]" value="" type="text" id="field-orderform-fields-posts">
+                                </div>
+                                <div class="form-group hidden fields" id="order_min">
+                                    <label class="control-label" for="order_count">Quantity</label>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <input type="text" class="form-control" id="order_count" name="OrderForm[min]" value="" placeholder="Min">
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <input type="text" class="form-control" id="order_count" name="OrderForm[max]" value="" placeholder="Max">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group hidden fields" id="order_delay">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <label class="control-label" for="field-orderform-fields-delay">Delay</label>
+                                            <select class="form-control" name="OrderForm[delay]" id="field-orderform-fields-delay">
+
+                                                <option value="0">No delay</option>
+
+                                                <option value="300">5 minutes</option>
+
+                                                <option value="600">10 minutes</option>
+
+                                                <option value="900">15 minutes</option>
+
+                                                <option value="1800">30 minutes</option>
+
+                                                <option value="3600">60 minutes</option>
+
+                                                <option value="5400">90 minutes</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <label for="field-orderform-fields-expiry">Expiry</label>
+                                            <div class="input-group">
+                                                <input class="form-control datetime" name="OrderForm[expiry]" value="" type="text" id="field-orderform-fields-expiry">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default clear-datetime" type="button" data-rel="#field-orderform-fields-expiry"><span class="fa fa-trash-o"></span></button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group hidden fields" id="order_comment_username">
+                                    <label class="control-label" for="field-orderform-fields-comment_username">Username of the comment owner</label>
+                                    <input class="form-control" name="OrderForm[comment_username]" value="" type="text" id="field-orderform-fields-comment_username">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="charge" class="control-label">Charge</label>
+                                <input type="text" class="form-control" id="charge" value="" readonly="">
+                            </div>
+
+
+                            <input type="hidden" name="_csrf" value="jwmd6qTycnWmGixUbjZyqM0HgJdGRfZgN9JDqXGfOMPneq-_6q1AOdFvYwsbTC3ZqUHx0wkhpQ9BlizAQ9V2kA==">
+                            <input type="button" onclick="SaveNewOrder();" value="submit" class="btn btn-primary" />
+                            @*<button type="submit" class="btn btn-primary">Submit</button>*@
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div style="height:12px;"></div>
+                <div class="well " style="height: 400px;overflow-y: scroll;">
+                    <h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; text-align: center; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-weight: 700;"><i>5/11/2018&nbsp;</i></span></h4><h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; text-align: center; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-weight: 700;"><i><br></i></span></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;(1104) Instagram Followers - 5k Max - No Refill At $0.10/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">&nbsp;(1106) YouTube Views - No Refill $0.30/k !&nbsp;</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>&nbsp;(1107) YouTube High Retention Views 30 days reifll At $0.50/k !</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><br></b></h4><div><br></div><h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; text-align: center; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-weight: 700;"><i>27th October 2018&nbsp;</i></span></h4><h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; text-align: center; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-weight: 700;"><i><br></i></span></h4><h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-weight: 700;">Working 100%&nbsp; Instagram likes :</span></h4><h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-weight: 700;"><br></span></h4><div><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(747) Instagram Likes - 10k Max&nbsp;</b></font><b>At -$0.05/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(861) Female Instagram Likes - 10k Max</b></font>&nbsp;<b> At -$0.11/k !&nbsp;</b></h4><div><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(744) Instagram Likes - 70k Max</b></font>&nbsp;<b>At -$0.09/k !</b>&nbsp;</h4></div><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(59) Instagram Likes + Impressions - 80k Max&nbsp;</b></font>-<b>$0.15/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><br></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>For working Automatic likes use this services&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><br></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(992) Instagram Auto Like - 70k max S1&nbsp;&nbsp;</b></font><b>$0.15/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(993) Instagram Auto Likes - 10k max S1&nbsp;</b></font><b>$0.06k !&nbsp;</b><br></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><br></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><br></b></h4></div><h4 style="text-align: center; font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><span style="font-weight: 700;"><i>18th October 2018&nbsp;</i></span></h4><h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>Added:</b></h4><h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><br></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(1012) Instagram Impressions + Profile Visit + Discover At -$0.09/k !&nbsp;</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b>(1008) Instagram Followers - 500k Max At -$1.3/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(997) Instagram View - 1m Max&nbsp; At $0.001/k !&nbsp;</b></font></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b style="">(1021) Facebook Page Likes - Lifetime Guaranteed $4.8/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(1014) Facebook Post Likes S3 At $0.9/k !&nbsp;</b></font></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b style="">(1017) Facebook Post Haha Emojis S3 - 😆 At $0.18/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(1016) Facebook Post Love Emojis S3 - ❤️ At $0.18/k !&nbsp;</b></font></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b style="">(1019) Facebook Post Sad Emojis S3 - 😢 At $0.18/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(1018) Facebook Post Wow Emojis S3 - 😯 At $0.18/k !&nbsp;</b></font></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b style="">(1011) Facebook Video Views S4 - Speed 300k - 500k At $0.13/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(1023) ⭐ Instagam Followers 30k Max - 30 Days Refill (Exclusive) At $0.55/k !&nbsp;</b></font></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b style="">(1009) Instagram Followers - 10k Max - No Refill S1 At $0.30/k !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><font color="#ff0000"><b>(1010) Instagram Followers Super Fast - Max 20k At $36/k !&nbsp;</b></font></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b style="">YouTube Comments Targeted at competitive prices !&nbsp;</b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b style=""><br></b></h4><div><br></div><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><i><font color="#ff0000">14th October 2018 big changes on socialwizards&nbsp;</font></i></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><br></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">Instagram Likes &amp; Targeted Likes at competitive&nbsp; prices !&nbsp;</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><br></b></h4><h4 style="margin: 0pt 0pt 7.5pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(982)&nbsp;</font>Instagram Likes - 1k Max <font color="#ff0000">$0.01/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(431)&nbsp;</font>Instagram Likes - 10k Max S3 <font color="#ff0000">$0.03/k&nbsp;</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(829)&nbsp;</font>Instagram Likes - 10k Max S2 <font color="#ff0000">$0.035/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(606)&nbsp;</font>Instagram Likes - 7k Max <font color="#ff0000">$0.036/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(747)&nbsp;</font>Instagram Likes - 10k Max <font color="#ff0000">$0.05/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(336)&nbsp;</font>Instagram Likes - 30k Max <font color="#ff0000">$0.06/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(744)&nbsp;</font>Instagram Likes - 70k Max <font color="#ff0000">$0.09/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(991)&nbsp;</font>Instagram Likes - 40k Max <font color="#ff0000">$0.10/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(861)&nbsp;</font>Female Instagram Likes - 10k Max <font color="#ff0000">$0.11/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><br></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">Instagram targeted Likes&nbsp;</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><br></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(952)</font> USA Instagram Likes S3 <font color="#ff0000">$0.05/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(335) </font>Russian Instagram Likes <font color="#ff0000">$0.06/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(832)</font> Brazilian Instagram Likes <font color="#ff0000">$0.06/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(954)</font> Chinese Instagram Likes <font color="#ff0000">$0.09/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(951)</font> USA Instagram Likes S2 <font color="#ff0000">$0.09/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(918)</font> Ukrainian Instagram Likes <font color="#ff0000">$0.10/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(930)</font>&nbsp;</b><b style="color: inherit; font-family: inherit; text-indent: 0pt;">Brazilian Female Instagram Real Likes </b><b style="font-family: inherit; text-indent: 0pt;"><font color="#ff0000">$0.10/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000">(931) </font>Brazilian Male Instagram Real Likes <font color="#ff0000">$0.10/k</font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><b><font color="#ff0000"><br></font></b></h4><h4 style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;"><br></h4><p style="margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; text-align: center;"><span style="font-weight: 700; color: inherit; font-size: 24px; text-indent: 0pt;">users should not place several orders for the same link at </span><font color="#ff0000" style="font-weight: 700; font-size: 24px; text-indent: 0pt;">the same time, wait for the first order to finish before placing</font><span style="font-weight: 700; color: inherit; font-size: 24px; text-indent: 0pt;"> the next otherwise one of the orders will not be fully </span><font color="#ff0000" style="font-weight: 700; font-size: 24px; text-indent: 0pt;">delivered, unfortunately refunds cannot be given in these </font><span style="font-weight: 700; color: inherit; font-size: 24px; text-indent: 0pt;">cases.</span><br></p><h4 style="font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: rgb(0, 0, 0); margin: 0pt 0pt 7.5pt; text-indent: 0pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; text-align: center;"><div style="font-size: 14px; text-align: start;"></div></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <img class="img-responsive" src="//i.imgur.com/iroKhsU.png">
+            </div>
+        </div>
+    </div>*@
+@section Scripts
+{
+
+    <script src="@Url.Content("~/Custom/JS/Neworder.js")"></script>
+}

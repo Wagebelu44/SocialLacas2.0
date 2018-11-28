@@ -1,0 +1,101 @@
+﻿@model IEnumerable<SocialLacasa.Models.Messages>
+@{
+    ViewBag.Title = "TicketDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @{
+        Html.RenderPartial("_UserTopMenu");
+    }
+</div>
+<div>
+    @{
+        Html.RenderPartial("_sidenav");
+    }
+</div>
+
+<div class="content-wrapper user">
+    <input type="hidden" id="hdnIsAdmin" value="@ViewBag.isAdmin" />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="well  ">
+                    @{ string subject = "";}
+                    @foreach (var d in Model)
+                    {
+
+                        if (subject != d.Subject)
+                        {
+                            <input type="hidden" value=@d.TicketId class="clsticketid" />
+
+                            subject = d.Subject;
+                        <div class="titcket-title">@d.Subject</div>
+                        }
+                        if (@d.Message != null) { 
+                        <div class="row ticket-message-block ticket-message-right">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-11">
+                                @if (d.SentByCustomer == true)
+                                {
+                                    <div class="ticket-message  text-right">
+                                        <div class="message">@d.Message</div>
+                                    </div>
+                                    <div class="info text-right">
+                                        <strong>@d.UserName</strong>
+                                        <small class="text-muted">@d.Date</small>
+                                    </div>
+                                }
+                                @if (d.SentByCustomer == false)
+                                {
+                                    <div class="ticket-message  ">
+                                        <div class="message">@d.Message</div>
+                                    </div>
+                                    <div class="info ">
+                                        <strong>@d.UserName</strong>
+                                        <small class="text-muted">@d.Date</small>
+                                    </div>
+                                }
+                               
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        }
+
+
+
+                    }
+                    @*<div class="row ticket-message-block ticket-message-left">
+            <div class="col-md-11">
+                <div class="ticket-message">
+                    <div class="message">Hello, kindly send us the Order ID so we can check out the issue, thank you :)</div>
+                </div>
+                <div class="info">
+                    <strong>support</strong>
+                    <small class="text-muted">2018-11-20 18:21:36</small>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>*@
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="post" action="">
+                                <div class="form-group panel-border-top">
+                                    <label for="message" class="control-label">Message</label>
+                                    <textarea id="message" rows="5" class="form-control" name="TicketMessageForm[message]"></textarea>
+                                </div>
+                                <input type="hidden" name="_csrf" value="Utn_5ztFeV6gsm--vHbisVHw18AUCGYK5a4zj_q_fRc6nKqeSQ8sKu30NtztQbv0GZ-loTk8DW-k9gXKnccSYg==">
+                                <input type="button" class="btn btn-primary" onclick="saveTicketMessage();" value="Submit" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+
+    <script src="@Url.Content("~/Custom/JS/TicketDetails.js")"></script>
+}

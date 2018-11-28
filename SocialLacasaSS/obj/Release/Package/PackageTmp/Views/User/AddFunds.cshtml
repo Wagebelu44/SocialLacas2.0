@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "AddFunds";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @{
+        Html.RenderPartial("_UserTopMenu");
+    }
+</div>
+<div>
+    @{
+        Html.RenderPartial("_sidenav");
+    }
+</div>
+
+<div class="content-wrapper user">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="well">
+                    <h4 style="text-align: center; font-size: 19px;">
+                        <span style="color: rgb(51, 51, 51); text-align: start;">
+                            <b>
+                                <font color="purple">Easy payment through credit/debit card!</font>
+                            </b>
+                        </span>
+                    </h4>
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label for="method" class="control-label">Method</label>
+                            <select class="form-control" id="method" name="AddFoundsForm[type]">
+                                <option value="1">Credit card</option>
+                                <option value="2">Debit card</option>
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="Name" class="control-label">Account Name</label>
+                            <input type="text" class="form-control" name="AddFoundsForm[Name]" id="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="accountnumber" class="control-label">Account Number</label>
+                            <input type="number" class="form-control" name="AddFoundsForm[accountnumber]" id="accountnumber">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv" class="control-label">Cvv</label>
+                            <input type="number" class="form-control" name="AddFoundsForm[cvv]" id="cvv">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount" class="control-label">Amount</label>
+                            <input type="text" class="form-control" name="AddFoundsForm[amount]" id="amount">
+                        </div>
+                        <div class="form-group">
+                            <label for="expiry" class="control-label">Expiry Date (mm/yyyy)</label>
+                            <input type="text" class="form-control" name="AddFoundsForm[expiry]" id="expiry">
+                        </div>
+                        <input type="hidden" name="_csrf" value="bgqwKs1B8ky3bM96ilyWQw8C7OmqP987kGCKO6AqBhMqPshzhAe2C-YCrTXsMvEOQHeH39tMsV3lMMdt-VhKcA==">
+                        <input type="button" value="Pay" id="btnpay" onclick="saveFunds()" />
+                        @*<button type="submit" class="btn btn-primary">Pay</button>*@
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+@section Scripts
+{
+
+    <script src="@Url.Content("~/Custom/JS/AddFunds.js")"></script>
+}
