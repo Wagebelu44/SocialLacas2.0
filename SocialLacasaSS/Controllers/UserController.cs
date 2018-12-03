@@ -52,6 +52,7 @@ namespace SocialLacasa.Controllers
             { return RedirectToAction("SignIn", "Visitor"); }
             return View();
         }
+        
         public ActionResult AddFunds()
         {
             if (Session["UserId"] == null)
