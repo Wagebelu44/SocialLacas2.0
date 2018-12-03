@@ -58,7 +58,7 @@ body {
 }
 
 a {
-    color: white;
+    color: black;
     
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
@@ -68,7 +68,7 @@ a {
 }
 
     a:hover, a:focus {
-        color: black;
+        color: #FF8400;
     }
 
 h1,
@@ -668,7 +668,6 @@ table > tbody > tr > td,
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        right: 10px;
         text-indent: initial;
         /* background-color: #fbd634 !important;*/
         color: #ffffff;
@@ -974,24 +973,24 @@ border:none;
 }
 
     .ticket-message-right .ticket-message {
-        background: #fff;
+        background: #5c5c5c;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
         padding: 15px;
-        color: #556574;
+        color: white;
     }
 
 .ticket-message-left {
 }
 
     .ticket-message-left .ticket-message {
-        background: #fff;
+        background: #5c5c5c;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
         padding: 15px;
-        color: #556574;
+        color: white;
     }
 
 .ticket-message-block {
