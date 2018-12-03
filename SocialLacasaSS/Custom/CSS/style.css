@@ -220,7 +220,7 @@ pre {
 }
 
 .navbar-brand {
-    height: 90px;
+    height: auto;
     font-size: 18px;
     line-height: 60px;
     padding: 0 0 0 0;
@@ -405,7 +405,7 @@ pre {
     .notLoginNavbar.navbar.navbar-default > li > a {
     color:white;
     border-radius:0;
-    height:70px;
+    height:65px;
     
     }
 .notLoginNavbar .navbar-nav > li > a:hover,

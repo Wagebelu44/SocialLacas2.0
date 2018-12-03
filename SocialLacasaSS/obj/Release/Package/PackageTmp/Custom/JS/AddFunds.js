@@ -37,3 +37,13 @@
     }
 
 }
+
+$("#order_type").change(function () {
+    if ($('#order_type').val() == 46) {
+        $("#email-grp").show();
+    }
+    else {
+        $("#email-grp").hide();
+    }
+});
+
