@@ -24,7 +24,7 @@ body {
 }
     body > .container > .guest {
         background-image: url(//i.imgur.com/d3ungOa.png);
-        background-color: transparent;
+        background-color: white;
         font-family: 'Source Sans Pro', sans-serif;
     }
 
@@ -217,7 +217,7 @@ pre {
     -ms-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.2);
     -o-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.2);
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.2);
-    height: 70px;
+    height: 65px;
 }
 
 .navbar-brand {
@@ -343,7 +343,12 @@ pre {
     color: #ffffff;
     /* color: #DD4827;*/
     ;
-    line-height: 43px;
+    line-height: 49px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Work Sans', sans-serif;
+    max-height: -webkit-fill-available;
 }
 
 .navbar-default .navbar-nav > .active > a,
@@ -505,6 +510,8 @@ label {
     box-shadow: 0 0 40px rgba(106,69,196,.6), inset 0 0 40px rgba(250,213,52,1);
     box-shadow: 0 0 20px rgba(250,213,52,.6), inset 0 0 20px rgba(250,213,52,1);*/
     border: none;
+    box-shadow:3px 10px 17px 0px RGB(0, 0, 0,0.5);
+    border-radius:4px;
 }
 
 table {
@@ -1480,6 +1487,7 @@ body.guest .navbar {
         color: #ffffff;
         /* font-weight: 500; */
         text-decoration: none;
+        padding: 8px 15px !important;
     }
 
         body.guest .navbar .navbar-nav > li > a:focus,
@@ -1519,7 +1527,7 @@ body.guest .navbar {
         margin-top: 10%;
     }
      .mainBanner h1 {
-    font-size: 60px;
+    font-size: 40px;
     color: #ffd703;
     font-weight: 700;
     margin-bottom: 20px;
@@ -1878,4 +1886,9 @@ body.guest .navbar {
 
 .clearRow:nth-child(2) .clearBox::before {
     right: -35px;
+}
+
+.nowrap {
+
+white-space:nowrap;
 }

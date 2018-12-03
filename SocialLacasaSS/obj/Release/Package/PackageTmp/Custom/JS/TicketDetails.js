@@ -19,7 +19,7 @@
 
     function successFunc(data, status) {
         if (data[0] == "1") {
-            alert("New message saved.");
+            //alert("New message saved.");
             location.reload(true);
         }
         else {

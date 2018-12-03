@@ -1,33 +1,49 @@
-﻿$(document).ready(function () {
-    var selector = '.nav li';
+﻿$('.navbar-nav a').on('click', function () {
+    $(".navbar-nav").find('.active').removeClass('active');
+    $(this).parent().addClass('active');
 
-    $(selector).on('click', function () {
-        $(selector).removeClass('active');
-        $(this).addClass('active');
-        
-    });
-})
+});
 
-var LogOut = function () {
+$(document).ready(function () {
+
    
+        var isAdmin = localStorage["isAdmin"];
 
-  
-        
+        if (isAdmin == "1") {
+            $('.clsUser').hide();
+            $('.clsadmin').show();
+        }
+        else {
+            $('.clsUser').show();
+            $('.clsadmin').hide();
+        }
+
+   
+    });
+
+   
+    var LogOut = function () {
+
+
+
+
         $.ajax({
             type: "POST",
             url: "/Service/logOut",
-          
+
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                
-                    window.location.href = "/Visitor/SignIn";
+                localStorage["isAdmin"] = null;
+                window.location.href = "/Visitor/SignIn";
 
-                
+
             },
             error: function (err) { }
         });
 
-    
-}
+
+    }
+
+
 

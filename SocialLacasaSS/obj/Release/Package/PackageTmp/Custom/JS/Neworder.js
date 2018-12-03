@@ -1,7 +1,13 @@
 ﻿
 $(document).ready(function () {
-    $('.clsUser').show();
-    $('.clsadmin').hide();
+    //var isAdmin =$("#hdnIsAdmin").val();
+    //if (isAdmin == "1") {
+    //    $('.clsUser').hide();
+    //    $('.clsadmin').show(); }
+    //else {
+    //    $('.clsUser').show();
+    //    $('.clsadmin').hide(); }
+   
 })
 
 

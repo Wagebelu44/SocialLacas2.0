@@ -1,5 +1,5 @@
 ﻿var LoginUser = function () {
-    alert(1);
+  //  localStorage["isAdmin"] = $("#hdnIsAdmin").val();
     var serviceURL = '/Service/CheckUser';
 
     var obj = {};
@@ -20,11 +20,11 @@
             if (data[0] != "") {
                 
                 if (data[1] == "0") {
-                  
+                    localStorage["isAdmin"] = "0";
                     window.location.href = "/User/NewOrder";
                 }
                 else {
-                    
+                    localStorage["isAdmin"] = "1";
                     window.location.href = "/Admin/PlaceOrder";
                 }
             }
