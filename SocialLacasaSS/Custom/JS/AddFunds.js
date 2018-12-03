@@ -1,6 +1,24 @@
-﻿var saveFunds = function () {
-    
-    
+﻿var callPayPal = function () {
+    var paypalurl = '/Service/PayPal';
+    $.ajax({
+        type: "POST",
+        url: paypalurl,
+     //   data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var url = data;
+            window.location.href = url;
+        },
+        error: function (err) {
+            alert("Error in processing payment.")
+        }
+    });
+}
+
+var saveFunds = function () {
+    callPayPal();
+    return false;
     var serviceURL = '/Service/SaveFunds';
 
     var obj = {};

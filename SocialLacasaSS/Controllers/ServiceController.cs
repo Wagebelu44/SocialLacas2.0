@@ -26,6 +26,25 @@ namespace SocialLacasa.Controllers
             Session["UserId"] = null;
             return Json("1", JsonRequestBehavior.AllowGet);
         }
+        public JsonResult PayPal()
+        {
+            string businessPaypalId = "shaheenbohra1989@gmail.com";
+            double itemCost = 10.00;
+            string baseUrl=Request.Url.GetLeftPart(UriPartial.Authority);
+            //string baseUrl = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, "") + HttpContext.Current.Request.ApplicationPath;
+            if (!baseUrl.EndsWith("/"))
+                baseUrl += "/";
+            string redirect = "";
+            redirect += "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + businessPaypalId;
+            redirect += "&amount=" + itemCost;
+            redirect += "&item_number=1";
+            redirect += "&currency_code= USD";
+            redirect += "&return=" + baseUrl + "User/NewOrder";
+            redirect += "&cancel_return=" + baseUrl + "User/NewOrder";
+            redirect += "&notify_url=" + baseUrl + "User/NewOrder";
+            
+            return Json(redirect, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult PlaceOrder_Api(int serviceid, int quantity, string link)
         {
             string url = "https://socialwizards.com/api/v2?key=4319270ac33c7579f1d4f8d4c60357a5&action=add&service=" + serviceid + "&link=" + link + "&quantity=" + quantity;
