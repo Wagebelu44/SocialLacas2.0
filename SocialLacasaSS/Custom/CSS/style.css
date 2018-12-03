@@ -58,7 +58,7 @@ body {
 }
 
 a {
-    color: white;
+    color: black;
     
     -webkit-transition: all 0.2s;
     -moz-transition: all 0.2s;
@@ -68,7 +68,7 @@ a {
 }
 
     a:hover, a:focus {
-        color: black;
+        color: #FF8400;
     }
 
 h1,
