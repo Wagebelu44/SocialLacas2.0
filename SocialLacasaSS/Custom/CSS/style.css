@@ -217,7 +217,6 @@ pre {
     -ms-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.2);
     -o-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.2);
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.2);
-    height: 65px;
 }
 
 .navbar-brand {
@@ -1567,7 +1566,6 @@ body.guest .navbar {
     position: relative;
     box-shadow: 0 0 25px -5px #f49d4c;
     border: 0;
-    padding-right: 260px;
     background:white;
     /*background-image: url('//i.imgur.com/oa2gxDf.png');*/
     background-repeat: no-repeat;
