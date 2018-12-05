@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "AddFunds";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @{
+        Html.RenderPartial("_UserTopMenu");
+    }
+</div>
+<div>
+    @{
+        Html.RenderPartial("_sidenav");
+    }
+</div>
+
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="well">
+                    <h4 style="text-align: center; font-size: 19px;">
+                        <span style="color: rgb(51, 51, 51); text-align: start;">
+                            <b>
+                                <font color="purple">Please allow 0-5 minutes for invoice payments to be added automatically, thanks!</font>
+                            </b>
+                        </span>
+                    </h4>
+                    <form method="post" action="">
+                        <div class="form-group">
+                            <label for="method" class="control-label">Method</label>
+                            <select class="form-control" name="AddFoundsForm[type]" id="order_type">
+                                <option value="46">PayPal Invoice - 0-10 mins confirmation time</option>
+                                <option value="21">BTC/ETH/Etc. - 0-20 mins confirmation time</option>
+                                <option value="2">Perfect Money</option>
+                                <option value="3">WebMoney</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount" class="control-label">Amount</label>
+                            <input type="number" class="form-control" name="AddFoundsForm[amount]" id="amount">
+                        </div>
+
+                        <div class="form-group" id="email-grp">
+                            <label for="amount" class="control-label">Paypal email</label>
+                            <input type="text" class="form-control" name="AddFoundsForm[email]" id="field-paypal_email">
+                        </div>
+                        <input type="hidden" name="_csrf" value="eITRSkLnSsZOzIJzPNA2QXNNlFiHIM9iWwwxTFiVeVkM4IcIHZQ-9B6p1BVshn8xQX6jNshyrBYwfgI2PsYTKw==">
+                        <button type="submit" class="btn btn-primary">Pay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    @section Scripts
+{
+
+        <script src="@Url.Content("~/Custom/JS/AddFunds.js")"></script>
+    }
