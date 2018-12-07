@@ -1,20 +1,34 @@
-﻿var callPayPal = function () {
-    var paypalurl = '/Service/PayPal';
-    $.ajax({
-        type: "POST",
-        url: paypalurl,
-     //   data: JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (data) {
-            addfuncds();
-            var url = data;
-            window.location.href = url;
-        },
-        error: function (err) {
-            alert("Error in processing payment.")
-        }
-    });
+﻿var checkvalidity = function () {
+    var valid = true;
+    if ($("#amount").val() == "") {
+        valid = false;
+    }
+    return valid;
+}
+
+
+var callPayPal = function () {
+    if ($("field-paypal_email").val() == "") {
+        alert("Please provide valid paypal url");
+    }
+    else {
+        var paypalurl = '/Service/PayPal';
+        $.ajax({
+            type: "POST",
+            url: paypalurl,
+            //   data: JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                addfuncds();
+                var url = data;
+                window.location.href = url;
+            },
+            error: function (err) {
+                alert("Error in processing payment.")
+            }
+        });
+    }
 }
 var callWebMoney = function () {
     var paypalurl = '/Service/WebMoney';
@@ -107,22 +121,29 @@ var addfuncds = function () {
     }
 }
 var saveFunds = function () {
-    var paymentMethod = $("#order_type").val();
-    if (paymentMethod == "PayPal") {
-        callPayPal();
-    }
-    else if (paymentMethod == "BTH") {
-        callBTH();
-    }
-    else if (paymentMethod == "PerfectMoney") {
-        callPerfectMoney();
-    }
-    else if (paymentMethod == "WebMoney") {
-        callWebMoney();
-    }
-    return false;
-   
+    var valid = checkvalidity();
+    if (valid == true)
+    {
+        var paymentMethod = $("#order_type").val();
+        if (paymentMethod == "PayPal") {
+            callPayPal();
+        }
+        else if (paymentMethod == "BTH") {
+            callBTH();
+        }
+        else if (paymentMethod == "PerfectMoney") {
+            callPerfectMoney();
+        }
+        else if (paymentMethod == "WebMoney") {
+            callWebMoney();
+        }
+        return false;
 
+    }
+
+    else {
+        return false;
+    }
 }
 
 $("#order_type").change(function () {
