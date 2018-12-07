@@ -1,10 +1,10 @@
 ﻿function checkvalidity() {
     var valid = true;
-    if ($("#field-orderform-fields-link").val == "") {
+    if ($("#field-orderform-fields-link").val() == "") {
         alert("Please enter correct link");
         valid = false;
     }
-    else if ($("##field-orderform-fields-quantity").val == "") {
+    else if ($("#field-orderform-fields-quantity").val() == "") {
         alert("Please enter quantity");
         valid = false;
     }
@@ -12,7 +12,7 @@
        
     }
 
-}
+
 $(document).ready(function () {
     //var isAdmin =$("#hdnIsAdmin").val();
     //if (isAdmin == "1") {
