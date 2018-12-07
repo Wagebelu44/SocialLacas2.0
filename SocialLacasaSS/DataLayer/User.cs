@@ -417,6 +417,32 @@ namespace SocialLacasa.DataLayer
             }
             return rest;
         }
+        public string removeUser(string userid)
+        {
+            string rest = string.Empty;
+            try
+            {
+
+
+                SqlConnection cn = new SqlConnection(strConnString);
+                SqlCommand cmd = new SqlCommand("usp_removeUser", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserId", Convert.ToInt32(userid));
+
+
+                cn.Open();
+                object res = cmd.ExecuteNonQuery();
+                rest = res.ToString();
+
+                cn.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return rest;
+        }
 
 
 
