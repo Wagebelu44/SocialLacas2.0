@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<SocialLacasa.Models.Services>
+
 @{
     ViewBag.Title = "Services";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,7 +15,6 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="well well-float tableBox">
-                  
                     <table class="table ">
                         <thead>
                             <tr>
@@ -27,86 +27,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="aloneHsnTd" colspan="6"><strong>✌  Wizards ✌</strong></td>
-                            </tr>
-                            <tr>
-                                <td>1118</td>
-                                <td>Instagram View - 1m Max</td>
-                                <td>0.001</td>
-                                <td>100</td>
-                                <td>1000000</td>
-                                <td class="hidden-xs hidden-sm service-description">Instant Start<br>1,000,000/day speed<br>Lifetime Guaranteed<br>100 Minimum order<br>1,000,000 Maximum order</td>
-                            <tr class="visible-xs visible-sm service-description">
-                                <td colspan="5">Instant Start<br>1,000,000/day speed<br>Lifetime Guaranteed<br>100 Minimum order<br>1,000,000 Maximum order</td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>1119</td>
-                                <td>Instagram Views - 500k Max</td>
-                                <td>0.002</td>
-                                <td>100</td>
-                                <td>500000</td>
-                                <td class="hidden-xs hidden-sm service-description">Instant Start <br>200,000/hour speed <br>Lifetime non drop guarantee <br>100 Minimum order <br>500,000 Maximum order</td>
-                            <tr class="visible-xs visible-sm service-description">
-                                <td colspan="5">Instant Start <br>200,000/hour speed <br>Lifetime non drop guarantee <br>100 Minimum order <br>500,000 Maximum order</td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td class="aloneHsnTd" colspan="6"><strong>Facebook - Page Likes</strong></td>
-                            </tr>
-                            <tr>
-                                <td>791</td>
-                                <td>Real Instant Worldwide Likes</td>
-                                <td>5.80</td>
-                                <td>100</td>
-                                <td>100000</td>
-                                <td class="hidden-xs hidden-sm service-description">0-48 hours start time<br>30,000/day speed<br>30 Days refill guarantee<br>10 Minimum order<br>200,000 Maximum order</td>
-                            <tr class="visible-xs visible-sm service-description">
-                                <td colspan="5">0-48 hours start time<br>30,000/day speed<br>30 Days refill guarantee<br>10 Minimum order<br>200,000 Maximum order</td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td>1134</td>
-                                <td>Facebook Page Likes - No Refill</td>
-                                <td>3.60</td>
-                                <td>50</td>
-                                <td>2000</td>
-                                <td class="hidden-xs hidden-sm service-description">0-24 hours start time<br>1,000/day speed<br>No Refill/No Refund<br>50 Minimum order<br>2,000 Maximum order</td>
-                            <tr class="visible-xs visible-sm service-description">
-                                <td colspan="5">0-24 hours start time<br>1,000/day speed<br>No Refill/No Refund<br>50 Minimum order<br>2,000 Maximum order</td>
-                            </tr>
-                            </tr>
-                            <tr>
-                                <td class="aloneHsnTd" colspan="6"><strong>Facebook - Country Targeted Page Likes</strong></td>
-                            </tr>
-                            <tr>
-                                <td>704</td>
-                                <td>East Asian Facebook Page Likes</td>
-                                <td>19.20</td>
-                                <td>1000</td>
-                                <td>100000</td>
-                                <td class="hidden-xs hidden-sm service-description">
-                                    <br>
-                                    <br>0-48 hour start time
-                                    <br>300-500/day speed
-                                    <br>100% Real (Ads Method)
-                                    <br>Lifetime non drop guarantee
-                                    <br>1,000 Minimum order
-                                    <br>100,000 Maximum order
-                                </td>
-                            <tr class="visible-xs visible-sm service-description">
-                                <td colspan="5">
-                                    <br>
-                                    <br>0-48 hour start time
-                                    <br>300-500/day speed
-                                    <br>100% Real (Ads Method)
-                                    <br>Lifetime non drop guarantee
-                                    <br>1,000 Minimum order
-                                    <br>100,000 Maximum order
-                                </td>
-                            </tr>
-                            </tr>
+                            @{ string category = "";}
+                            @foreach (var d in Model)
+                            {
+
+                                if (category != d.Category)
+                                {
+                                    <tr>
+                                        <td class="aloneHsnTd" colspan="6"><strong>@d.Category</strong></td>
+                                    </tr>
+                                }
+                                category = d.Category;
+
+
+                                <tr>
+                                    <td>@d.SWserviceId</td>
+                                    <td>@d.ServiceType</td>
+                                    <td>@d.Rate</td>
+                                    <td>@d.MinOrder</td>
+                                    <td>@d.MaxOrder</td>
+                                    <td class="hidden-xs hidden-sm service-description">@d.Description</td>
+                                <tr class="visible-xs visible-sm service-description">
+                                    <td colspan="5">@d.Description</td>
+                                </tr>
+                                </tr>
+
+                            }
+
+
 
 
                         </tbody>
@@ -115,7 +63,7 @@
             </div>
         </div>
     </div>
-   @* <div class="container">
+    @* <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="well ">
@@ -123,6 +71,6 @@
                 </div>
             </div>
         </div>*@
-    </div>
+</div>
 
 </div>
