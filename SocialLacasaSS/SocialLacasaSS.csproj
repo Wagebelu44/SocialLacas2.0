@@ -173,6 +173,7 @@
     <Content Include="Custom\JS\AddFunds.js" />
     <Content Include="Custom\JS\Common.js" />
     <Content Include="Custom\JS\Neworder.js" />
+    <Content Include="Custom\JS\SignedUpUser.js" />
     <Content Include="Custom\JS\SignIn.js" />
     <Content Include="Custom\JS\Signup.js" />
     <Content Include="Custom\JS\Ticket.js" />

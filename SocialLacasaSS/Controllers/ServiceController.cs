@@ -252,6 +252,23 @@ namespace SocialLacasa.Controllers
 
         }
 
+        public JsonResult removeUser(string userid)
+        {
+            //string res = "0";
+            var objUser = new User();
+            string result = "";
+            try
+            {
+                result = objUser.removeUser(userid);
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 
 }
