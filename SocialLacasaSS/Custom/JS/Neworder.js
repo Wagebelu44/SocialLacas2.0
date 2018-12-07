@@ -1,10 +1,18 @@
-﻿var valid = false;
-function checkvalidity() {
-    if (($("#field-orderform-fields-link") != "") && (!$("#field-orderform-fields-quantity") != "")) {
-        valid = true;
+﻿function checkvalidity() {
+    var valid = true;
+    if ($("#field-orderform-fields-link").val() == "") {
+        alert("Please enter correct link");
+        valid = false;
+    }
+    else if ($("#field-orderform-fields-quantity").val() == "") {
+        alert("Please enter quantity");
+        valid = false;
+    }
+    return valid;
+       
     }
 
-}
+
 $(document).ready(function () {
     //var isAdmin =$("#hdnIsAdmin").val();
     //if (isAdmin == "1") {
@@ -40,7 +48,7 @@ var callapi = function () {
 }
 
 var SaveNewOrder = function () {
-    checkvalidity();
+    var valid =checkvalidity();
     if (valid == true) {
 
         var serviceURL = '/Service/SaveNewOrder';
@@ -79,7 +87,7 @@ var SaveNewOrder = function () {
 
     }
     else {
-        alert("Please fill all the fields correctly.")
+        return false;
     }
 
 }
