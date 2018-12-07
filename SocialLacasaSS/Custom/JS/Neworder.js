@@ -14,6 +14,8 @@
 
 
 $(document).ready(function () {
+    $(".neworderuser").addClass('active');
+
     //var isAdmin =$("#hdnIsAdmin").val();
     //if (isAdmin == "1") {
     //    $('.clsUser').hide();

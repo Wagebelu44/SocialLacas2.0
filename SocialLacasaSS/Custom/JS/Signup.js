@@ -1,4 +1,11 @@
-﻿
+﻿$(document).ready(function () {
+    $(".vsignup").addClass('active');
+
+
+
+});
+
+
 function checkvalidity() {
     var valid = true;
   

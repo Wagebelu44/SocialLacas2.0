@@ -1,4 +1,12 @@
-﻿var valid = false;
+﻿$(document).ready(function () {
+    $(".vsignin").addClass('active');
+
+
+
+});
+
+
+var valid = false;
 function checkvalidity() {
     if (($("#txtusername").val() != "") && ($("#txtpassword").val() != "")) {
         valid = true;
