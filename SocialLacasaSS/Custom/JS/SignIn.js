@@ -11,6 +11,12 @@ function checkvalidity() {
     if (($("#txtusername").val() != "") && ($("#txtpassword").val() != "")) {
         valid = true;
     }
+    else {
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter username and password");
+
+    }
+    
 
 }
 var LoginUser = function () {
@@ -18,6 +24,7 @@ var LoginUser = function () {
 
     checkvalidity();
     if (valid == true) {
+        $(".alert").addClass("hidden");
         var serviceURL = '/Service/CheckUser';
 
         var obj = {};
@@ -53,7 +60,7 @@ var LoginUser = function () {
         }
     }
     else {
-        alert("please enter username and password/")
+        return false;
     }
 
         function errorFunc(err) {

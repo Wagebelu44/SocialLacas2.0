@@ -1,6 +1,16 @@
-﻿var checkvalidity = function () {
+﻿$(document).ready(function () {
+    $(".nav").removeClass("active");
+    $(".addfunds").addClass('active');
+
+
+
+});
+
+var checkvalidity = function () {
     var valid = true;
     if ($("#amount").val() == "") {
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter amount");
         valid = false;
     }
     return valid;
@@ -9,7 +19,8 @@
 
 var callPayPal = function () {
     if ($("field-paypal_email").val() == "") {
-        alert("Please provide valid paypal url");
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please provide paypal email");
         return false;
     }
     else {
@@ -120,6 +131,8 @@ var saveFunds = function () {
     var valid = checkvalidity();
     if (valid == true)
     {
+        $(".alert").addClass("hidden");
+
         var paymentMethod = $("#order_type").val();
         if (paymentMethod.toLowerCase() == "paypal") {
             callPayPal();

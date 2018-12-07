@@ -1,7 +1,16 @@
-﻿function checkvalidity() {
+﻿$(document).ready(function () {
+    $(".nav").removeClass("active");
+    $(".massorder").addClass('active');
+
+
+
+});
+
+function checkvalidity() {
     var valid = true;
     if ($("#links").val() == "") {
-        alert("Please enter the links correctly");
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter correct links");
         valid = false;
     }
    
@@ -32,6 +41,8 @@ var getObjectOrder = function () {
 var SaveMassOrder = function () {
     var valid = checkvalidity();
     if (valid == true) {
+        $(".alert").addClass("hidden");
+
         getObjectOrder();
 
         //  var totalCharge = CalculateTotalCharge();

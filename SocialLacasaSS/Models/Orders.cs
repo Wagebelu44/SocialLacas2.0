@@ -17,5 +17,6 @@ namespace SocialLacasa.Models
         public string Service { get; set; }
         public string Status { get; set; }
         public int Remains { get; set; }
+        public string SWorderId { get; set; }
     }
 }

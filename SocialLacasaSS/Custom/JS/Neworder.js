@@ -1,11 +1,13 @@
 ﻿function checkvalidity() {
     var valid = true;
     if ($("#field-orderform-fields-link").val() == "") {
-        alert("Please enter correct link");
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter correct link");
         valid = false;
     }
     else if ($("#field-orderform-fields-quantity").val() == "") {
-        alert("Please enter quantity");
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter quantity");
         valid = false;
     }
     return valid;
@@ -17,13 +19,7 @@ $(document).ready(function () {
     $(".nav").removeClass("active");
     $(".neworderuser").addClass('active');
 
-    //var isAdmin =$("#hdnIsAdmin").val();
-    //if (isAdmin == "1") {
-    //    $('.clsUser').hide();
-    //    $('.clsadmin').show(); }
-    //else {
-    //    $('.clsUser').show();
-    //    $('.clsadmin').hide(); }
+   
 
 });
 
@@ -53,7 +49,7 @@ var callapi = function () {
 var SaveNewOrder = function () {
     var valid =checkvalidity();
     if (valid == true) {
-
+        $(".alert").addClass("hidden");
         var serviceURL = '/Service/SaveNewOrder';
 
         var obj = {};
