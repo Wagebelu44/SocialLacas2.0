@@ -1,11 +1,21 @@
-﻿var LoginUser = function () {
-  //  localStorage["isAdmin"] = $("#hdnIsAdmin").val();
-    var serviceURL = '/Service/CheckUser';
+﻿var valid = false;
+function checkvalidity() {
+    if (($("#txtusername") != "") && (!$("#txtpassword") != "")) {
+        valid = true;
+    }
 
-    var obj = {};
-    obj.userName = $("#txtusername").val();
-    obj.password = $("#txtpassword").val();
-    
+}
+var LoginUser = function () {
+  //  localStorage["isAdmin"] = $("#hdnIsAdmin").val();
+
+    checkvalidity():
+    if (valid == true) {
+        var serviceURL = '/Service/CheckUser';
+
+        var obj = {};
+        obj.userName = $("#txtusername").val();
+        obj.password = $("#txtpassword").val();
+
         $.ajax({
             type: "POST",
             url: serviceURL,
@@ -18,7 +28,7 @@
 
         function successFunc(data, status) {
             if (data[0] != "") {
-                
+
                 if (data[1] == "0") {
                     localStorage["isAdmin"] = "0";
                     window.location.href = "/User/NewOrder";
@@ -31,8 +41,12 @@
             else {
                 alert("Invalid UserName or Password.")
             }
-           
+
         }
+    }
+    else {
+        alert("please enter username and password/")
+    }
 
         function errorFunc(err) {
             alert(err.responseText);

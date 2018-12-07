@@ -1,34 +1,49 @@
-﻿var SaveUser = function () {
-    var serviceURL = '/Service/SaveUser';
-   
-    var obj = {};
-    var isChecked = $('#chkCaptcha').is(":checked");
-    obj.userName = $("#txtusername").val();
-    obj.password = $("#txtpassword").val(); 
-    obj.email = $("#txtemail").val(); 
-    if (isChecked==true) {
-        $.ajax({
-            type: "POST",
-            url: serviceURL,
-            data: JSON.stringify(obj),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: successFunc,
-            error: errorFunc
-        });
+﻿var valid = false;
+function checkvalidity() {
+    if (($("#txtusername") != "") && (!$("#txtpassword")!=""))
+        {
+        valid =true ;
+    }
 
-        function successFunc(data, status) {
+}
+var SaveUser = function () {
+    checkvalidity();
+    if (valid == true)
+    {
+        var serviceURL = '/Service/SaveUser';
 
-            alert("User Saved.");
-            window.location = '/';
+        var obj = {};
+        var isChecked = $('#chkCaptcha').is(":checked");
+        obj.userName = $("#txtusername").val();
+        obj.password = $("#txtpassword").val();
+        obj.email = $("#txtemail").val();
+        if (isChecked == true) {
+            $.ajax({
+                type: "POST",
+                url: serviceURL,
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+
+                alert("User Saved.");
+                window.location = '/';
+            }
+
+            function errorFunc(err) {
+                alert(err.responseText);
+            }
         }
-
-        function errorFunc(err) {
-            alert(err.responseText);
+        else {
+            alert("Please accept the terms and conditions!")
         }
     }
     else {
-        alert("Please accept the terms and conditions!")
+        alert("Please fill all the fields correctly!")
     }
 
 }

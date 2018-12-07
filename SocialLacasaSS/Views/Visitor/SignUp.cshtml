@@ -18,21 +18,21 @@
                     <form action="" method="post">
                         <div class="form-group">
                             <label style="display:none;" for="username" class="control-label">Username</label>
-                            <input type="text" class="form-control" id="txtusername" value="" name="RegistrationForm[login]" placeholder="Username">
+                            <input type="text" class="form-control" id="txtusername" value="" name="RegistrationForm[login]" placeholder="Username" required >
                         </div>
                         <div class="form-group">
                             <label style="display:none;" for="email" class="control-label">Email</label>
-                            <input type="email" class="form-control" id="txtemail" value="" name="RegistrationForm[email]" placeholder="Email">
+                            <input type="email" class="form-control" id="txtemail" value="" name="RegistrationForm[email]" placeholder="Email" required>
                         </div>
                         <div class="form-group">
                             <label style="display:none;" for="password" class="control-label">Password</label>
-                            <input type="password" class="form-control" id="txtpassword" name="RegistrationForm[password]" placeholder="Password">
+                            <input type="password" class="form-control" id="txtpassword" name="RegistrationForm[password]" placeholder="Password" required>
                         </div>
                         <div class="form-group">
                             <label style="display:none;" for="confirm" class="control-label">Confirm password</label>
-                            <input type="password" class="form-control" id="txtconfirm" name="RegistrationForm[password_again]" placeholder="Confirm password">
+                            <input type="password" class="form-control" id="txtconfirm" name="RegistrationForm[password_again]" placeholder="Confirm password" required>
                         </div>
-                        <div class="g-recaptcha form-group" data-sitekey="6LeQyxkUAAAAACZsRNUpGI-5rw7ifdLgP0mUyE4O" data-theme="dark">
+                        <div class="g-recaptcha form-group" data-sitekey="6LeQyxkUAAAAACZsRNUpGI-5rw7ifdLgP0mUyE4O" data-theme="dark" >
                         </div>
                         <!--   <div class="g-recaptcha form-group" data-sitekey="6LeQyxkUAAAAACZsRNUpGI-5rw7ifdLgP0mUyE4O">
     </div>-->
@@ -43,7 +43,7 @@
                                 </label>
                             </div>
                         </div>
-                        <input type="button" onclick="SaveUser();" class="btn btn-primary" value="Sign Up" />
+                        <input id="submitBtn" type="button" onclick="SaveUser();" class="btn btn-primary" value="Sign Up" />
                         @*<button type="submit" onclick="SaveUser();" class="btn btn-primary">Sign up</button>*@
                         @*<span class="pull-right pull-right-middle">Already have an account? <a href="~/Visitor/SignIn">Sign in</a></span>*@
                     </form>
