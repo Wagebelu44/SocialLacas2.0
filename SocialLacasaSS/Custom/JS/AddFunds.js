@@ -10,6 +10,7 @@
 var callPayPal = function () {
     if ($("field-paypal_email").val() == "") {
         alert("Please provide valid paypal url");
+        return false;
     }
     else {
         var paypalurl = '/Service/PayPal';
