@@ -15,9 +15,71 @@
         }
     });
 }
-
+var callWebMoney = function () {
+    var paypalurl = '/Service/WebMoney';
+    $.ajax({
+        type: "POST",
+        url: paypalurl,
+        //   data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var url = data;
+            window.location.href = url;
+        },
+        error: function (err) {
+            alert("Error in processing payment.")
+        }
+    });
+}
+var callPerfectMoney = function () {
+    var paypalurl = '/Service/PerfectMoney';
+    $.ajax({
+        type: "POST",
+        url: paypalurl,
+        //   data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var url = data;
+            window.location.href = url;
+        },
+        error: function (err) {
+            alert("Error in processing payment.")
+        }
+    });
+}
+var callBTH = function () {
+    var paypalurl = '/Service/BTH';
+    $.ajax({
+        type: "POST",
+        url: paypalurl,
+        //   data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            var url = data;
+            window.location.href = url;
+        },
+        error: function (err) {
+            alert("Error in processing payment.")
+        }
+    });
+}
 var saveFunds = function () {
-    callPayPal();
+    var paymentMethod = $("order_type").val();
+    if (paymentMethod == "PayPal") {
+        callPayPal();
+    }
+    else if (paymentMethod == "BTH") {
+        callBTH();
+    }
+    else if (paymentMethod == "PerfectMoney") {
+        callPerfectMoney();
+    }
+    else if (paymentMethod == "WebMoney") {
+        callWebMoney();
+    }
     return false;
     var serviceURL = '/Service/SaveFunds';
 

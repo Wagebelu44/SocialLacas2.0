@@ -35,7 +35,7 @@ namespace SocialLacasa.Controllers
             if (!baseUrl.EndsWith("/"))
                 baseUrl += "/";
             string redirect = "";
-            redirect += "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + businessPaypalId;
+            redirect += "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + businessPaypalId;
             redirect += "&amount=" + itemCost;
             redirect += "&item_number=1";
             redirect += "&currency_code= USD";
@@ -44,6 +44,24 @@ namespace SocialLacasa.Controllers
             redirect += "&notify_url=" + baseUrl + "User/NewOrder";
             
             return Json(redirect, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult PerfectMoney()
+        {
+
+
+            return Json("1", JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult WebMoney()
+        {
+
+
+            return Json("1", JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult BTH()
+        {
+
+
+            return Json("1", JsonRequestBehavior.AllowGet);
         }
         public JsonResult PlaceOrder_Api(int serviceid, int quantity, string link)
         {
