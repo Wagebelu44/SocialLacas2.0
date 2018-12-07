@@ -19,7 +19,7 @@
         function successFunc(data, status) {
 
             alert("User Removed");
-            window.location = '/';
+            location.reload();
         }
 
         function errorFunc(err) {
