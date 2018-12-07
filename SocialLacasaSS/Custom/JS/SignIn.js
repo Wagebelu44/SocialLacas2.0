@@ -1,6 +1,6 @@
 ﻿var valid = false;
 function checkvalidity() {
-    if (($("#txtusername") != "") && (!$("#txtpassword") != "")) {
+    if (($("#txtusername").val() != "") && ($("#txtpassword").val() != "")) {
         valid = true;
     }
 
@@ -8,7 +8,7 @@ function checkvalidity() {
 var LoginUser = function () {
   //  localStorage["isAdmin"] = $("#hdnIsAdmin").val();
 
-    checkvalidity():
+    checkvalidity();
     if (valid == true) {
         var serviceURL = '/Service/CheckUser';
 

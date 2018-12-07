@@ -122,7 +122,7 @@ namespace SocialLacasa.Controllers
             Result.Add(issucess);
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveFunds(string method, string AccountName, string AccountNumber, string Cvv, string expiry, decimal Amount)
+        public JsonResult SaveFunds(string method, string AccountName, string AccountNumber, string Cvv, string expiry, decimal Amount) 
         {
             var objUser = new User();
             string issucess = "0";
@@ -223,6 +223,8 @@ namespace SocialLacasa.Controllers
                     Session["isAdmin"] = "0";
                 }
                 Session["UserId"] = isExist;
+                DataTable dtaccount = objUser.GetAccountFunds(isExist);
+                Session["AccountFund"] = dtaccount.Rows[0][0];
                 Session["UserName"] = userName;
             }
             catch (Exception ex)

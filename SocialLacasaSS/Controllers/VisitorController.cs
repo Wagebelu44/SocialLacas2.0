@@ -33,6 +33,7 @@ namespace SocialLacasa.Controllers
         public ActionResult SignIn()
         {
             Session["UserId"] = null;
+            Session["AccountFund"] = null;
             return View();
         }
        
