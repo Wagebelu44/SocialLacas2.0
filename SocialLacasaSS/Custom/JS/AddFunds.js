@@ -10,6 +10,7 @@
 var callPayPal = function () {
     if ($("field-paypal_email").val() == "") {
         alert("Please provide valid paypal url");
+        return false;
     }
     else {
         var paypalurl = '/Service/PayPal';
@@ -89,12 +90,7 @@ var addfuncds = function () {
 
     var obj = {};
     obj.Method = $("#method").val();
-    obj.AccountName = $("#Name").val();
-    obj.Accountnumber = $("#accountnumber").val();
-    obj.Cvv = $("#cvv").val();
     obj.Amount = $("#amount").val();
-    obj.expiry = $("#expiry").val();
-    // obj.userId = $("#hdnUserId").val();
 
     $.ajax({
         type: "POST",
@@ -125,16 +121,16 @@ var saveFunds = function () {
     if (valid == true)
     {
         var paymentMethod = $("#order_type").val();
-        if (paymentMethod == "PayPal") {
+        if (paymentMethod.toLowerCase() == "paypal") {
             callPayPal();
         }
-        else if (paymentMethod == "BTH") {
+        else if (paymentMethod.toLowerCase() == "btc") {
             callBTH();
         }
-        else if (paymentMethod == "PerfectMoney") {
+        else if (paymentMethod.toLowerCase() == "perfectmoney") {
             callPerfectMoney();
         }
-        else if (paymentMethod == "WebMoney") {
+        else if (paymentMethod.toLowerCase() == "webmoney") {
             callWebMoney();
         }
         return false;
