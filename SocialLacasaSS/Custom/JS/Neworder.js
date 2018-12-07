@@ -14,6 +14,7 @@
 
 
 $(document).ready(function () {
+    $(".nav").removeClass("active");
     $(".neworderuser").addClass('active');
 
     //var isAdmin =$("#hdnIsAdmin").val();
@@ -23,8 +24,8 @@ $(document).ready(function () {
     //else {
     //    $('.clsUser').show();
     //    $('.clsadmin').hide(); }
-   
-})
+
+});
 
 
 var callapi = function () {

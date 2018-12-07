@@ -1,4 +1,15 @@
-﻿var objMassOrder = [];
+﻿function checkvalidity() {
+    var valid = true;
+    if ($("#links").val() == "") {
+        alert("Please enter the links correctly");
+        valid = false;
+    }
+   
+    return valid;
+
+}
+
+var objMassOrder = [];
 var CalculateTotalCharge = function () {
     for (var i = 0; i < objMassOrder.length; i++) {
         var charge = objMassOrder[i].quantity;
@@ -19,43 +30,48 @@ var getObjectOrder = function () {
     });
 }
 var SaveMassOrder = function () {
-    getObjectOrder();
+    var valid = checkvalidity();
+    if (valid == true) {
+        getObjectOrder();
 
-    //  var totalCharge = CalculateTotalCharge();
-    //return false;
-    //var IsFundsExist = GetAccountFunds(totalCharge);
-    //if (IsFundsExist == "1") {
-    var serviceURL = '/Service/SaveMassOrder';
+        //  var totalCharge = CalculateTotalCharge();
+        //return false;
+        //var IsFundsExist = GetAccountFunds(totalCharge);
+        //if (IsFundsExist == "1") {
+        var serviceURL = '/Service/SaveMassOrder';
 
-    var obj = {};
-    obj.MassOrder = objMassOrder;
-    obj.funds = $(".badge").html();
-    $.ajax({
-        type: "POST",
-        url: serviceURL,
-        data: JSON.stringify(obj),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: successFunc,
-        error: errorFunc
-    });
+        var obj = {};
+        obj.MassOrder = objMassOrder;
+        obj.funds = $(".badge").html();
+        $.ajax({
+            type: "POST",
+            url: serviceURL,
+            data: JSON.stringify(obj),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: successFunc,
+            error: errorFunc
+        });
 
-    function successFunc(data, status) {
-        if (data[0] == "1") {
-            alert("New order saved.");
-            location.reload(true);
+        function successFunc(data, status) {
+            if (data[0] == "1") {
+                alert("New order saved.");
+                location.reload(true);
+            }
+            else {
+                alert("Something went wrong!")
+            }
         }
-        else {
-            alert("Something went wrong!")
+
+        function errorFunc(err) {
+            alert(err.responseText);
         }
+        //}
+        //else {
+        //    alert("Insuficient Funds!")
+        //}
     }
-
-    function errorFunc(err) {
-        alert(err.responseText);
+    else {
+        return false;
     }
-    //}
-    //else {
-    //    alert("Insuficient Funds!")
-    //}
-
 }
