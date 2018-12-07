@@ -20,39 +20,39 @@ var getObjectOrder = function () {
 }
 var SaveMassOrder = function () {
     getObjectOrder();
-   
-  //  var totalCharge = CalculateTotalCharge();
+
+    //  var totalCharge = CalculateTotalCharge();
     //return false;
     //var IsFundsExist = GetAccountFunds(totalCharge);
     //if (IsFundsExist == "1") {
-        var serviceURL = '/Service/SaveMassOrder';
+    var serviceURL = '/Service/SaveMassOrder';
 
-        var obj = {};
-        obj.MassOrder = objMassOrder;
-       
-        $.ajax({
-            type: "POST",
-            url: serviceURL,
-            data: JSON.stringify(obj),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: successFunc,
-            error: errorFunc
-        });
+    var obj = {};
+    obj.MassOrder = objMassOrder;
+    obj.funds = $(".badge").html();
+    $.ajax({
+        type: "POST",
+        url: serviceURL,
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: successFunc,
+        error: errorFunc
+    });
 
-        function successFunc(data, status) {
-            if (data[0] == "1") {
-                alert("New order saved.");
-                location.reload(true);
-            }
-            else {
-                alert("Something went wrong!")
-            }
+    function successFunc(data, status) {
+        if (data[0] == "1") {
+            alert("New order saved.");
+            location.reload(true);
         }
-
-        function errorFunc(err) {
-            alert(err.responseText);
+        else {
+            alert("Something went wrong!")
         }
+    }
+
+    function errorFunc(err) {
+        alert(err.responseText);
+    }
     //}
     //else {
     //    alert("Insuficient Funds!")
