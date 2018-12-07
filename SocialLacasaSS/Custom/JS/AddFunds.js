@@ -7,6 +7,7 @@
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            addfuncds();
             var url = data;
             window.location.href = url;
         },
@@ -24,6 +25,7 @@ var callWebMoney = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            addfuncds();
             var url = data;
             window.location.href = url;
         },
@@ -41,6 +43,7 @@ var callPerfectMoney = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            addfuncds();
             var url = data;
             window.location.href = url;
         },
@@ -58,6 +61,7 @@ var callBTH = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            addfuncds();
             var url = data;
             window.location.href = url;
         },
@@ -66,21 +70,7 @@ var callBTH = function () {
         }
     });
 }
-var saveFunds = function () {
-    var paymentMethod = $("order_type").val();
-    if (paymentMethod == "PayPal") {
-        callPayPal();
-    }
-    else if (paymentMethod == "BTH") {
-        callBTH();
-    }
-    else if (paymentMethod == "PerfectMoney") {
-        callPerfectMoney();
-    }
-    else if (paymentMethod == "WebMoney") {
-        callWebMoney();
-    }
-    return false;
+var addfuncds = function () {
     var serviceURL = '/Service/SaveFunds';
 
     var obj = {};
@@ -115,6 +105,23 @@ var saveFunds = function () {
     function errorFunc(err) {
         alert(err.responseText);
     }
+}
+var saveFunds = function () {
+    var paymentMethod = $("order_type").val();
+    if (paymentMethod == "PayPal") {
+        callPayPal();
+    }
+    else if (paymentMethod == "BTH") {
+        callBTH();
+    }
+    else if (paymentMethod == "PerfectMoney") {
+        callPerfectMoney();
+    }
+    else if (paymentMethod == "WebMoney") {
+        callWebMoney();
+    }
+    return false;
+   
 
 }
 
