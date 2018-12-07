@@ -103,20 +103,29 @@ namespace SocialLacasa.Controllers
                  }).ToList();
             return Json(lstServices, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveMassOrder(List<MassOrder> MassOrder)
+        public JsonResult SaveMassOrder(List<MassOrder> MassOrder,decimal funds)
         {
             List<string> Result = new List<string>();
             var objUser = new User();
             string issucess = "0";
-        
+            DataTable dtdetails = null;
+            decimal totalCharge = 0.0M;
             foreach (var order in MassOrder)
             {
-                DataTable dtdetails  = objUser.GetCharge(order.ServiceId);
+                dtdetails = objUser.GetCharge(order.ServiceId);
                 string servicecharge = Convert.ToString(dtdetails.Rows[0][0]);
+
+                order.Charge = order.Quantity * (Convert.ToDecimal(servicecharge) / 1000);
+                totalCharge = totalCharge + order.Charge;
                 
-                order.Charge = order.Quantity* (Convert.ToDecimal(servicecharge)/1000);
-                objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString());
-                issucess = "1";
+            }
+            if (totalCharge <= funds)
+            {
+                foreach (var order in MassOrder)
+                {
+                    objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString());
+                    issucess = "1";
+                }
             }
             Result.Add(issucess);
             return Json(Result, JsonRequestBehavior.AllowGet);
