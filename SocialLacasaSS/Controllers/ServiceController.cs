@@ -28,14 +28,15 @@ namespace SocialLacasa.Controllers
         }
         public JsonResult PayPal()
         {
-            string businessPaypalId = "shaheenbohra1989@gmail.com";
-            double itemCost = 10.00;
+            //  string businessPaypalId = "shaheenbohra1989@gmail.com";
+            string businessPaypalId = "hady-baraka777@hotmail.com";
+            double itemCost = 1.00;
             string baseUrl=Request.Url.GetLeftPart(UriPartial.Authority);
             //string baseUrl = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, "") + HttpContext.Current.Request.ApplicationPath;
             if (!baseUrl.EndsWith("/"))
                 baseUrl += "/";
             string redirect = "";
-            redirect += "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + businessPaypalId;
+            redirect += "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + businessPaypalId;
             redirect += "&amount=" + itemCost;
             redirect += "&item_number=1";
             redirect += "&currency_code= USD";

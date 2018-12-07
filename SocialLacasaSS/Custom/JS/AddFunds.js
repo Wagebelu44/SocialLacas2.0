@@ -107,7 +107,7 @@ var addfuncds = function () {
     }
 }
 var saveFunds = function () {
-    var paymentMethod = $("order_type").val();
+    var paymentMethod = $("#order_type").val();
     if (paymentMethod == "PayPal") {
         callPayPal();
     }
