@@ -1,7 +1,7 @@
-﻿var removeuser = function () {
+﻿var removeuser = function (objectptr) {
     var serviceURL = '/Service/removeUser';
     var obj = {};
-    obj.userid = $(this).closest("tr")   // Finds the closest row <tr> 
+    obj.userid = $(objectptr).closest("tr")   // Finds the closest row <tr> 
         .find(".uid")     // Gets a descendent with class="nr"
         .text();         // Retrieves the text within <td>
     console.log(obj.userid);
