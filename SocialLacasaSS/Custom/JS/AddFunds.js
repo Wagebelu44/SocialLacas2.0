@@ -89,11 +89,11 @@ var addfuncds = function () {
 
     var obj = {};
     obj.Method = $("#method").val();
-    obj.AccountName = $("#Name").val();
-    obj.Accountnumber = $("#accountnumber").val();
-    obj.Cvv = $("#cvv").val();
+  //  obj.AccountName = $("#Name").val();
+  //  obj.Accountnumber = $("#accountnumber").val();
+  //  obj.Cvv = $("#cvv").val();
     obj.Amount = $("#amount").val();
-    obj.expiry = $("#expiry").val();
+ //   obj.expiry = $("#expiry").val();
     // obj.userId = $("#hdnUserId").val();
 
     $.ajax({

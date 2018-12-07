@@ -149,14 +149,14 @@ namespace SocialLacasa.Controllers
             Result.Add(issucess);
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveFunds(string method, string AccountName, string AccountNumber, string Cvv, string expiry, decimal Amount)
+        public JsonResult SaveFunds(string method, decimal Amount)
         {
             var objUser = new User();
             string issucess = "0";
             List<string> Result = new List<string>();
             try
             {
-                objUser.SaveFunds(method, AccountName, AccountNumber, Cvv, Amount, expiry, Session["UserId"].ToString());
+                objUser.SaveFunds(method,  Amount,  Session["UserId"].ToString());
                 issucess = "1";
             }
             catch (Exception ex)
