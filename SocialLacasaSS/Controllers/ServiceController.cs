@@ -35,7 +35,7 @@ namespace SocialLacasa.Controllers
             if (!baseUrl.EndsWith("/"))
                 baseUrl += "/";
             string redirect = "";
-            redirect += "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + businessPaypalId;
+            redirect += "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + businessPaypalId;
             redirect += "&amount=" + itemCost;
             redirect += "&item_number=1";
             redirect += "&currency_code= USD";
