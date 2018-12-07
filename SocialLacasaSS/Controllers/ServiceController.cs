@@ -31,7 +31,7 @@ namespace SocialLacasa.Controllers
             //  string businessPaypalId = "shaheenbohra1989@gmail.com";
             string businessPaypalId = "hady-baraka777@hotmail.com";
             double itemCost = 1.00;
-            string baseUrl=Request.Url.GetLeftPart(UriPartial.Authority);
+            string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
             //string baseUrl = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, "") + HttpContext.Current.Request.ApplicationPath;
             if (!baseUrl.EndsWith("/"))
                 baseUrl += "/";
@@ -43,7 +43,7 @@ namespace SocialLacasa.Controllers
             redirect += "&return=" + baseUrl + "User/NewOrder";
             redirect += "&cancel_return=" + baseUrl + "User/NewOrder";
             redirect += "&notify_url=" + baseUrl + "User/NewOrder";
-            
+
             return Json(redirect, JsonRequestBehavior.AllowGet);
         }
         public JsonResult PerfectMoney()
@@ -103,7 +103,24 @@ namespace SocialLacasa.Controllers
                  }).ToList();
             return Json(lstServices, JsonRequestBehavior.AllowGet);
         }
-
+        public JsonResult SaveMassOrder(List<MassOrder> MassOrder)
+        {
+            List<string> Result = new List<string>();
+            var objUser = new User();
+            string issucess = "0";
+        
+            foreach (var order in MassOrder)
+            {
+                DataTable dtdetails  = objUser.GetCharge(order.ServiceId);
+                string servicecharge = Convert.ToString(dtdetails.Rows[0][0]);
+                
+                order.Charge = order.Quantity* (Convert.ToDecimal(servicecharge)/1000);
+                objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString());
+                issucess = "1";
+            }
+            Result.Add(issucess);
+            return Json(Result, JsonRequestBehavior.AllowGet);
+        }
         public JsonResult SaveNewOrder(string category, string service, string link, string quantity, decimal charge)
         {
             var objUser = new User();
@@ -123,7 +140,7 @@ namespace SocialLacasa.Controllers
             Result.Add(issucess);
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveFunds(string method, string AccountName, string AccountNumber, string Cvv, string expiry, decimal Amount) 
+        public JsonResult SaveFunds(string method, string AccountName, string AccountNumber, string Cvv, string expiry, decimal Amount)
         {
             var objUser = new User();
             string issucess = "0";
@@ -173,7 +190,7 @@ namespace SocialLacasa.Controllers
                     sentByCustomer = true;
                 else
                     sentByCustomer = false;
-                objUser.saveTicketMessage(message, ticketid, sentByCustomer,Session["UserName"].ToString());
+                objUser.saveTicketMessage(message, ticketid, sentByCustomer, Session["UserName"].ToString());
                 issucess = "1";
             }
             catch (Exception ex)

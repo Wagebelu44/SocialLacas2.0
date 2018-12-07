@@ -273,6 +273,38 @@ namespace SocialLacasa.DataLayer
 
             }
         }
+        public DataTable GetCharge(int serviceid)
+        {
+            string charge = "0.0";
+            DataTable dtcharge = new DataTable();
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "usp_getcharge";
+            cmd.Parameters.Add("@serviceid", SqlDbType.Int).Value = Convert.ToInt32(serviceid);
+            cmd.Connection = con;
+            try
+            {
+                con.Open();
+
+                reader = cmd.ExecuteReader();
+
+                dtcharge.Load(reader);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+            //charge= dtcharge.Rows[0][0].ToString();
+            return dtcharge;
+        }
         public void SaveNewOrder(string category, string service, string link, string quantity, decimal charge, string userId)
         {
 
