@@ -37,7 +37,9 @@ var callapi = function () {
         dataType: "json",
         success: function (data) {
             if (data != null) {
+                AddOrder(data[0]);
                 alert("Order Placed");
+
 
             }
         },
@@ -45,44 +47,48 @@ var callapi = function () {
     });
 
 }
+var AddOrder = function (id) {
 
+    var serviceURL = '/Service/SaveNewOrder';
+
+    var obj = {};
+    obj.category = $("#CatagoryName").val();
+    obj.service = $("#ddlServices").val();
+    obj.link = $("#field-orderform-fields-link").val();
+    obj.quantity = $("#field-orderform-fields-quantity").val();
+    obj.charge = $("#charge").val();
+    obj.orderid = id;
+    // obj.userId = $("#hdnUserId").val();
+
+    $.ajax({
+        type: "POST",
+        url: serviceURL,
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: successFunc,
+        error: errorFunc
+    });
+
+    function successFunc(data, status) {
+        if (data[0] == "1") {
+            alert("New order saved.");
+            location.reload(true);
+        }
+        else {
+            alert("Something went wrong!")
+        }
+    }
+
+    function errorFunc(err) {
+        alert(err.responseText);
+    }
+}
 var SaveNewOrder = function () {
     var valid =checkvalidity();
     if (valid == true) {
         $(".alert").addClass("hidden");
-        var serviceURL = '/Service/SaveNewOrder';
-
-        var obj = {};
-        obj.category = $("#CatagoryName").val();
-        obj.service = $("#ddlServices").val();
-        obj.link = $("#field-orderform-fields-link").val();
-        obj.quantity = $("#field-orderform-fields-quantity").val();
-        obj.charge = $("#charge").val();
-        // obj.userId = $("#hdnUserId").val();
-
-        $.ajax({
-            type: "POST",
-            url: serviceURL,
-            data: JSON.stringify(obj),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: successFunc,
-            error: errorFunc
-        });
-
-        function successFunc(data, status) {
-            if (data[0] == "1") {
-                alert("New order saved.");
-                location.reload(true);
-            }
-            else {
-                alert("Something went wrong!")
-            }
-        }
-
-        function errorFunc(err) {
-            alert(err.responseText);
-        }
+        callapi();
 
     }
     else {
