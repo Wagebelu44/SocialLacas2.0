@@ -300,7 +300,7 @@ namespace SocialLacasa.DataLayer
             //charge= dtcharge.Rows[0][0].ToString();
             return dtcharge;
         }
-        public void SaveNewOrder(string category, string service, string link, string quantity, decimal charge, string userId)
+        public void SaveNewOrder(string category, string service, string link, string quantity, decimal charge, string userId,string orderid)
         {
 
             try
@@ -314,6 +314,7 @@ namespace SocialLacasa.DataLayer
                 cmd.Parameters.AddWithValue("@Quantity", Convert.ToInt32(quantity));
                 cmd.Parameters.AddWithValue("@Charge", charge);
                 cmd.Parameters.AddWithValue("@UserId", Convert.ToInt32(userId));
+                cmd.Parameters.AddWithValue("@SWorderId", orderid);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
