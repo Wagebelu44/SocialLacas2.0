@@ -1,20 +1,20 @@
 ﻿
 $(document).ready(function () {
 
-    var selector = '.nav li';
-    var tab = localStorage["tab"];
-    $("[tab*='" + tab + "']").addClass('active');
-    //if (localStorage["tab"] != null) {
-      //  $(selector).removeClass('active');
-        $(this).addClass('active');
-    //}
-    $(selector).on('click', function () {
-        localStorage["tab"] = $(this).attr("tab");
+//    var selector = '.nav li';
+//    var tab = localStorage["tab"];
+//    $("[tab*='" + tab + "']").addClass('active');
+//    //if (localStorage["tab"] != null) {
+//      //  $(selector).removeClass('active');
+//        $(this).addClass('active');
+//    //}
+//    $(selector).on('click', function () {
+//        localStorage["tab"] = $(this).attr("tab");
         
-        $(selector).removeClass('active');
-        $(this).addClass('active');
+//        $(selector).removeClass('active');
+//        $(this).addClass('active');
         
-    });
+//    });
 
    
         var isAdmin = localStorage["isAdmin"];

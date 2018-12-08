@@ -34,24 +34,24 @@
                                 <th>Service</th>
                                 <th>Status</th>
                                 <th>Remains</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (DataRow row in Model.Tables[0].Rows)
                             {
-                            <tr>
-                                <td>@row["OrderId"]</td>
-                                <td>@row["Date"]</td>
-                                <td>@row["Link"]</td>
-                                <td>@row["Charge"]</td>
-                                <td>@row["StartCount"]</td>
-                                <td>@row["Quantity"]</td>
-                                <td>@row["Service"]</td>
-                                <td>@row["Status"]</td>
-                                <td>@row["Remains"]</td>
-                                @*<td><input type="button" id="btnPlaceOrder" class="btn btn-primary" value="Place Order"/></td>*@
-                            </tr>
+                                <tr>
+                                    <td>@row["OrderId"]</td>
+                                    <td>@row["Date"]</td>
+                                    <td>@row["Link"]</td>
+                                    <td>@row["Charge"]</td>
+                                    <td>@row["StartCount"]</td>
+                                    <td>@row["Quantity"]</td>
+                                    <td>@row["Service"]</td>
+                                    <td>@row["Status"]</td>
+                                    <td>@row["Remains"]</td>
+                                    @*<td><input type="button" id="btnPlaceOrder" class="btn btn-primary" value="Place Order"/></td>*@
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -83,9 +83,27 @@
     </div>
 </div>
 @*<script>
-    $(document).ready(function () {
-        $('.clsUser').hide();
-        $('.clsadmin').show();
-    })
-    
-</script>*@
+        $(document).ready(function () {
+            $('.clsUser').hide();
+            $('.clsadmin').show();
+        })
+
+    </script>*@
+@section Scripts
+{
+
+    <script src="@Url.Content("~/Custom/JS/SignedUpUser.js")"></script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $(".nav").removeClass("active");
+            $(".adneworder").addClass('active');
+
+
+
+        });
+    </script>
+
+}
