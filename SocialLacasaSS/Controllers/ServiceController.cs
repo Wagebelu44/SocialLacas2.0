@@ -26,11 +26,11 @@ namespace SocialLacasa.Controllers
             Session["UserId"] = null;
             return Json("1", JsonRequestBehavior.AllowGet);
         }
-        public JsonResult PayPal()
+        public JsonResult PayPal(string cost)
         {
             //  string businessPaypalId = "shaheenbohra1989@gmail.com";
             string businessPaypalId = "hady-baraka777@hotmail.com";
-            double itemCost = 1.00;
+            double itemCost = Convert.ToDouble(cost);
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
             //string baseUrl = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, "") + HttpContext.Current.Request.ApplicationPath;
             if (!baseUrl.EndsWith("/"))
@@ -277,7 +277,7 @@ namespace SocialLacasa.Controllers
             try
             {
                 isExist = objUser.CheckUser(userName, password);
-                if (userName == "Admin")
+                if (userName == "Admin" && password=="P@ssw0rd")
                 {
                     Session["isAdmin"] = "1";
                 }
@@ -326,6 +326,23 @@ namespace SocialLacasa.Controllers
             try
             {
                 result = objUser.removeUser(userid);
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult checkusername(string username, string email)
+        {
+            string result = "0";
+            var objUser = new User();
+            try
+            {
+                result = objUser.checkuseraval(username,email);
+                
             }
             catch (Exception ex)
             {

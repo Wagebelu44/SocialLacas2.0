@@ -24,11 +24,13 @@ var callPayPal = function () {
         return false;
     }
     else {
+        obj = {};
+        obj.cost = $("#amount").val();
         var paypalurl = '/Service/PayPal';
         $.ajax({
             type: "POST",
             url: paypalurl,
-            //   data: JSON.stringify(obj),
+             data: JSON.stringify(obj),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
@@ -122,7 +124,6 @@ var addfuncds = function () {
 
     function successFunc(data, status) {
         if (data[0] == "1") {
-            alert("Funds added.");
             location.reload(true);
         }
         else {
@@ -163,7 +164,7 @@ var saveFunds = function () {
 }
 
 $("#order_type").change(function () {
-    if ($('#order_type').val() == 46) {
+    if ($('#order_type').val() == "Paypal") {
         $("#email-grp").show();
     }
     else {

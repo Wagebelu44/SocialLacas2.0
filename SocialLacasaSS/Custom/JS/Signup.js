@@ -5,6 +5,34 @@
 
 });
 
+function checkavailability() {
+    var obj = {};
+    obj.username = $("#txtusername").val();
+    obj.email = $("#txtemail").val();
+    var serviceURL = '/Service/checkusername';
+    var aval = "0";
+    $.ajax({
+        type: "POST",
+        url: serviceURL,
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: successFunc,
+        error: errorFunc
+    });
+
+    function successFunc(data, status) {
+
+         aval = data; 
+    }
+
+    function errorFunc(err) {
+         aval = "0";
+    }
+    return aval;
+
+}
+
 
 function checkvalidity() {
     var valid = true;
@@ -53,25 +81,32 @@ var SaveUser = function () {
         obj.userName = $("#txtusername").val();
         obj.password = $("#txtpassword").val();
         obj.email = $("#txtemail").val();
+        aval = checkavailability();
+
         if (isChecked == true) {
-            $.ajax({
-                type: "POST",
-                url: serviceURL,
-                data: JSON.stringify(obj),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: successFunc,
-                error: errorFunc
-            });
+            if (aval == "0") {
+                $.ajax({
+                    type: "POST",
+                    url: serviceURL,
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: successFunc,
+                    error: errorFunc
+                });
 
-            function successFunc(data, status) {
+                function successFunc(data, status) {
 
-                alert("User Saved.");
-                window.location = '/';
+                    alert("User Saved.");
+                    window.location = '/';
+                }
+
+                function errorFunc(err) {
+                    alert(err.responseText);
+                }
             }
-
-            function errorFunc(err) {
-                alert(err.responseText);
+            else {
+                alert("username already exists")
             }
         }
         else {

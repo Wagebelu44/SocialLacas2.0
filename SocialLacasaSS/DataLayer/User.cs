@@ -37,6 +37,33 @@ namespace SocialLacasa.DataLayer
             return isExist;
         }
 
+        public string checkuseraval(string userName, string email)
+        {
+            string isExist = string.Empty;
+            try
+            {
+                SqlConnection cn = new SqlConnection(strConnString);
+                SqlCommand cmd = new SqlCommand("checkUserName", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserName", userName);
+                cmd.Parameters.AddWithValue("@Email", email);
+
+                cn.Open();
+                object o = cmd.ExecuteScalar();
+                isExist = o.ToString();
+
+                cn.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return isExist;
+        }
+
+        
+
         public DataTable GetAllServiceCategory()
         {
 
