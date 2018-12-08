@@ -64,7 +64,29 @@ namespace SocialLacasa.Controllers
 
             return Json("1", JsonRequestBehavior.AllowGet);
         }
-        public JsonResult PlaceOrder_Api(int serviceid, int quantity, string link)
+        public JsonResult APIShowStatus(int orderid)
+        {
+            string url = "https://socialwizards.com/api/v2?key=4319270ac33c7579f1d4f8d4c60357a5&action=status&order=" + orderid;
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "POST";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            var response = (HttpWebResponse)request.GetResponse();
+            string content = string.Empty;
+            using (var stream = response.GetResponseStream())
+            {
+                using (var sr = new StreamReader(stream))
+                {
+                    content = sr.ReadToEnd();
+                }
+            }
+            
+            //var releases = JArray.Parse(content);
+            //string status = content.Substring(content.IndexOf(":") + 1, content.Length);
+            //status = status.Substring(0, status.Length - 1);
+            return Json(content, JsonRequestBehavior.AllowGet);
+        }
+        public string placeorder(int serviceid, int quantity, string link)
         {
             string url = "https://socialwizards.com/api/v2?key=4319270ac33c7579f1d4f8d4c60357a5&action=add&service=" + serviceid + "&link=" + link + "&quantity=" + quantity;
             var request = (HttpWebRequest)WebRequest.Create(url);
@@ -80,8 +102,19 @@ namespace SocialLacasa.Controllers
                     content = sr.ReadToEnd();
                 }
             }
-            var releases = JArray.Parse(content);
-            return Json(releases, JsonRequestBehavior.AllowGet);
+            //var releases = JArray.Parse(content);
+            return content;
+        }
+        public JsonResult PlaceOrder_Api(int serviceid, int quantity, string link)
+        {
+            
+            string result = placeorder(serviceid, quantity, link);
+            string orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
+            orderid = orderid.Substring(0, orderid.Length - 1);
+            //var releases = JArray.Parse(result);
+
+            //{"order":3611783}
+            return Json(orderid, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult BindServices(string category)
@@ -123,21 +156,24 @@ namespace SocialLacasa.Controllers
             {
                 foreach (var order in MassOrder)
                 {
-                    objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString());
+                    string result = placeorder(order.ServiceId, order.Quantity, order.Link);
+                    string orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
+                    orderid = orderid.Substring(0, orderid.Length - 1);
+                    objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString(),orderid);
                     issucess = "1";
                 }
             }
             Result.Add(issucess);
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveNewOrder(string category, string service, string link, string quantity, decimal charge)
+        public JsonResult SaveNewOrder(string category, string service, string link, string quantity, decimal charge,string orderid)
         {
             var objUser = new User();
             string issucess = "0";
             List<string> Result = new List<string>();
             try
             {
-                objUser.SaveNewOrder(category, service, link, quantity, charge, Session["UserId"].ToString());
+                objUser.SaveNewOrder(category, service, link, quantity, charge, Session["UserId"].ToString(),orderid);
 
                 issucess = "1";
             }
