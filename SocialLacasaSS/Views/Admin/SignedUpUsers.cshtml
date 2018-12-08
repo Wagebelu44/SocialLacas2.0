@@ -38,7 +38,7 @@
                         <tbody>
                             @foreach (DataRow row in Model.Tables[0].Rows)
                             {
-                                <tr>
+                                <tr class="userrow">
                                     <td class="uid hidden">@row["UserId"]</td>
                                     <td>@row["Username"]</td>
                                     <td>@row["Email"]</td>
