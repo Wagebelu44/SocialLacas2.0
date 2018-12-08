@@ -43,17 +43,24 @@ var callPayPal = function () {
     }
 }
 var callWebMoney = function () {
-    var paypalurl = '/Service/WebMoney';
+    var obj = {};
+    obj.LMI_PAYMENT_AMOUNT = "1.0";
+    obj.LMI_PAYMENT_DESC = "test payment";
+    obj.LMI_PAYMENT_NO = "1";
+    obj.LMI_PAYEE_PURSE = "Z145179295679";
+    obj.LMI_SIM_MODE = "0";
+    var paypalurl = 'https://merchant.wmtransfer.com/lmi/payment.asp';
     $.ajax({
         type: "POST",
         url: paypalurl,
-        //   data: JSON.stringify(obj),
+         data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            addfuncds();
-            var url = data;
-            window.location.href = url;
+            alert(data);
+           // addfuncds();
+           // var url = data;
+          //  window.location.href = url;
         },
         error: function (err) {
             alert("Error in processing payment.")
