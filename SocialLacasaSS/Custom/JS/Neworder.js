@@ -120,6 +120,7 @@ var BindServices = function () {
                 //  quantity = parseInt($("#field-orderform-fields-quantity").val());
 
                 rate = value.Rate;
+                $("#rate").val(rate);
 
 
 
