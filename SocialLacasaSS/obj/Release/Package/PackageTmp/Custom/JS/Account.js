@@ -1,4 +1,17 @@
-﻿changePassword = function () {
+﻿$(document).ready(function () {
+    $(".accountuser").addClass('active');
+
+    //var isAdmin =$("#hdnIsAdmin").val();
+    //if (isAdmin == "1") {
+    //    $('.clsUser').hide();
+    //    $('.clsadmin').show(); }
+    //else {
+    //    $('.clsUser').show();
+    //    $('.clsadmin').hide(); }
+
+});
+
+changePassword = function () {
     var serviceURL = '/Service/changePassword';
     var obj = {};
     obj.username = $("#username").val();

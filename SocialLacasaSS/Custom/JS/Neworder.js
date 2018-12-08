@@ -37,7 +37,8 @@ var callapi = function () {
         dataType: "json",
         success: function (data) {
             if (data != null) {
-                AddOrder(data[0]);
+                alert(data);
+                AddOrder(data);
                 alert("Order Placed");
 
 

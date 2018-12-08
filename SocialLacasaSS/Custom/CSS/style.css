@@ -390,7 +390,7 @@ pre {
     /*background: #2F0909;*/
     /* background: #fbd634;*/
     background-color: #444;
-    color: red;
+    color: white;
     font-weight: 900;
 }
 
@@ -678,7 +678,7 @@ table > tbody > tr > td,
     .sidebar-nav li.active a:hover .badge,
     .sidebar-nav li.active a .badge {
         /*background-color: #ffffff !important;*/
-        color: #DD4827;
+        color: white;
         background: black;
     }
 
@@ -1317,6 +1317,12 @@ footer {
     padding: 20px;
     box-shadow: 0 0 25px -10px #ffd703;
 }
+@media (max-width: 767px)
+{
+    body.guest.homePage {
+        padding-top: 50px;
+    }
+}
 
 
 body.guest.homePage {
@@ -1478,15 +1484,49 @@ body.guest .navbar {
     top: 0;
 }
 
-    body.guest .navbar .navbar-nav > li > a {
-        padding: 25px 15px;
-        border-radius: 0;
-        /* color: #333333; */
-        color: #ffffff;
-        /* font-weight: 500; */
-        text-decoration: none;
-        padding: 8px 15px !important;
+@media (max-width: 767px) {
+
+    body.guest .navbar {
+        padding: 5px 0;
     }
+}
+    @media (max-width: 550px) {
+
+        .mainBanner {
+            padding: 40px 0;
+        }
+    }
+
+@media (max-width: 768px) {
+
+    .mainBanner {
+        padding: 30px 0;
+    }
+}
+@media (max-width: 767px) {
+
+   .guest div#navbar {
+        float: none;
+        margin: auto;
+    }
+}
+@media (max-width: 991px) {
+
+    .guest div#navbar li {
+        width: auto;
+        height: 50px;
+    }
+}
+
+body.guest .navbar .navbar-nav > li > a {
+    padding: 25px 15px;
+    border-radius: 0;
+    /* color: #333333; */
+    color: #ffffff;
+    /* font-weight: 500; */
+    text-decoration: none;
+    padding: 8px 15px !important;
+}
 
         body.guest .navbar .navbar-nav > li > a:focus,
         body.guest .navbar .navbar-nav > li > a:hover {
@@ -1888,4 +1928,156 @@ body.guest .navbar {
 .nowrap {
 
 white-space:nowrap;
+}
+
+.navbar-collapse.in {
+overflow-y:visible;
+
+}
+collapse.in {
+
+display:block;
+}
+
+
+@media(max-width: 767px) {
+
+    .mainBanner h1 {
+        font-size: 25px;
+    }
+    .onMobileShow {
+        display: block;
+    }
+
+    .sidebar-nav li a .fa {
+        width: 18px;
+        margin-right: 12px;
+        font-size: 17px;
+    }
+
+    .content-wrapper {
+        padding-top: 65px;
+    }
+
+        .content-wrapper .container {
+            width: auto;
+        }
+
+    .content-wrapper {
+        padding-left: 0;
+        overflow: initial;
+    }
+
+    #sidebar-wrapper {
+        overflow: auto;
+        top: 50px;
+    }
+
+    .sidebar-nav {
+        padding-bottom: 60px;
+    }
+
+        .sidebar-nav li {
+            line-height: 35px;
+        }
+
+            .sidebar-nav li a {
+                font-size: 14px;
+            }
+
+                .sidebar-nav li a img {
+                    width: 18px;
+                    margin-right: 12px;
+                }
+
+    .navbar.navbar-default {
+        height: auto;
+    }
+
+    .navbar-brand {
+        line-height: 45px;
+    }
+
+        .navbar-brand img {
+            width: 130px;
+        }
+}
+
+@media (max-width:1199px) {
+    .container {
+        width: auto;
+    }
+
+    .featureListing {
+        margin-top: 30px;
+    }
+
+    .nav-pills > li > a {
+        padding: 12px 10px;
+    }
+
+    .imgBg {
+        height: 303px;
+    }
+
+    .imgBgVeryClear {
+        height: 303px;
+    }
+    /* .mainBanner h1 {
+    font-size: 50px;
+} */
+    .growing-section .slider-nav .growBox p {
+        font-size: 20px;
+    }
+
+    .col-sm-4 .single-clr {
+        height: 460px;
+    }
+}
+
+
+
+@media (max-width:991px) {
+    .mainBanner h1 {
+        /* width: 85%; */
+        font-size: 30px;
+    }
+
+    .guest div#navbar li {
+        width: auto;
+    }
+
+    .signInForm h2, .pageHeader, .resetPassPage h3 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .headerCaption h1 {
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+
+    .couterHeader .valueCounter {
+        font-size: 25px;
+    }
+
+    .guest .col-md-6 {
+        width: 50%;
+    }
+
+    .featureListing {
+        margin-top: 0px;
+    }
+
+    .order-stat {
+        min-height: 189px;
+    }
+
+    .nav-pills > li > a {
+        padding: 12px 11px;
+    }
+
+    #history-search {
+        margin-top: 10px;
+    }
 }

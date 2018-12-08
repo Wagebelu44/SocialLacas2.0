@@ -1,14 +1,27 @@
-﻿
+﻿function checkvalidity() {
+    var valid = true;
+    if ($("#field-orderform-fields-link").val() == "") {
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter correct link");
+        valid = false;
+    }
+    else if ($("#field-orderform-fields-quantity").val() == "") {
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter quantity");
+        valid = false;
+    }
+    return valid;
+       
+    }
+
+
 $(document).ready(function () {
-    //var isAdmin =$("#hdnIsAdmin").val();
-    //if (isAdmin == "1") {
-    //    $('.clsUser').hide();
-    //    $('.clsadmin').show(); }
-    //else {
-    //    $('.clsUser').show();
-    //    $('.clsadmin').hide(); }
+    $(".nav").removeClass("active");
+    $(".neworderuser").addClass('active');
+
    
-})
+
+});
 
 
 var callapi = function () {
@@ -24,7 +37,10 @@ var callapi = function () {
         dataType: "json",
         success: function (data) {
             if (data != null) {
+                alert(data);
+                AddOrder(data);
                 alert("Order Placed");
+
 
             }
         },
@@ -32,8 +48,7 @@ var callapi = function () {
     });
 
 }
-
-var SaveNewOrder = function () {
+var AddOrder = function (id) {
 
     var serviceURL = '/Service/SaveNewOrder';
 
@@ -43,6 +58,7 @@ var SaveNewOrder = function () {
     obj.link = $("#field-orderform-fields-link").val();
     obj.quantity = $("#field-orderform-fields-quantity").val();
     obj.charge = $("#charge").val();
+    obj.orderid = id;
     // obj.userId = $("#hdnUserId").val();
 
     $.ajax({
@@ -57,8 +73,7 @@ var SaveNewOrder = function () {
 
     function successFunc(data, status) {
         if (data[0] == "1") {
-            alert("New order saved.");
-            location.reload(true);
+            window.location = window.location;
         }
         else {
             alert("Something went wrong!")
@@ -67,6 +82,17 @@ var SaveNewOrder = function () {
 
     function errorFunc(err) {
         alert(err.responseText);
+    }
+}
+var SaveNewOrder = function () {
+    var valid =checkvalidity();
+    if (valid == true) {
+        $(".alert").addClass("hidden");
+        callapi();
+
+    }
+    else {
+        return false;
     }
 
 }

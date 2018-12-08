@@ -1,7 +1,7 @@
 ﻿<div id="sidebar-wrapper" class="sidebar-toggle">
     <ul class="sidebar-nav nav">
         <div class="onMobileShow">
-            <li><a>KWD:<span class="badge">@Session["AccountFund"]</span></a></li>
+            <li class="clsUser"><a>KWD:<span class="badge ">@Session["AccountFund"]</span></a></li>
             <li><a href="/user/Neworder"><i class="fa fa-user"></i>Account</a></li>
         </div>
         <li tab="neworder" class="clsadmin adneworder"><a href="/Admin/PlaceOrder"><i class="fa fa-file-text-o" aria-hidden="true"></i>Orders</a></li>
@@ -16,8 +16,8 @@
         <li tab="tickets" class="clsUser tickets"><a href="/User/tickets"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Tickets</a></li>
 
         <li tab="addfunds" class="clsUser addfunds"><a href="/User/addfunds"><i class="fa fa-money" aria-hidden="true"></i> Add funds</a></li>
-        <li tab="faq" class="faqs"><a href="/User/faq"><i class="fa fa-question-circle" aria-hidden="true"></i>FAQ</a></li>
-        <li tab="terms" class="terms"><a href="/User/terms"><i class="fa fa-file-text-o" aria-hidden="true"></i>Terms</a></li>
+        <li tab="faq" class="faqs clsUser"><a href="/User/faq"><i class="fa fa-question-circle" aria-hidden="true"></i>FAQ</a></li>
+        <li tab="terms" class="terms clsUser"><a href="/User/terms"><i class="fa fa-file-text-o" aria-hidden="true"></i>Terms</a></li>
 
         <div class="onMobileShow">
             <li><a onclick="LogOut();"><i class="fa fa-sign-out"></i>Logout</a></li>

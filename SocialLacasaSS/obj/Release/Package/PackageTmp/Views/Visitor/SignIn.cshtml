@@ -22,16 +22,16 @@
                         <div class="underline">
                             <div class="line"></div>
                         </div>
-                        <form method="post" action="/auth">
-
+                        <form method="post" action="/auth" id="signInForm">
+                            <div class="alert alert-danger hidden"></div>
 
                             <div class="form-group">
                                 <label style="display:none;" for="username" class="control-label">Username</label>
-                                <input type="text" class="form-control" id="txtusername" name="LoginForm[username]" placeholder="Username">
+                                <input type="text" class="form-control" id="txtusername" name="username" placeholder="Username" required>
                             </div>
                             <div class="form-group">
                                 <label style="display:none;" for="password" class="control-label">Password</label>
-                                <input type="password" class="form-control" id="txtpassword" name="LoginForm[password]" placeholder="Password">
+                                <input type="password" class="form-control" id="txtpassword" name="password" placeholder="Password" required >
                             </div>
                             <div class="checkbox">
                                 <label>
@@ -405,4 +405,49 @@
 {
 
     <script src="@Url.Content("~/Custom/JS/SignIn.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script>
+        $(document).ready(function () {
+            var letCollapseWidth = false,
+                paddingValue = 30,
+                sumWidth = $('.navbar-right-block').width() + $('.navbar-left-block').width() + $('.navbar-brand').width() + paddingValue;
+
+            $(window).on('resize', function () {
+                navbarResizerFunc();
+            });
+
+            var navbarResizerFunc = function navbarResizerFunc() {
+                if (sumWidth <= $(window).width()) {
+                    if (letCollapseWidth && letCollapseWidth <= $(window).width()) {
+                        $('#navbar').addClass('navbar-collapse');
+                        $('#navbar').removeClass('navbar-collapsed');
+                        $('nav').removeClass('navbar-collapsed-before');
+                        letCollapseWidth = false;
+                    }
+                } else {
+                    $('#navbar').removeClass('navbar-collapse');
+                    $('#navbar').addClass('navbar-collapsed');
+                    $('nav').addClass('navbar-collapsed-before');
+                    letCollapseWidth = $(window).width();
+                }
+            };
+
+            if ($(window).width() >= 768) {
+                navbarResizerFunc();
+            }
+        });
+
+        <script type="text/javascript">
+            if(location.pathname=="/auth") {
+                $('#signInModal').modal('show');
+            }
+        if(location.pathname=="/") {
+                $('body').addClass('guest');
+                $('body').addClass('homePage');
+            }
+    </script>
+
+       
+
+    </script>
 }

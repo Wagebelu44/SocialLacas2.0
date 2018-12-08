@@ -273,22 +273,35 @@ namespace SocialLacasa.Controllers
         {
             var objUser = new User();
             string isExist = "0";
+            Session["isAdmin"] = "0";
             List<string> Result = new List<string>();
             try
             {
                 isExist = objUser.CheckUser(userName, password);
-                if (userName == "Admin" && password=="P@ssw0rd")
+                if (isExist != "")
                 {
-                    Session["isAdmin"] = "1";
+                    Session["UserId"] = isExist;
+                    Session["UserName"] = userName;
+
+
+                    if (userName == "Admin" && password == "P@ssw0rd")
+                    {
+                        Session["isAdmin"] = "1";
+                    }
+                    else
+                    {
+                        Session["isAdmin"] = "0";
+                    }
+                    try
+                    {
+                        DataTable dtaccount = objUser.GetAccountFunds(isExist);
+
+                        Session["AccountFund"] = dtaccount.Rows[0][0];
+                    }
+                    catch {
+                        Session["AccountFund"] = "0.00";
+                    }
                 }
-                else
-                {
-                    Session["isAdmin"] = "0";
-                }
-                Session["UserId"] = isExist;
-                DataTable dtaccount = objUser.GetAccountFunds(isExist);
-                Session["AccountFund"] = dtaccount.Rows[0][0];
-                Session["UserName"] = userName;
             }
             catch (Exception ex)
             {
@@ -326,6 +339,8 @@ namespace SocialLacasa.Controllers
             try
             {
                 result = objUser.removeUser(userid);
+                objUser.removeTicket(userid);
+
             }
             catch (Exception ex)
             {

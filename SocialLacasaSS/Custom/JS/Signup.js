@@ -36,6 +36,8 @@ function checkavailability() {
 
 function checkvalidity() {
     var valid = true;
+    var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
   
     
     if (($("#txtusername").val() == "")) {
@@ -53,16 +55,16 @@ function checkvalidity() {
         $(".alert").removeClass("hidden");
         $(".alert").text("Please enter email");
     }
-    else if ($("#txtemail").val() != "") {
-        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-        if (!expr.test($("#txtemail").val())) {
+
+        else if (!expr.test($("#txtemail").val())) {
             valid = false;
             $(".alert").removeClass("hidden");
             $(".alert").text("Please enter valid email");
         }
-    }
-    else if ($.trim($("#txtconfirm").val()) == $.trim($("#txtconfirm").val())) {
+    
+    else if ($("#txtconfirm").val() != ($("#txtpassword").val()))
+    {
         valid = false;
         $(".alert").removeClass("hidden");
         $(".alert").text("Passwords do not match");
@@ -97,7 +99,7 @@ var SaveUser = function () {
 
                 function successFunc(data, status) {
 
-                    alert("User Saved.");
+                    alert("Successfully signed up");
                     window.location = '/';
                 }
 
@@ -106,7 +108,8 @@ var SaveUser = function () {
                 }
             }
             else {
-                alert("username already exists")
+                $(".alert").removeClass("hidden");
+                $(".alert").text("User already exits!");
             }
         }
         else {
