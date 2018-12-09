@@ -84,6 +84,7 @@ namespace SocialLacasa.Controllers
 
         public ActionResult Tickets() {
             if (Session["UserId"] == null)
+
             { return RedirectToAction("SignIn", "Visitor"); }
             var objUser = new User();
             DataTable dtTickets = objUser.GetAllTicketsForUser(Session["UserId"].ToString());

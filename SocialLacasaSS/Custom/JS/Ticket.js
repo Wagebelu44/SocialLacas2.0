@@ -45,8 +45,9 @@ var submitTicket = function () {
 
         function successFunc(data, status) {
             if (data[0] == "1") {
-                alert("New ticket saved.");
-                location.reload(true);
+
+                window.location = window.location;
+
             }
             else {
                 alert("Something went wrong!")

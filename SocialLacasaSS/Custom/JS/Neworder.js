@@ -37,7 +37,8 @@ var callapi = function () {
         dataType: "json",
         success: function (data) {
             if (data != null) {
-                AddOrder(data[0]);
+                alert(data);
+                AddOrder(data);
                 alert("Order Placed");
 
 
@@ -72,8 +73,7 @@ var AddOrder = function (id) {
 
     function successFunc(data, status) {
         if (data[0] == "1") {
-            alert("New order saved.");
-            location.reload(true);
+            window.location = window.location;
         }
         else {
             alert("Something went wrong!")
@@ -119,18 +119,30 @@ var BindServices = function () {
             $.each(res, function (data, value) {
                 //  quantity = parseInt($("#field-orderform-fields-quantity").val());
 
-                rate = value.Rate;
+               // rate = value.Rate;
+               // $("#rate").val(rate);
 
 
 
-                $("#ddlServices").append($("<option></option>").val(value.SWserviceId).html(value.ServiceType));
-                $("#dvDescription").html(value.Description);
+                $("#ddlServices").append($("<option></option>").val(value.SWserviceId).html(value.ServiceType).attr("rate", value.Rate).attr("Desc", value.Description));
+                rate = $("#ddlServices option:selected").attr("rate");
+                desc = $("#ddlServices option:selected").attr("Desc");
+                $("#rate").val(rate);
+                $("#dvDescription").html(desc);
+                //$("#dvDescription").html(value.Description);
 
             })
         }
 
     });
 }
+$("#ddlServices").on('change', function () {
+    rate = $("#ddlServices option:selected").attr("rate");
+    desc = $("#ddlServices option:selected").attr("Desc");
+    $("#rate").val(rate);
+    $("#dvDescription").html(desc);
+
+});
 $("#field-orderform-fields-quantity").focusout(function () {
     if ($("#field-orderform-fields-quantity").val() != "") {
         var qu = $("#field-orderform-fields-quantity").val();

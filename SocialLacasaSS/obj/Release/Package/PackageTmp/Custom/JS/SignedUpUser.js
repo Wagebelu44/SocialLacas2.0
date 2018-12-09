@@ -28,4 +28,3 @@
   
 
 }
-$("tbody > tr").first().addClass("hidden");

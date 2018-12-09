@@ -21,13 +21,14 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="well">
+                    <div class="alert alert-danger hidden"></div>
                     <form method="post" action="/massorder">
                         <div class="form-group">
                             <label for="links" class="control-label">One order per line in format</label>
                             <textarea class="form-control" name="MassOrderForm[orders]" rows="15" id="links" placeholder="service_id | link | quantity"></textarea>
                         </div>
                         <input type="hidden" name="_csrf" value="O3urg9NC-wsq2CreMkHpKUet_ocW_P08MXSDG3eTP0l_T9PamgS_THu2SJFUL45kCNiVsWePk1pEJM5NLuFzKg==">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <input type="button" class="btn btn-primary" value="Submit" id="btnsubmit" onclick="SaveMassOrder()" />
                     </form>
                 </div>
             </div>
@@ -35,3 +36,8 @@
     </div>
 
 </div>
+@section Scripts
+{
+
+    <script src="@Url.Content("~/Custom/JS/MassOrder.js")"></script>
+}

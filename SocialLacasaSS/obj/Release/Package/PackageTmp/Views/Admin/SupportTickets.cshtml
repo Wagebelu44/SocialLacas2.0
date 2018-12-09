@@ -25,23 +25,23 @@
             <div class="col-md-10 col-md-offset-2 centered">
                 <div style="height:12px;"></div>
                 @*<div class="well tableBox">
-                    <form method="post" action="/" id="ticketsend">
-                        <div class="alert alert-dismissible alert-danger ticket-danger " style="display: none">
-                            <button type="button" class="close">&times;</button>
-                            <div></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject" class="control-label">Subject</label>
-                            <input type="text" class="form-control" id="subject" name="TicketForm[subject]">
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="control-label">Message</label>
-                            <textarea class="form-control" rows="7" id="message" name="TicketForm[message]"></textarea>
-                        </div>
-                        <input type="hidden" name="_csrf" value="LA4gpygu774e1yeomt1rRdoARqtDph7ab5Vf1sV7rdhjZGjUSkCA-0SNStv2jx4ToDAf8xnXK6Ar4grjpgvMrA==">
-                        <button type="submit" class="btn btn-primary" onclick="submitTicket();">Submit ticket</button>
-                    </form>
-                </div>*@
+                        <form method="post" action="/" id="ticketsend">
+                            <div class="alert alert-dismissible alert-danger ticket-danger " style="display: none">
+                                <button type="button" class="close">&times;</button>
+                                <div></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="control-label">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="TicketForm[subject]">
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="control-label">Message</label>
+                                <textarea class="form-control" rows="7" id="message" name="TicketForm[message]"></textarea>
+                            </div>
+                            <input type="hidden" name="_csrf" value="LA4gpygu774e1yeomt1rRdoARqtDph7ab5Vf1sV7rdhjZGjUSkCA-0SNStv2jx4ToDAf8xnXK6Ar4grjpgvMrA==">
+                            <button type="submit" class="btn btn-primary" onclick="submitTicket();">Submit ticket</button>
+                        </form>
+                    </div>*@
                 <div class="well tableBox">
                     <table class="table ">
                         <thead>
@@ -73,9 +73,22 @@
     </div>
 </div>
 @*<script>
-    $(document).ready(function () {
-        $('.clsUser').hide();
-        $('.clsadmin').show();
-    })
+        $(document).ready(function () {
+            $('.clsUser').hide();
+            $('.clsadmin').show();
+        })
 
-</script>*@
+    </script>*@
+@section Scripts
+{
+
+    <script>
+        $(document).ready(function () {
+            $(".nav").removeClass("active");
+            $(".adticket").addClass('active');
+
+
+
+        });
+    </script>
+}

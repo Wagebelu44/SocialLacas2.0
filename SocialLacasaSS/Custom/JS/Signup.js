@@ -5,9 +5,39 @@
 
 });
 
+function checkavailability() {
+    var obj = {};
+    obj.username = $("#txtusername").val();
+    obj.email = $("#txtemail").val();
+    var serviceURL = '/Service/checkusername';
+    var aval = "0";
+    $.ajax({
+        type: "POST",
+        url: serviceURL,
+        data: JSON.stringify(obj),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: successFunc,
+        error: errorFunc
+    });
+
+    function successFunc(data, status) {
+
+         aval = data; 
+    }
+
+    function errorFunc(err) {
+         aval = "0";
+    }
+    return aval;
+
+}
+
 
 function checkvalidity() {
     var valid = true;
+    var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
   
     
     if (($("#txtusername").val() == "")) {
@@ -25,16 +55,16 @@ function checkvalidity() {
         $(".alert").removeClass("hidden");
         $(".alert").text("Please enter email");
     }
-    else if ($("#txtemail").val() != "") {
-        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-        if (!expr.test($("#txtemail").val())) {
+
+        else if (!expr.test($("#txtemail").val())) {
             valid = false;
             $(".alert").removeClass("hidden");
             $(".alert").text("Please enter valid email");
         }
-    }
-    else if ($.trim($("#txtconfirm").val()) == $.trim($("#txtconfirm").val())) {
+    
+    else if ($("#txtconfirm").val() != ($("#txtpassword").val()))
+    {
         valid = false;
         $(".alert").removeClass("hidden");
         $(".alert").text("Passwords do not match");
@@ -53,25 +83,33 @@ var SaveUser = function () {
         obj.userName = $("#txtusername").val();
         obj.password = $("#txtpassword").val();
         obj.email = $("#txtemail").val();
+        aval = checkavailability();
+
         if (isChecked == true) {
-            $.ajax({
-                type: "POST",
-                url: serviceURL,
-                data: JSON.stringify(obj),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: successFunc,
-                error: errorFunc
-            });
+            if (aval == "0") {
+                $.ajax({
+                    type: "POST",
+                    url: serviceURL,
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: successFunc,
+                    error: errorFunc
+                });
 
-            function successFunc(data, status) {
+                function successFunc(data, status) {
 
-                alert("User Saved.");
-                window.location = '/';
+                    alert("Successfully signed up");
+                    window.location = '/';
+                }
+
+                function errorFunc(err) {
+                    alert(err.responseText);
+                }
             }
-
-            function errorFunc(err) {
-                alert(err.responseText);
+            else {
+                $(".alert").removeClass("hidden");
+                $(".alert").text("User already exits!");
             }
         }
         else {

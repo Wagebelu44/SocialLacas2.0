@@ -26,11 +26,12 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th class="hidden">ID</th>
                                 <th>UserName</th>
-                               
+
                                 <th>Email</th>
-                               
+                                <th></th>
+
 
                             </tr>
                         </thead>
@@ -38,10 +39,11 @@
                             @foreach (DataRow row in Model.Tables[0].Rows)
                             {
                                 <tr>
-                                    <td>@row["UserId"]</td>
+                                    <td class="uid hidden">@row["UserId"]</td>
                                     <td>@row["Username"]</td>
                                     <td>@row["Email"]</td>
-                                  
+                                    <td><button class="btn btn-primary" onclick="removeuser(this);">Remove User</button></td>
+
                                 </tr>
                             }
                         </tbody>
@@ -75,9 +77,28 @@
 </div>
 
 @*<script>
-    $(document).ready(function () {
-        $('.clsUser').hide();
-        $('.clsadmin').show();
-    })
+        $(document).ready(function () {
+            $('.clsUser').hide();
+            $('.clsadmin').show();
+        })
 
-</script>*@
+    </script>*@
+
+@section Scripts
+{
+
+    <script src="@Url.Content("~/Custom/JS/SignedUpUser.js")"></script>
+
+
+
+        <script>
+            $(document).ready(function () {
+                $(".nav").removeClass("active");
+                $(".adsignedup").addClass('active');
+
+
+
+            });
+        </script>
+    
+}

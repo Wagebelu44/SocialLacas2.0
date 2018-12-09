@@ -1,23 +1,24 @@
 ﻿<div id="sidebar-wrapper" class="sidebar-toggle">
     <ul class="sidebar-nav nav">
         <div class="onMobileShow">
-            <li><a>KWD:<span class="badge">30.694407</span></a></li>
+            <li><a>KWD:<span class="badge clsUser">@Session["AccountFund"]</span></a></li>
             <li><a href="/user/Neworder"><i class="fa fa-user"></i>Account</a></li>
         </div>
-        <li class="clsUser login"><a href="/user/Neworder"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>New order</a></li>
-        <li class="clsUser"><a href="/User/MassOrders"><i class="fa fa-paper-plane" aria-hidden="true"></i>Mass order</a></li>
-        <li class="clsUser"><a href="/User/Services"><i class="fa fa-magic" aria-hidden="true"></i>Services</a></li>
-        <li class="clsUser"><a href="/User/orders"><i class="fa fa-list" aria-hidden="true"></i>Orders</a></li>
-        <li class="clsUser"><a href="/User/subscriptions"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Subscriptions</a></li>
-        <li class="clsUser"><a href="/User/tickets"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Tickets</a></li>
+        <li tab="neworder" class="clsadmin adneworder"><a href="/Admin/PlaceOrder"><i class="fa fa-file-text-o" aria-hidden="true"></i>Orders</a></li>
+        <li tab="signedup" class="clsadmin adsignedup"><a href="/Admin/SignedUpUsers"><i class="fa fa-file-text-o" aria-hidden="true"></i> Users</a></li>
+        <li tab="placeorderadmin" class="clsadmin neworderuser"><a href="/User/NewOrder"><i class="fa fa-file-text-o" aria-hidden="true"></i>Place Order</a></li>
+        <li tab="supportticket" class="clsadmin adticket"><a href="/Admin/SupportTickets"><i class="fa fa-file-text-o" aria-hidden="true"></i>Support</a></li>
+        <li tab="neworderuser" class="clsUser login neworderuser"><a href="/user/Neworder"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>New order</a></li>
+        <li tab="massorder" class="massorder"><a href="/User/MassOrders"><i class="fa fa-paper-plane" aria-hidden="true"></i>Mass order</a></li>
+        <li tab="services" class="uservices"><a href="/User/Services"><i class="fa fa-magic" aria-hidden="true"></i>Services</a></li>
+        <li tab="orders" class="clsUser orders"><a href="/User/orders"><i class="fa fa-list" aria-hidden="true"></i>Orders</a></li>
+        <li tab="subscription" class="clsUser hidden"><a href="/User/subscriptions"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Subscriptions</a></li>
+        <li tab="tickets" class="clsUser tickets"><a href="/User/tickets"><i class="fa fa-thumbs-up" aria-hidden="true"></i>Tickets</a></li>
 
-        <li class="clsUser"><a href="/User/addfunds"><i class="fa fa-money" aria-hidden="true"></i> Add funds</a></li>
-        <li class="clsUser"><a href="/User/faq"><i class="fa fa-question-circle" aria-hidden="true"></i>FAQ</a></li>
-        <li class="clsUser"><a href="/User/terms"><i class="fa fa-file-text-o" aria-hidden="true"></i>Terms</a></li>
-        <li class="clsadmin"><a href="/Admin/PlaceOrder"><i class="fa fa-file-text-o" aria-hidden="true"></i>Orders</a></li>
-        <li class="clsadmin"><a href="/Admin/SignedUpUsers"><i class="fa fa-file-text-o" aria-hidden="true"></i>SignedUp Users</a></li>
-        <li class="clsadmin"><a href="/User/NewOrder"><i class="fa fa-file-text-o" aria-hidden="true"></i>Place Order</a></li>
-        <li class="clsadmin"><a href="/Admin/SupportTickets"><i class="fa fa-file-text-o" aria-hidden="true"></i>Support Tickets</a></li>
+        <li tab="addfunds" class="clsUser addfunds"><a href="/User/addfunds"><i class="fa fa-money" aria-hidden="true"></i> Add funds</a></li>
+        <li tab="faq" class="faqs clsUser"><a href="/User/faq"><i class="fa fa-question-circle" aria-hidden="true"></i>FAQ</a></li>
+        <li tab="terms" class="terms clsUser"><a href="/User/terms"><i class="fa fa-file-text-o" aria-hidden="true"></i>Terms</a></li>
+
         <div class="onMobileShow">
             <li><a onclick="LogOut();"><i class="fa fa-sign-out"></i>Logout</a></li>
         </div>

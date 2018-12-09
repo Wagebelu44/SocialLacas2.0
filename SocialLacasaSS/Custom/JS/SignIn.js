@@ -54,7 +54,8 @@ var LoginUser = function () {
                 }
             }
             else {
-                alert("Invalid UserName or Password.")
+                $(".alert").removeClass("hidden");
+                $(".alert").text("Invalid username and password");
             }
 
         }

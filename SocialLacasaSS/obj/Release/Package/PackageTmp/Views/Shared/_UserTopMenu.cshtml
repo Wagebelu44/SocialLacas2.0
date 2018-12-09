@@ -12,7 +12,7 @@
             <a class="navbar-brand" href="/User/NewOrder">
                 <!--<img src="//i.imgur.com/wAfBLNw.png" alt="socialwizards.com" title="socialwizards.com" />-->
                 <!--<img src="//i.imgur.com/M0Kuc2F.png" alt="socialwizards.com" title="socialwizards.com" />-->
-                <img src="@Url.Content("~/Images/finallogo.png")" alt="sociallacasa.com" title="sociallacasa.com" style="width:150px;height:65px;" />
+                <img src="@Url.Content("~/Images/finallogo.png")" alt="sociallacasa.com" title="sociallacasa.com" style="width:126px;height:65px;" />
                 <!--<img src="//i.imgur.com/kcDvgGk.png" alt="socialwizards.com" title="socialwizards.com" />-->
             </a>
         </div>
@@ -31,9 +31,9 @@
                       </ul>-->
             <ul class="nav navbar-nav navbar-right navbar-right-block">
                 <li>
-                    <a>KWD:<span class="badge">30.694407</span></a>
+                    <a>KWD:<span class="badge clsUser">@Session["AccountFund"]</span></a>
                 </li>
-                <li>
+                <li class="accountuser">
                     <a href="/User/Account"><i class="fa fa-user" aria-hidden="true"></i> Account</a>
                 </li>
                 <li>
