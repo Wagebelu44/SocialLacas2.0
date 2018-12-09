@@ -26,6 +26,7 @@ var CalculateTotalCharge = function () {
     }
 }
 var getObjectOrder = function () {
+    //get object
     var massOrders = $("#links").val();
     var massorderArray = massOrders.split("\n");
     $.each(massorderArray, function (index, item) {
