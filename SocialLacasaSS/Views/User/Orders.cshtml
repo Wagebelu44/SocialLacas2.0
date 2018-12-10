@@ -53,26 +53,27 @@
                                 <th class="nowrap">Start count</th>
                                 <th>Quantity</th>
                                 <th>Service</th>
-                                <th></th>
                                 <th>Status</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (DataRow row in Model.Tables[0].Rows)
                             {
-                                <tr>
-                                    <td>@row["SWorderId"]</td>
-                                    <td>@row["Date"]</td>
-                                    <td>@row["Link"]</td>
-                                    <td>@row["Charge"]</td>
-                                    <td>@row["StartCount"]</td>
-                                    <td>@row["Quantity"]</td>
-                                    <td>@row["Service"]</td>
-                                    <td class="hidden">@row["Status"]</td>
-                                    <td>
-                                        <input type="button" class="btn btn-primary" value="Get Status" id="btnstatus" onclick="GetStatus(@row["SWorderId"])" />
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>@row["SWorderId"]</td>
+                                <td>@row["Date"]</td>
+                                <td>@row["Link"]</td>
+                                <td>@row["Charge"]</td>
+                                <td>@row["StartCount"]</td>
+                                <td>@row["Quantity"]</td>
+                                <td>@row["Service"]</td>
+
+                                <td>
+                                    <input type="button" class="btn btn-primary" value="Get Status" id="btnstatus" onclick="GetStatus(@row["SWorderId"])" />
+                                </td>
+                                <td class="hidden">@row["Status"]</td>
+                            </tr>
                             }
                         </tbody>
                     </table>
