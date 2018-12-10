@@ -46,7 +46,7 @@ var submitTicket = function () {
         function successFunc(data, status) {
             if (data[0] == "1") {
 
-                window.location = window.location;
+                window.location.href = "/User/Tickets";
 
             }
             else {

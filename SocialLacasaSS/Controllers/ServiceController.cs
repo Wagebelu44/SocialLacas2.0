@@ -40,9 +40,9 @@ namespace SocialLacasa.Controllers
             redirect += "&amount=" + itemCost;
             redirect += "&item_number=1";
             redirect += "&currency_code= USD";
-            redirect += "&return=" + baseUrl + "User/NewOrder";
-            redirect += "&cancel_return=" + baseUrl + "User/NewOrder";
-            redirect += "&notify_url=" + baseUrl + "User/NewOrder";
+            redirect += "&return=" + baseUrl + "User/NewOrder?status='ok'";
+            redirect += "&cancel_return=" + baseUrl + "User/NewOrder?status='cancel'";
+            redirect += "&notify_url=" + baseUrl + "User/NewOrder?status='ok'";
 
             return Json(redirect, JsonRequestBehavior.AllowGet);
         }
@@ -107,11 +107,13 @@ namespace SocialLacasa.Controllers
         }
         public JsonResult PlaceOrder_Api(int serviceid, int quantity, string link)
         {
-            
+            string orderid = "0";
             string result = placeorder(serviceid, quantity, link);
-            string orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
-            orderid = orderid.Substring(0, orderid.Length - 1);
-            //var releases = JArray.Parse(result);
+            if (result.Contains("order"))
+            {
+                 orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
+                orderid = orderid.Substring(0, orderid.Length - 1);
+            }//var releases = JArray.Parse(result);
 
             //{"order":3611783}
             return Json(orderid, JsonRequestBehavior.AllowGet);

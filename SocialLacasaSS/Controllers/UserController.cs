@@ -65,7 +65,7 @@ namespace SocialLacasa.Controllers
             { return RedirectToAction("SignIn", "Visitor"); }
             return View();
         }
-        public ActionResult NewOrder()
+        public ActionResult NewOrder(string status="")
         {
             if (Session["UserId"] != null)
             {

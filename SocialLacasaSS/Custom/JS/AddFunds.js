@@ -124,7 +124,7 @@ var addfuncds = function () {
 
     function successFunc(data, status) {
         if (data[0] == "1") {
-            location.reload(true);
+           // location.reload(true);
         }
         else {
             alert("Something went wrong!")

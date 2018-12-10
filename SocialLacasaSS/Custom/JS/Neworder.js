@@ -10,6 +10,14 @@
         $(".alert").text("Please enter quantity");
         valid = false;
     }
+    else if ($("#field-orderform-fields-quantity").val() != "") {
+        var quantity = $("#field-orderform-fields-quantity").val();
+        if (parseInt(quantity) < 1000) {
+            $(".alert").removeClass("hidden");
+            $(".alert").text("Please enter min 1000 in quantity.");
+            valid = false;
+        }
+    }
     return valid;
        
     }
@@ -37,10 +45,14 @@ var callapi = function () {
         dataType: "json",
         success: function (data) {
             if (data != null) {
-                alert(data);
-                AddOrder(data);
-                alert("Order Placed");
-
+                if (data == "0") {
+                    alert("Error placing the order!");
+                    return false;
+                }
+                else {
+                    AddOrder(data);
+                    alert("Order Placed");
+                }
 
             }
         },
