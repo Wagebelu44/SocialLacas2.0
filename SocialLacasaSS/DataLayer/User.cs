@@ -62,7 +62,7 @@ namespace SocialLacasa.DataLayer
             return isExist;
         }
 
-        
+
 
         public DataTable GetAllServiceCategory()
         {
@@ -163,7 +163,7 @@ namespace SocialLacasa.DataLayer
             SqlDataReader reader;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "usp_GetAccountFunds";
-            
+
             cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = Convert.ToInt32(UserId);
             cmd.Connection = con;
             try
@@ -217,6 +217,45 @@ namespace SocialLacasa.DataLayer
                 con.Dispose();
             }
             return dtUsers;
+        }
+        public string CheckExistingUser(string userName,  string email)
+        {
+            DataTable dtexisting = new DataTable();
+
+            string isExist = "0";
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand("usp_CheckExistingUser", con);
+            SqlDataReader reader;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@UserName", userName);
+            cmd.Parameters.AddWithValue("@Email", email);
+
+            cmd.Connection = con;
+            try
+            {
+                con.Open();
+
+                reader = cmd.ExecuteReader();
+
+                dtexisting.Load(reader);
+                if (dtexisting != null && dtexisting.Rows.Count > 0)
+                {
+                    isExist = dtexisting.Rows[0][0].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+            return isExist;
+
+
+
         }
 
         public void SaveUser(string userName, string password, string email)
@@ -327,7 +366,7 @@ namespace SocialLacasa.DataLayer
             //charge= dtcharge.Rows[0][0].ToString();
             return dtcharge;
         }
-        public void SaveNewOrder(string category, string service, string link, string quantity, decimal charge, string userId,string orderid)
+        public void SaveNewOrder(string category, string service, string link, string quantity, decimal charge, string userId, string orderid)
         {
 
             try
@@ -378,7 +417,7 @@ namespace SocialLacasa.DataLayer
             }
         }
 
-        public void saveTicketMessage(string message, string ticketid, bool sentbycustomer = false,string username="")
+        public void saveTicketMessage(string message, string ticketid, bool sentbycustomer = false, string username = "")
         {
 
             try

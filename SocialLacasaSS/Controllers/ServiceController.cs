@@ -80,7 +80,7 @@ namespace SocialLacasa.Controllers
                     content = sr.ReadToEnd();
                 }
             }
-            
+
             //var releases = JArray.Parse(content);
             //string status = content.Substring(content.IndexOf(":") + 1, content.Length);
             //status = status.Substring(0, status.Length - 1);
@@ -111,8 +111,10 @@ namespace SocialLacasa.Controllers
             string result = placeorder(serviceid, quantity, link);
             if (result.Contains("order"))
             {
-                 orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
-                orderid = orderid.Substring(0, orderid.Length - 1);
+                string[] arrorder = result.Split(':');
+                orderid = arrorder[1].Substring(0, arrorder[1].Length - 2);
+              //  orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
+              //  orderid = orderid.Substring(0, orderid.Length - 1);
             }//var releases = JArray.Parse(result);
 
             //{"order":3611783}
@@ -138,7 +140,7 @@ namespace SocialLacasa.Controllers
                  }).ToList();
             return Json(lstServices, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveMassOrder(List<MassOrder> MassOrder,decimal funds)
+        public JsonResult SaveMassOrder(List<MassOrder> MassOrder, decimal funds)
         {
             List<string> Result = new List<string>();
             var objUser = new User();
@@ -152,7 +154,7 @@ namespace SocialLacasa.Controllers
 
                 order.Charge = order.Quantity * (Convert.ToDecimal(servicecharge) / 1000);
                 totalCharge = totalCharge + order.Charge;
-                
+
             }
             if (totalCharge <= funds)
             {
@@ -161,22 +163,25 @@ namespace SocialLacasa.Controllers
                     string result = placeorder(order.ServiceId, order.Quantity, order.Link);
                     string orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
                     orderid = orderid.Substring(0, orderid.Length - 1);
-                    objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString(),orderid);
+                    objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString(), orderid);
                     issucess = "1";
                 }
             }
             Result.Add(issucess);
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveNewOrder(string category, string service, string link, string quantity, decimal charge,string orderid)
+        public JsonResult SaveNewOrder(string category, string service, string link, string quantity, decimal charge, string orderid)
         {
             var objUser = new User();
             string issucess = "0";
             List<string> Result = new List<string>();
             try
             {
-                objUser.SaveNewOrder(category, service, link, quantity, charge, Session["UserId"].ToString(),orderid);
+                objUser.SaveNewOrder(category, service, link, quantity, charge, Session["UserId"].ToString(), orderid);
+                
+                DataTable dtaccount = objUser.GetAccountFunds(Session["UserId"].ToString());
 
+                Session["AccountFund"] = dtaccount.Rows[0][0];
                 issucess = "1";
             }
             catch (Exception ex)
@@ -185,6 +190,7 @@ namespace SocialLacasa.Controllers
             }
 
             Result.Add(issucess);
+            Result.Add(Session["AccountFund"].ToString());
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
         public JsonResult SaveFunds(string method, decimal Amount)
@@ -194,7 +200,7 @@ namespace SocialLacasa.Controllers
             List<string> Result = new List<string>();
             try
             {
-                objUser.SaveFunds(method,  Amount,  Session["UserId"].ToString());
+                objUser.SaveFunds(method, Amount, Session["UserId"].ToString());
                 issucess = "1";
             }
             catch (Exception ex)
@@ -260,8 +266,12 @@ namespace SocialLacasa.Controllers
             List<string> Result = new List<string>();
             try
             {
-                objUser.SaveUser(userName, password, email);
-                issucess = "1";
+                string isExist = objUser.CheckExistingUser(userName, email);
+                if (isExist == "0")
+                {
+                    objUser.SaveUser(userName, password, email);
+                    issucess = "1";
+                }
             }
             catch (Exception ex)
             {
@@ -296,11 +306,10 @@ namespace SocialLacasa.Controllers
                     }
                     try
                     {
-                        DataTable dtaccount = objUser.GetAccountFunds(isExist);
-
-                        Session["AccountFund"] = dtaccount.Rows[0][0];
+                        getaccount(isExist);
                     }
-                    catch {
+                    catch
+                    {
                         Session["AccountFund"] = "0.00";
                     }
                 }
@@ -314,7 +323,13 @@ namespace SocialLacasa.Controllers
             Result.Add(Session["isAdmin"].ToString());
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
+        public void getaccount(string id)
+        {
+            var objUser = new User();
+            DataTable dtaccount = objUser.GetAccountFunds(id);
 
+            Session["AccountFund"] = dtaccount.Rows[0][0];
+        }
         public JsonResult changePassword(string username, string oldpassword, string newpassword)
         {
             string res = "0";
@@ -358,8 +373,8 @@ namespace SocialLacasa.Controllers
             var objUser = new User();
             try
             {
-                result = objUser.checkuseraval(username,email);
-                
+                result = objUser.checkuseraval(username, email);
+
             }
             catch (Exception ex)
             {

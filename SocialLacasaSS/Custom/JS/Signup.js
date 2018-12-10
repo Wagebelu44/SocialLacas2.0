@@ -83,10 +83,10 @@ var SaveUser = function () {
         obj.userName = $("#txtusername").val();
         obj.password = $("#txtpassword").val();
         obj.email = $("#txtemail").val();
-        aval = checkavailability();
+       // aval = checkavailability();
 
         if (isChecked == true) {
-            if (aval == "0") {
+            //if (aval == "0") {
                 $.ajax({
                     type: "POST",
                     url: serviceURL,
@@ -98,19 +98,25 @@ var SaveUser = function () {
                 });
 
                 function successFunc(data, status) {
-
-                    alert("Successfully signed up");
-                    window.location = '/';
+                    if (data != "0") {
+                        alert("Successfully signed up");
+                        window.location = '/';
+                    }
+                    else {
+                        $(".alert").removeClass("hidden");
+                        $(".alert").text("User already exits!");
+                       // alert("User already exist");
+                    }
                 }
 
                 function errorFunc(err) {
                     alert(err.responseText);
                 }
-            }
-            else {
-                $(".alert").removeClass("hidden");
-                $(".alert").text("User already exits!");
-            }
+            //}
+            //else {
+            //    $(".alert").removeClass("hidden");
+            //    $(".alert").text("User already exits!");
+            //}
         }
         else {
             alert("Please accept the terms and conditions!")

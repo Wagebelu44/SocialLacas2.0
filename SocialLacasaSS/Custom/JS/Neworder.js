@@ -85,6 +85,7 @@ var AddOrder = function (id) {
 
     function successFunc(data, status) {
         if (data[0] == "1") {
+            $(".badge").html(data[1]);
             window.location = window.location;
         }
         else {
