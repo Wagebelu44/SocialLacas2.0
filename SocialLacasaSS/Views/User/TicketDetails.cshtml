@@ -41,9 +41,6 @@
 
                             subject = d.Subject;
                             <div class="titcket-title">@d.Subject</div>
-                        }
-                        if (ticketMessage != d.TicketMessage)
-                        {
                             <div class="col-md-1"></div>
                             <div class="col-md-11">
                                 <div class="row ticket-message-block ticket-message-right">
@@ -55,48 +52,63 @@
                                         <small class="text-muted">@d.Date</small>
                                     </div>
                                 </div>
-                                </div>
-                                }
+                            </div>
+                        }
+                        @*if (ticketMessage != d.TicketMessage)
+            {
+                <div class="col-md-1"></div>
+                <div class="col-md-11">
+                    <div class="row ticket-message-block ticket-message-right">
+                        <div class="ticket-message  text-right">
+                            <div class="message">@d.TicketMessage</div>
+                        </div>
+                        <div class="info text-right">
+                            <strong>@d.UserName</strong>
+                            <small class="text-muted">@d.Date</small>
+                        </div>
+                    </div>
+                    </div>
+                    }*@
 
-                                if (@d.Message != null)
+                        if (@d.Message != null)
+                        {
+                            <div class="row ticket-message-block @clsdir">
+                                @if (d.SentByCustomer == true)
                                 {
-                                <div class="row ticket-message-block @clsdir">
-                                    @if (d.SentByCustomer == true)
-                                    {
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-11">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-11">
 
-                                            <div class="ticket-message  text-right">
-                                                <div class="message">@d.Message</div>
-                                            </div>
-                                            <div class="info text-right">
-                                                <strong>@d.UserName</strong>
-                                                <small class="text-muted">@d.Date</small>
-                                            </div>
+                                        <div class="ticket-message  text-right">
+                                            <div class="message">@d.Message</div>
                                         </div>
-                                    }
-                                    @if (d.SentByCustomer == false)
-                                    {
-                                        <div class="col-md-11">
-                                            <div class="ticket-message  ">
-                                                <div class="message">@d.Message</div>
-                                            </div>
-                                            <div class="info ">
-                                                <strong>@d.UserName</strong>
-                                                <small class="text-muted">@d.Date</small>
-                                            </div>
+                                        <div class="info text-right">
+                                            <strong>@d.UserName</strong>
+                                            <small class="text-muted">@d.Date</small>
                                         </div>
-                                        <div class="col-md-1"></div>
-                                    }
-                                </div>
-
-
+                                    </div>
                                 }
-
-
-
+                                @if (d.SentByCustomer == false)
+                                {
+                                    <div class="col-md-11">
+                                        <div class="ticket-message  ">
+                                            <div class="message">@d.Message</div>
+                                        </div>
+                                        <div class="info ">
+                                            <strong>@d.UserName</strong>
+                                            <small class="text-muted">@d.Date</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1"></div>
                                 }
-                                @*<div class="row ticket-message-block ticket-message-left">
+                            </div>
+
+
+                        }
+
+
+
+                    }
+                    @*<div class="row ticket-message-block ticket-message-left">
             <div class="col-md-11">
                 <div class="ticket-message">
                     <div class="message">Hello, kindly send us the Order ID so we can check out the issue, thank you :)</div>
@@ -108,20 +120,20 @@
             </div>
             <div class="col-md-1"></div>
         </div>*@
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="alert alert-danger hidden">   </div>
-                                        <form method="post" action="">
-                                            <div class="form-group panel-border-top">
-                                                <label for="message" class="control-label">Message</label>
-                                                <textarea id="message" rows="5" class="form-control" name="TicketMessageForm[message]"></textarea>
-                                            </div>
-                                            <input type="hidden" name="_csrf" value="Utn_5ztFeV6gsm--vHbisVHw18AUCGYK5a4zj_q_fRc6nKqeSQ8sKu30NtztQbv0GZ-loTk8DW-k9gXKnccSYg==">
-                                            <input type="button" class="btn btn-primary" onclick="saveTicketMessage();" value="Submit" />
-                                        </form>
-                                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger hidden">   </div>
+                            <form method="post" action="">
+                                <div class="form-group panel-border-top">
+                                    <label for="message" class="control-label">Message</label>
+                                    <textarea id="message" rows="5" class="form-control" name="TicketMessageForm[message]"></textarea>
                                 </div>
-                            </div>
+                                <input type="hidden" name="_csrf" value="Utn_5ztFeV6gsm--vHbisVHw18AUCGYK5a4zj_q_fRc6nKqeSQ8sKu30NtztQbv0GZ-loTk8DW-k9gXKnccSYg==">
+                                <input type="button" class="btn btn-primary" onclick="saveTicketMessage();" value="Submit" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
