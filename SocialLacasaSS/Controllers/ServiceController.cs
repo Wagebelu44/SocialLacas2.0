@@ -29,8 +29,8 @@ namespace SocialLacasa.Controllers
         public JsonResult PayPal(string cost)
         {
             //  string businessPaypalId = "shaheenbohra1989@gmail.com";
-            // string businessPaypalId = "hady-baraka777@hotmail.com";
-             string businessPaypalId = "shruti.karva@gmail.com";
+             string businessPaypalId = "hady-baraka777@hotmail.com";
+             //string businessPaypalId = "shruti.karva@gmail.com";
 
 
             double itemCost = Convert.ToDouble(cost);
