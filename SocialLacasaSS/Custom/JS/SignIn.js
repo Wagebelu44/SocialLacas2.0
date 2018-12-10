@@ -59,14 +59,15 @@ var LoginUser = function () {
             }
 
         }
+        function errorFunc(err) {
+            alert(err.responseText);
+        }
+
     }
     else {
         return false;
     }
 
-        function errorFunc(err) {
-            alert(err.responseText);
-        }
-    
+       
 
 }
