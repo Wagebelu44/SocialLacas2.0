@@ -29,11 +29,11 @@
                                 <th>Date</th>
                                 <th class="width-40">Link</th>
                                 <th>Charge</th>
-                                <th class="nowrap">Start count</th>
+                                <th class="nowrap hidden">Start count</th>
                                 <th>Quantity</th>
                                 <th>Service</th>
                                 <th>Status</th>
-                                <th>Remains</th>
+                                <th class="hidden">Remains</th>
 
                             </tr>
                         </thead>
@@ -45,11 +45,11 @@
                                     <td>@row["Date"]</td>
                                     <td>@row["Link"]</td>
                                     <td>@row["Charge"]</td>
-                                    <td>@row["StartCount"]</td>
+                                    <td class="hidden">@row["StartCount"]</td>
                                     <td>@row["Quantity"]</td>
                                     <td>@row["Service"]</td>
                                     <td>@row["Status"]</td>
-                                    <td>@row["Remains"]</td>
+                                    <td class="hidden">@row["Remains"]</td>
                                     @*<td><input type="button" id="btnPlaceOrder" class="btn btn-primary" value="Place Order"/></td>*@
                                 </tr>
                             }

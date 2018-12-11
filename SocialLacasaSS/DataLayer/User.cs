@@ -258,9 +258,9 @@ namespace SocialLacasa.DataLayer
 
         }
 
-        public void SaveUser(string userName, string password, string email)
+        public int SaveUser(string userName, string password, string email)
         {
-
+            int newid = 0;
             try
             {
                 SqlConnection cn = new SqlConnection(strConnString);
@@ -271,7 +271,7 @@ namespace SocialLacasa.DataLayer
                 cmd.Parameters.AddWithValue("@Email", email);
 
                 cn.Open();
-                cmd.ExecuteNonQuery();
+                 newid = (int)cmd.ExecuteScalar();
                 cn.Close();
 
             }
@@ -279,6 +279,7 @@ namespace SocialLacasa.DataLayer
             {
 
             }
+            return newid;
         }
 
         public DataTable GetAllCategory()
