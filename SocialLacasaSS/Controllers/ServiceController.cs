@@ -29,7 +29,10 @@ namespace SocialLacasa.Controllers
         public JsonResult PayPal(string cost)
         {
             //  string businessPaypalId = "shaheenbohra1989@gmail.com";
-            string businessPaypalId = "hady-baraka777@hotmail.com";
+             string businessPaypalId = "hady-baraka777@hotmail.com";
+             //string businessPaypalId = "shruti.karva@gmail.com";
+
+
             double itemCost = Convert.ToDouble(cost);
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
             //string baseUrl = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, "") + HttpContext.Current.Request.ApplicationPath;
@@ -296,7 +299,7 @@ namespace SocialLacasa.Controllers
                     Session["UserName"] = userName;
 
 
-                    if (userName == "Admin" && password == "P@ssw0rd")
+                    if (userName == "Admin")
                     {
                         Session["isAdmin"] = "1";
                     }
@@ -332,6 +335,7 @@ namespace SocialLacasa.Controllers
         }
         public JsonResult changePassword(string username, string oldpassword, string newpassword)
         {
+            
             string res = "0";
             var objUser = new User();
             List<string> Result = new List<string>();
