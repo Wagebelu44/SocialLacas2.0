@@ -1,8 +1,9 @@
 ﻿$(document).ready(function () {
     $(".nav").removeClass("active");
     $(".addfunds").addClass('active');
-
-
+    if ($("#hdnAmount").val() != null) {
+        addfuncds();
+    }
 
 });
 
@@ -34,7 +35,7 @@ var callPayPal = function () {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                addfuncds();
+               // addfuncds();
                 var url = data;
                 window.location.href = url;
             },
@@ -96,7 +97,7 @@ var callBTH = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            addfuncds();
+           // addfuncds();
             var url = data;
             window.location.href = url;
         },
@@ -109,13 +110,12 @@ var addfuncds = function () {
     var serviceURL = '/Service/SaveFunds';
 
     var obj = {};
-    obj.Method = $("#method").val();
-    obj.Amount = $("#amount").val();
+//    obj.Amount = $("#amount").val();
 
     $.ajax({
         type: "POST",
         url: serviceURL,
-        data: JSON.stringify(obj),
+    //    data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: successFunc,
@@ -124,7 +124,7 @@ var addfuncds = function () {
 
     function successFunc(data, status) {
         if (data[0] == "1") {
-           // location.reload(true);
+            $(".badge").html(data[1]);
         }
         else {
             alert("Something went wrong!")

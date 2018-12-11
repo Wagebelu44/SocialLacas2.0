@@ -313,7 +313,7 @@ namespace SocialLacasa.DataLayer
             }
             return dtCategory;
         }
-        public void SaveFunds(string method, decimal Amount, string userId)
+        public void SaveFunds( decimal Amount, string userId)
         {
 
             try

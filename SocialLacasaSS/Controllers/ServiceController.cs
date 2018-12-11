@@ -29,10 +29,10 @@ namespace SocialLacasa.Controllers
         public JsonResult PayPal(string cost)
         {
             //  string businessPaypalId = "shaheenbohra1989@gmail.com";
-             string businessPaypalId = "hady-baraka777@hotmail.com";
-             //string businessPaypalId = "shruti.karva@gmail.com";
+            string businessPaypalId = "hady-baraka777@hotmail.com";
+            //string businessPaypalId = "shruti.karva@gmail.com";
 
-
+            Session["Amount"] = cost;
             double itemCost = Convert.ToDouble(cost);
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
             //string baseUrl = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, "") + HttpContext.Current.Request.ApplicationPath;
@@ -43,7 +43,7 @@ namespace SocialLacasa.Controllers
             redirect += "&amount=" + itemCost;
             redirect += "&item_number=1";
             redirect += "&currency_code= USD";
-            redirect += "&return=" + baseUrl + "User/NewOrder?status='ok'";
+            redirect += "&return=" + baseUrl + "User/AddFunds?status='ok'";
             redirect += "&cancel_return=" + baseUrl + "User/NewOrder?status='cancel'";
             redirect += "&notify_url=" + baseUrl + "User/NewOrder?status='ok'";
 
@@ -116,8 +116,8 @@ namespace SocialLacasa.Controllers
             {
                 string[] arrorder = result.Split(':');
                 orderid = arrorder[1].Substring(0, arrorder[1].Length - 2);
-              //  orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
-              //  orderid = orderid.Substring(0, orderid.Length - 1);
+                //  orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
+                //  orderid = orderid.Substring(0, orderid.Length - 1);
             }//var releases = JArray.Parse(result);
 
             //{"order":3611783}
@@ -181,7 +181,7 @@ namespace SocialLacasa.Controllers
             try
             {
                 objUser.SaveNewOrder(category, service, link, quantity, charge, Session["UserId"].ToString(), orderid);
-                
+
                 DataTable dtaccount = objUser.GetAccountFunds(Session["UserId"].ToString());
 
                 Session["AccountFund"] = dtaccount.Rows[0][0];
@@ -196,22 +196,34 @@ namespace SocialLacasa.Controllers
             Result.Add(Session["AccountFund"].ToString());
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult SaveFunds(string method, decimal Amount)
+        public JsonResult SaveFunds()
         {
+            decimal Amount = Convert.ToDecimal(Session["Amount"]);
             var objUser = new User();
             string issucess = "0";
+            string amountcurrent = string.Empty;
             List<string> Result = new List<string>();
             try
             {
-                objUser.SaveFunds(method, Amount, Session["UserId"].ToString());
+                objUser.SaveFunds(Amount, Session["UserId"].ToString());
+
                 issucess = "1";
             }
             catch (Exception ex)
             {
                 issucess = ex.Message.ToString();
             }
+            finally
+            {
+                DataTable dtaccount = objUser.GetAccountFunds(Session["UserId"].ToString());
+
+                amountcurrent = dtaccount.Rows[0][0].ToString();
+                Session["AccountFund"] = amountcurrent;
+                Session["Amount"] = null;
+            }
 
             Result.Add(issucess);
+            Result.Add(amountcurrent);
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
 
@@ -335,7 +347,7 @@ namespace SocialLacasa.Controllers
         }
         public JsonResult changePassword(string username, string oldpassword, string newpassword)
         {
-            
+
             string res = "0";
             var objUser = new User();
             List<string> Result = new List<string>();
