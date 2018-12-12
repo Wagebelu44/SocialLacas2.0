@@ -100,7 +100,8 @@ var SaveUser = function () {
                 function successFunc(data, status) {
                     if (data != "0") {
                         alert("Successfully signed up");
-                        window.location = '/';
+                        localStorage["isAdmin"] = "0";
+                        window.location.href = "/User/NewOrder";
                     }
                     else {
                         $(".alert").removeClass("hidden");

@@ -284,8 +284,12 @@ namespace SocialLacasa.Controllers
                 string isExist = objUser.CheckExistingUser(userName, email);
                 if (isExist == "0")
                 {
-                    objUser.SaveUser(userName, password, email);
+                   int  newid = objUser.SaveUser(userName, password, email);
                     issucess = "1";
+                    Session["UserId"] = Convert.ToString(newid);
+                    Session["UserName"] = userName;
+                    Session["isAdmin"] = "0";
+
                 }
             }
             catch (Exception ex)

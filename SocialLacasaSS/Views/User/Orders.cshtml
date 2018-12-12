@@ -46,7 +46,6 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Date</th>
                                 <th class="width-40">Link</th>
                                 <th>Charge</th>
@@ -61,7 +60,6 @@
                             @foreach (DataRow row in Model.Tables[0].Rows)
                             {
                             <tr>
-                                <td>@row["SWorderId"]</td>
                                 <td>@row["Date"]</td>
                                 <td>@row["Link"]</td>
                                 <td>@row["Charge"]</td>
@@ -79,26 +77,7 @@
                     </table>
                 </div>
 
-                <ul class="pagination ">
-
-
-
-
-
-                    <li class="active"><a href="/orders/completed/1">1</a></li>
-                    @*<li><a href="/orders/completed/2">2</a></li>
-                        <li><a href="/orders/completed/3">3</a></li>
-                        <li><a href="/orders/completed/4">4</a></li>
-                        <li><a href="/orders/completed/5">5</a></li>
-                        <li><a href="/orders/completed/6">6</a></li>
-                        <li><a href="/orders/completed/7">7</a></li>*@
-
-                    <li>
-                        <a href="/orders/completed/2" aria-label="Next">
-                            <span aria-hidden="true">»</span>
-                        </a>
-                    </li>
-                </ul>
+                
 
             </div>
         </div>
