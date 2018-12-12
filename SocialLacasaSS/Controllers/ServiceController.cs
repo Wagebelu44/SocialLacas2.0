@@ -115,7 +115,7 @@ namespace SocialLacasa.Controllers
             if (result.Contains("order"))
             {
                 string[] arrorder = result.Split(':');
-                orderid = arrorder[1].Substring(0, arrorder[1].Length - 2);
+                orderid = arrorder[1].Substring(0, arrorder[1].Length - 1);
                 //  orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
                 //  orderid = orderid.Substring(0, orderid.Length - 1);
             }//var releases = JArray.Parse(result);
