@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
     $(".vsignup").addClass('active');
+    $("#divLoading").removeClass("show");
+
 
 
 
@@ -10,6 +12,8 @@ function checkavailability() {
     obj.username = $("#txtusername").val();
     obj.email = $("#txtemail").val();
     var serviceURL = '/Service/checkusername';
+    $("#divLoading").addClass("show");
+
     var aval = "0";
     $.ajax({
         type: "POST",
@@ -22,11 +26,15 @@ function checkavailability() {
     });
 
     function successFunc(data, status) {
+        $("#divLoading").removeClass("show");
+
 
          aval = data; 
     }
 
     function errorFunc(err) {
+        $("#divLoading").removeClass("show");
+
          aval = "0";
     }
     return aval;

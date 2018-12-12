@@ -1,6 +1,9 @@
 ﻿$(document).ready(function () {
+
     $(".nav").removeClass("active");
     $(".addfunds").addClass('active');
+    $("#divLoading").removeClass("show");
+
     if ($("#hdnAmount").val() != null) {
         addfuncds();
     }
@@ -28,6 +31,8 @@ var callPayPal = function () {
         obj = {};
         obj.cost = $("#amount").val();
         var paypalurl = '/Service/PayPal';
+        $("#divLoading").addClass("show");
+
         $.ajax({
             type: "POST",
             url: paypalurl,
@@ -37,9 +42,14 @@ var callPayPal = function () {
             success: function (data) {
                // addfuncds();
                 var url = data;
+                $("#divLoading").removeClass("show");
+
                 window.location.href = url;
+
             },
             error: function (err) {
+                $("#divLoading").removeClass("show");
+
                 alert("Error in processing payment.")
             }
         });
@@ -111,6 +121,7 @@ var addfuncds = function () {
 
     var obj = {};
 //    obj.Amount = $("#amount").val();
+    $("#divLoading").addClass("show");
 
     $.ajax({
         type: "POST",
@@ -123,10 +134,14 @@ var addfuncds = function () {
     });
 
     function successFunc(data, status) {
+        $("#divLoading").removeClass("show");
+
         if (data[0] == "1") {
             $(".badge").html(data[1]);
         }
         else {
+            $("#divLoading").removeClass("show");
+
             alert("Something went wrong!")
         }
     }

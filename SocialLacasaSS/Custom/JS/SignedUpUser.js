@@ -1,4 +1,12 @@
-﻿var removeuser = function (objectptr) {
+﻿$(document).ready(function () {
+
+    $("#divLoading").removeClass("show");
+
+});
+
+var removeuser = function (objectptr) {
+    $("#divLoading").addClass("show");
+
     var serviceURL = '/Service/removeUser';
     var obj = {};
     obj.userid = $(objectptr).closest("tr")   // Finds the closest row <tr> 
@@ -17,12 +25,15 @@
         });
 
         function successFunc(data, status) {
+            $("#divLoading").removeClass("show");
 
             alert("User Removed");
             location.reload();
         }
 
-        function errorFunc(err) {
+    function errorFunc(err) {
+        $("#divLoading").removeClass("show");
+
             alert(err.responseText);
         }
   

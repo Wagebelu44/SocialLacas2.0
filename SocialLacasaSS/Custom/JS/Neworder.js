@@ -35,6 +35,8 @@
 $(document).ready(function () {
     $(".nav").removeClass("active");
     $(".neworderuser").addClass('active');
+    $("#divLoading").removeClass("show");
+
 
    
 
@@ -46,6 +48,8 @@ var callapi = function () {
     obj.serviceid = $("#ddlServices").val();
     obj.quantity = $("#field-orderform-fields-quantity").val();
     obj.link = $("#field-orderform-fields-link").val();
+    $("#divLoading").addClass("show");
+
     $.ajax({
         type: "POST",
         url: "/Service/PlaceOrder_Api",
@@ -53,6 +57,8 @@ var callapi = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
+            $("#divLoading").removeClass("show");
+
             if (data != null) {
                 if (data == "0") {
                     alert("Error placing the order!");
@@ -65,7 +71,9 @@ var callapi = function () {
 
             }
         },
-        error: function (err) { }
+        error: function (err) {
+            $("#divLoading").removeClass("show");
+}
     });
 
 }
@@ -81,6 +89,7 @@ var AddOrder = function (id) {
     obj.charge = $("#charge").val();
     obj.orderid = id;
     // obj.userId = $("#hdnUserId").val();
+    $("#divLoading").addClass("show");
 
     $.ajax({
         type: "POST",
@@ -93,11 +102,15 @@ var AddOrder = function (id) {
     });
 
     function successFunc(data, status) {
+        $("#divLoading").removeClass("show");
+
         if (data[0] == "1") {
             $(".badge").html(data[1]);
             window.location = window.location;
         }
         else {
+            $("#divLoading").removeClass("show");
+
             alert("Something went wrong!")
         }
     }

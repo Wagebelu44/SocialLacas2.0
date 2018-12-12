@@ -69,7 +69,7 @@ namespace SocialLacasa.Controllers
         }
         public JsonResult APIShowStatus(int orderid)
         {
-            string url = "https://socialwizards.com/api/v2?key=4319270ac33c7579f1d4f8d4c60357a5&action=status&order=" + orderid;
+            string url = "https://socialwizards.com/api/v2?key=387f4a6cbf3c50effde8c70323374254&action=status&order=" + orderid;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
@@ -91,7 +91,7 @@ namespace SocialLacasa.Controllers
         }
         public string placeorder(int serviceid, int quantity, string link)
         {
-            string url = "https://socialwizards.com/api/v2?key=4319270ac33c7579f1d4f8d4c60357a5&action=add&service=" + serviceid + "&link=" + link + "&quantity=" + quantity;
+            string url = "https://socialwizards.com/api/v2?key=387f4a6cbf3c50effde8c70323374254&action=add&service=" + serviceid + "&link=" + link + "&quantity=" + quantity;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";

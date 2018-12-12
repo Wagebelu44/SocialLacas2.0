@@ -46,7 +46,6 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Subject</th>
                                 <th>Status</th>
                                 <th class="nowrap">Last update</th>
@@ -57,7 +56,6 @@
                             @foreach (var d in Model)
                             {
                                 <tr>
-                                    <td>@d.TicketId</td>
                                     <td><a href='@string.Format("/user/TicketDetails?TicketId={0}&isAdmin={1}",@d.TicketId,"1")'>@d.Subject</a></td>
                                     <td>@d.Status</td>
                                     <td><span class="nowrap">@d.Date</span></td>
@@ -86,6 +84,8 @@
         $(document).ready(function () {
             $(".nav").removeClass("active");
             $(".adticket").addClass('active');
+            $("#divLoading").removeClass("show");
+
 
 
 

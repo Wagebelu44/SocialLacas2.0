@@ -2,6 +2,7 @@
     $(".nav").removeClass("active");
     $(".massorder").addClass('active');
 
+    $("#divLoading").removeClass("show");
 
 
 });
@@ -55,6 +56,8 @@ var SaveMassOrder = function () {
         var obj = {};
         obj.MassOrder = objMassOrder;
         obj.funds = $(".badge").html();
+        $("#divLoading").addClass("show");
+
         $.ajax({
             type: "POST",
             url: serviceURL,
@@ -66,11 +69,15 @@ var SaveMassOrder = function () {
         });
 
         function successFunc(data, status) {
+            $("#divLoading").removeClass("show");
+
             if (data[0] == "1") {
                 alert("New order saved.");
                 location.reload(true);
             }
             else {
+                $("#divLoading").removeClass("show");
+
                 alert("Something went wrong!")
             }
         }

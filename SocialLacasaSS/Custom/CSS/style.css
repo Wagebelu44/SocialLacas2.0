@@ -2081,3 +2081,22 @@ display:block;
         margin-top: 10px;
     }
 }
+
+#divLoading {
+    display: none;
+}
+
+    #divLoading.show {
+        display: block;
+        position: absolute;
+        z-index: 100;
+        background-image: url('http://loadinggif.com/images/image-selection/3.gif');
+        background-color: #666;
+        opacity: 0.4;
+        background-repeat: no-repeat;
+        background-position: center;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        top: 0;
+    }

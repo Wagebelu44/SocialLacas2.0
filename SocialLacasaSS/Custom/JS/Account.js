@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     $(".accountuser").addClass('active');
+    $("#divLoading").removeClass("show");
 
     //var isAdmin =$("#hdnIsAdmin").val();
     //if (isAdmin == "1") {
@@ -47,6 +48,7 @@ changePassword = function () {
     var valid = validate();
     if (valid == true) {
         $(".alert").addClass("hidden");
+        $("#divLoading").addClass("show");
 
         var serviceURL = '/Service/changePassword';
         var obj = {};
@@ -70,6 +72,8 @@ changePassword = function () {
         });
 
         function successFunc(data, status) {
+            $("#divLoading").removeClass("show");
+
             if ((data == "0")|| (data == "-1")) {
                 alert("Password changed successfully");
                 window.location.href("/visitor/signin");
@@ -77,10 +81,14 @@ changePassword = function () {
         else {
                 alert("Invalid username or password")
             }
+
         }
 
         function errorFunc(err) {
+            $("#divLoading").removeClass("show");
+
             alert(err.responseText);
+
         }
     }
     else {

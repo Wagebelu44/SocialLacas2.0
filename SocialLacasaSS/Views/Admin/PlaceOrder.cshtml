@@ -25,7 +25,6 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Date</th>
                                 <th class="width-40">Link</th>
                                 <th>Charge</th>
@@ -41,14 +40,13 @@
                             @foreach (DataRow row in Model.Tables[0].Rows)
                             {
                                 <tr>
-                                    <td>@row["OrderId"]</td>
                                     <td>@row["Date"]</td>
                                     <td>@row["Link"]</td>
                                     <td>@row["Charge"]</td>
                                     <td class="hidden">@row["StartCount"]</td>
                                     <td>@row["Quantity"]</td>
                                     <td>@row["Service"]</td>
-                                    <td>@row["Status"]</td>
+                                    <td> <input type="button" class="btn btn-primary" value="Get Status" id="btnstatus" onclick="GetStatus(@row["SWorderId"])" /></td>
                                     <td class="hidden">@row["Remains"]</td>
                                     @*<td><input type="button" id="btnPlaceOrder" class="btn btn-primary" value="Place Order"/></td>*@
                                 </tr>
@@ -100,10 +98,39 @@
         $(document).ready(function () {
             $(".nav").removeClass("active");
             $(".adneworder").addClass('active');
+            $("#divLoading").removeClass("show");
+
 
 
 
         });
+        function GetStatus(SWorderid) {
+            callapi(SWorderid);
+        }
+        var callapi = function (SWorderid) {
+            var obj = {};
+            obj.orderid = SWorderid;
+            $.ajax({
+                type: "POST",
+                url: "/Service/APIShowStatus",
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data != null && data.indexOf(',') != -1) {
+                        var array = data.split(",");
+                        var arrstatus = array[2].split(":");
+                        var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
+                        status = status.replace(/"/g, "");
+                        alert(status);
+                    }
+                    else { alert(data); }
+
+                },
+                error: function (err) { }
+            });
+
+        }
     </script>
 
 }
