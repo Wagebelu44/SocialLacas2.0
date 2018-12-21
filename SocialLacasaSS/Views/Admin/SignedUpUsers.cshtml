@@ -43,7 +43,7 @@
                                     <td class="uid hidden">@row["UserId"]</td>
                                     <td>@row["Username"]</td>
                                     <td>@row["Email"]</td>
-                                    <td><input type="text" value="@row["Discount"]" id="txtdiscount_@row["UserId"]" disabled="disabled" class="clsdis" /> <span id='spedit_@row["UserId"]' class="clsedit fa fa-edit" onclick="showUpdate(this);"></span><span id='spsave_@row["UserId"]' style="display:none" onclick="showEdit(this)"; class="clssave fa fa-save"></span></td>
+                                    <td><input type="text" value="@row["Discount"]" id="txtdiscount_@row["UserId"]" disabled="disabled" class="clsdis" style="width:100px" /> <span id='spedit_@row["UserId"]' class="clsedit fa fa-edit" onclick="showUpdate(this);"></span><span id='spsave_@row["UserId"]' style="display:none" onclick="showEdit(this)"; class="clssave fa fa-save"></span></td>
                                     <td><input type="button" class="btn btn-primary" onclick="removeuser(this);" value="Remove User" /></td>
                                     @*<td><input type="hidden"value="@row["Discount"]"class="clsdis" /></td>*@
                                 </tr>
