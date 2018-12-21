@@ -630,6 +630,38 @@ namespace SocialLacasa.DataLayer
 
         }
 
+        public DataTable GetDiscount(string UserId)
+        {
+
+            DataTable dtdiscount = new DataTable();
+            SqlConnection con = new SqlConnection(strConnString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "usp_GetDiscount";
+
+            cmd.Parameters.Add("@UserId", SqlDbType.Int).Value = Convert.ToInt32(UserId);
+            cmd.Connection = con;
+            try
+            {
+                con.Open();
+
+                reader = cmd.ExecuteReader();
+
+                dtdiscount.Load(reader);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+            return dtdiscount;
+        }
 
 
     }
