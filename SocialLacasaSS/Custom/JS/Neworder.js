@@ -159,7 +159,7 @@ var BindServices = function () {
 
 
 
-                $("#ddlServices").append($("<option></option>").val(value.SWserviceId).html(value.ServiceType).attr("rate", value.Rate).attr("Desc", value.Description));
+                $("#ddlServices").append($("<option></option>").val(value.SWserviceId).html(value.ServiceTypeRate).attr("rate", value.Rate).attr("Desc", value.Description));
                 rate = $("#ddlServices option:selected").attr("rate");
                 desc = $("#ddlServices option:selected").attr("Desc");
                 $("#rate").val(rate);
@@ -175,7 +175,7 @@ $("#ddlServices").on('change', function () {
     rate = $("#ddlServices option:selected").attr("rate");
     desc = $("#ddlServices option:selected").attr("Desc");
     $("#rate").val(rate);
-    $("#dvDescription").html(desc);
+    $("#dvDescription").text(desc);
 
 });
 $("#field-orderform-fields-quantity").focusout(function () {
