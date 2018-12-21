@@ -405,6 +405,23 @@ namespace SocialLacasa.Controllers
 
         }
 
+
+        public JsonResult updateDiscount(string userid, string discount)
+        {
+
+            var objUser = new User();
+            string result = "";
+            try {
+                result = objUser.updateDiscount(userid, discount);
+
+            }
+            catch (Exception ex) {
+
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
+
+        }
     }
+
 
 }

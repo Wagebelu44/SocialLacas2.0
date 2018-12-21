@@ -599,6 +599,35 @@ namespace SocialLacasa.DataLayer
         }
 
 
+        public string updateDiscount(string UserId, string Discount)
+        {
+
+            string rest = string.Empty;
+            try
+            {
+
+
+                SqlConnection cn = new SqlConnection(strConnString);
+                SqlCommand cmd = new SqlCommand("usp_updateDiscount", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@UserId", Convert.ToInt32(UserId));
+                cmd.Parameters.AddWithValue("@Discount", Convert.ToDecimal(Discount));
+
+
+                cn.Open();
+                object res = cmd.ExecuteNonQuery();
+                rest = res.ToString();
+
+                cn.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return rest;
+
+        }
 
 
 
