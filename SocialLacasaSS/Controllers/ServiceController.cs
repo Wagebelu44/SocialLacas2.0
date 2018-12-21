@@ -302,7 +302,7 @@ namespace SocialLacasa.Controllers
             return Json(Result, JsonRequestBehavior.AllowGet);
         }
         public JsonResult CheckUser(string userName, string password)
-        {
+        {//check user exist
             var objUser = new User();
             string isExist = "0";
             Session["isAdmin"] = "0";
