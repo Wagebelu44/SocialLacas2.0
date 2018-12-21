@@ -10,22 +10,20 @@
         $(".alert").text("Please enter quantity");
         valid = false;
     }
-    //else if ($("#field-orderform-fields-quantity").val() != "" && parseInt($("#field-orderform-fields-quantity").val()) < 1000) {
-    // //  var quantity = $("#field-orderform-fields-quantity").val();
-    // //   if (parseInt(quantity) < 1000) {
-    //        $(".alert").removeClass("hidden");
-    //       // $(".alert").text("Please enter min 1000 in quantity.");
-    //    alert("Please enter min 1000 in quantity.");
-    //        valid = false;
-    // //   }
+    else if ($("#field-orderform-fields-quantity").val() != "" && parseInt($("#field-orderform-fields-quantity").val()) < 1000) {
+     //  var quantity = $("#field-orderform-fields-quantity").val();
+     //   if (parseInt(quantity) < 1000) {
+            $(".alert").removeClass("hidden");
+            $(".alert").text("Please enter min 1000 in quantity.");
+            valid = false;
+     //   }
 
-    //}
+    }
     else if ($("#charge").val() != "") {
         var charges = $("#charge").val();
         if (parseFloat(charges) > parseFloat($(".badge").html())) {
             $(".alert").removeClass("hidden");
-           // $(".alert").text("insufficient Funds.");
-            alert("Insufficient Funds.");
+            $(".alert").text("insufficient Funds.");
             valid = false;
         }
     }
@@ -118,7 +116,7 @@ var AddOrder = function (id) {
     }
 
     function errorFunc(err) {
-        $("#divLoading").removeClass("show");
+                    $("#divLoading").removeClass("show");
 
         alert(err.responseText);
     }
