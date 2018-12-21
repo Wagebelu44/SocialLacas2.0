@@ -1,13 +1,13 @@
 ﻿function checkvalidity() {
     var valid = true;
     if ($("#field-orderform-fields-link").val() == "") {
-        $(".alert").removeClass("hidden");
-        $(".alert").text("Please enter correct link");
+        $(".topalert").removeClass("hidden");
+        $(".topalert").text("Please enter correct link");
         valid = false;
     }
     else if ($("#field-orderform-fields-quantity").val() == "") {
-        $(".alert").removeClass("hidden");
-        $(".alert").text("Please enter quantity");
+        $(".topalert").removeClass("hidden");
+        $(".topalert").text("Please enter quantity");
         valid = false;
     }
     //else if ($("#field-orderform-fields-quantity").val() != "" && parseInt($("#field-orderform-fields-quantity").val()) < 1000) {
@@ -24,7 +24,7 @@
         var isAdmin = $("#hdnIsAdmin").val();
         if (isAdmin != "1") {
             if (parseFloat(charges) > parseFloat($(".badge").html())) {
-                $(".alert").removeClass("hidden");
+              //  $(".topalert").removeClass("hidden");
                // $(".alert").text("Insuficient Funds.");
                 alert("Insufficient funds");
                 valid = false;
@@ -70,7 +70,7 @@ var callapi = function () {
                 }
                 else {
                     AddOrder(data);
-                    alert("Order Placed");
+                   // alert("Order Placed");
                 }
 
             }
@@ -109,8 +109,10 @@ var AddOrder = function (id) {
         $("#divLoading").removeClass("show");
 
         if (data[0] == "1") {
+            alert("Order Placed");
             $(".badge").html(data[1]);
             window.location = window.location;
+            
         }
         else {
             $("#divLoading").removeClass("show");
@@ -121,8 +123,8 @@ var AddOrder = function (id) {
 
     function errorFunc(err) {
         $("#divLoading").removeClass("show");
-
-        alert(err.responseText);
+        alert("Check Order Quantity");
+       // alert(err.responseText);
     }
 }
 var SaveNewOrder = function () {
@@ -193,6 +195,8 @@ $("#field-orderform-fields-quantity").focusout(function () {
         if (discount != "0.00") {
             var discountcharge = charge * (discount / 100);
             charge = charge - discountcharge;
+            $(".disalert").removeClass("hidden");
+            $(".disalert").text("Discount: "+ discount+"%");
         }
         var ch = charge.toFixed(3).toString();
         $("#charge").val(ch);
