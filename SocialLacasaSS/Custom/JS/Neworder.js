@@ -11,20 +11,23 @@
         valid = false;
     }
     else if ($("#field-orderform-fields-quantity").val() != "" && parseInt($("#field-orderform-fields-quantity").val()) < 1000) {
-     //  var quantity = $("#field-orderform-fields-quantity").val();
-     //   if (parseInt(quantity) < 1000) {
-            $(".alert").removeClass("hidden");
-            $(".alert").text("Please enter min 1000 in quantity.");
-            valid = false;
-     //   }
+        //  var quantity = $("#field-orderform-fields-quantity").val();
+        //   if (parseInt(quantity) < 1000) {
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter min 1000 in quantity.");
+        valid = false;
+        //   }
 
     }
     else if ($("#charge").val() != "") {
         var charges = $("#charge").val();
-        if (parseFloat(charges) > parseFloat($(".badge").html())) {
-            $(".alert").removeClass("hidden");
-            $(".alert").text("Insuficient Funds.");
-            valid = false;
+        var isAdmin = $("#hdnIsAdmin").val();
+        if (isAdmin != "1") {
+            if (parseFloat(charges) > parseFloat($(".badge").html())) {
+                $(".alert").removeClass("hidden");
+                $(".alert").text("Insuficient Funds.");
+                valid = false;
+            }
         }
     }
     return valid;
