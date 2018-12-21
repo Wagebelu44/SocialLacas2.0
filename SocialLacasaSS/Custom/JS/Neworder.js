@@ -23,7 +23,7 @@
         var charges = $("#charge").val();
         if (parseFloat(charges) > parseFloat($(".badge").html())) {
             $(".alert").removeClass("hidden");
-            $(".alert").text("insufficient Funds.");
+            $(".alert").text("Insuficient Funds.");
             valid = false;
         }
     }
@@ -116,8 +116,6 @@ var AddOrder = function (id) {
     }
 
     function errorFunc(err) {
-                    $("#divLoading").removeClass("show");
-
         alert(err.responseText);
     }
 }
