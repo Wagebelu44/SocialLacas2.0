@@ -421,6 +421,18 @@ namespace SocialLacasa.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
+
+        public decimal GetDiscount()
+        {
+            var objUser = new User();
+
+            DataTable dtdiscount = objUser.GetDiscount(Session["UserId"].ToString());
+
+            decimal discount  =Convert.ToDecimal(dtdiscount.Rows[0][0]);
+            return discount;
+
+        }
+
     }
 
 
