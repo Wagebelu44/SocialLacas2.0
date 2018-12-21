@@ -189,6 +189,11 @@ $("#field-orderform-fields-quantity").focusout(function () {
         var qu = $("#field-orderform-fields-quantity").val();
         var quantity = parseInt(qu);
         var charge = quantity * (rate / 1000);
+        var discount = $("#hdnDiscount").val();
+        if (discount != "0.00") {
+            var discountcharge = charge * (discount / 100);
+            charge = charge - discountcharge;
+        }
         var ch = charge.toFixed(3).toString();
         $("#charge").val(ch);
     }

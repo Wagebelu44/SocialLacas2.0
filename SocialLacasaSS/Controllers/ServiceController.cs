@@ -157,6 +157,11 @@ namespace SocialLacasa.Controllers
                 string servicecharge = Convert.ToString(dtdetails.Rows[0][0]);
 
                 order.Charge = order.Quantity * (Convert.ToDecimal(servicecharge) / 1000);
+                if (Session["discount"].ToString() != "0.00")
+                {
+                    decimal discountcharge = order.Charge * (Convert.ToDecimal(Session["discount"]) / 100);
+                    order.Charge = order.Charge - discountcharge;
+                }
                 totalCharge = totalCharge + order.Charge;
 
             }
@@ -165,9 +170,10 @@ namespace SocialLacasa.Controllers
                 foreach (var order in MassOrder)
                 {
                     string result = placeorder(order.ServiceId, order.Quantity, order.Link);
-                    string orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
-                    orderid = orderid.Substring(0, orderid.Length - 1);
-                    objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString(), orderid);
+                    string[] orderid = result.Split(':');
+                    //result.Substring(result.IndexOf(":") + 1, result.Length);
+                    string orderidvalue = orderid[1].Substring(0, orderid[1].Length - 1);
+                    objUser.SaveNewOrder(Convert.ToString(dtdetails.Rows[0][1]), Convert.ToString(order.ServiceId), order.Link, Convert.ToString(order.Quantity), order.Charge, Session["UserId"].ToString(), orderidvalue);
                     issucess = "1";
                 }
             }
@@ -285,7 +291,7 @@ namespace SocialLacasa.Controllers
                 string isExist = objUser.CheckExistingUser(userName, email);
                 if (isExist == "0")
                 {
-                   int  newid = objUser.SaveUser(userName, password, email);
+                    int newid = objUser.SaveUser(userName, password, email);
                     issucess = "1";
                     Session["UserId"] = Convert.ToString(newid);
                     Session["UserName"] = userName;
@@ -323,6 +329,7 @@ namespace SocialLacasa.Controllers
                     else
                     {
                         Session["isAdmin"] = "0";
+                        GetDiscount();
                     }
                     try
                     {
@@ -411,25 +418,28 @@ namespace SocialLacasa.Controllers
 
             var objUser = new User();
             string result = "";
-            try {
+            try
+            {
                 result = objUser.updateDiscount(userid, discount);
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
             }
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
 
-        public decimal GetDiscount()
+        public void GetDiscount()
         {
             var objUser = new User();
 
             DataTable dtdiscount = objUser.GetDiscount(Session["UserId"].ToString());
 
-            decimal discount  =Convert.ToDecimal(dtdiscount.Rows[0][0]);
-            return discount;
+            decimal discount = Convert.ToDecimal(dtdiscount.Rows[0][0]);
+            Session["discount"] = discount;
+
 
         }
 
