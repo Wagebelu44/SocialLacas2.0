@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -599,19 +600,19 @@ namespace SocialLacasa.DataLayer
         }
 
 
-        public string updateDiscount(string UserId, string Discount)
+        public string updateDiscount(string UserId, decimal Discount)
         {
 
             string rest = string.Empty;
             try
             {
-
+                Discount = Convert.ToDecimal(Discount, CultureInfo.InvariantCulture);
 
                 SqlConnection cn = new SqlConnection(strConnString);
                 SqlCommand cmd = new SqlCommand("usp_updateDiscount", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@UserId", Convert.ToInt32(UserId));
-                cmd.Parameters.AddWithValue("@Discount", Convert.ToDecimal(Discount));
+                cmd.Parameters.AddWithValue("@Discount",Discount);
 
 
                 cn.Open();

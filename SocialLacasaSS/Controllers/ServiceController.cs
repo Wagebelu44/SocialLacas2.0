@@ -406,7 +406,7 @@ namespace SocialLacasa.Controllers
         }
 
 
-        public JsonResult updateDiscount(string userid, string discount)
+        public JsonResult updateDiscount(string userid, decimal discount)
         {
 
             var objUser = new User();
