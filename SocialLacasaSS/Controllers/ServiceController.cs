@@ -137,6 +137,7 @@ namespace SocialLacasa.Controllers
                  {
                      SWserviceId = item.Field<Int32>("SWserviceId"),
                      ServiceType = item.Field<string>("ServiceType"),
+                     ServiceTypeRate = item.Field<string>("ServiceTypeRate"),
                      Description = item.Field<string>("Description"),
                      Rate = item.Field<decimal>("Rate")
 

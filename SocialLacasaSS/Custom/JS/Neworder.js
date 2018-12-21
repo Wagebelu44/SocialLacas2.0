@@ -11,20 +11,23 @@
         valid = false;
     }
     else if ($("#field-orderform-fields-quantity").val() != "" && parseInt($("#field-orderform-fields-quantity").val()) < 1000) {
-     //  var quantity = $("#field-orderform-fields-quantity").val();
-     //   if (parseInt(quantity) < 1000) {
-            $(".alert").removeClass("hidden");
-            $(".alert").text("Please enter min 1000 in quantity.");
-            valid = false;
-     //   }
+        //  var quantity = $("#field-orderform-fields-quantity").val();
+        //   if (parseInt(quantity) < 1000) {
+        $(".alert").removeClass("hidden");
+        $(".alert").text("Please enter min 1000 in quantity.");
+        valid = false;
+        //   }
 
     }
     else if ($("#charge").val() != "") {
         var charges = $("#charge").val();
-        if (parseFloat(charges) > parseFloat($(".badge").html())) {
-            $(".alert").removeClass("hidden");
-            $(".alert").text("Insuficient Funds.");
-            valid = false;
+        var isAdmin = $("#hdnIsAdmin").val();
+        if (isAdmin != "1") {
+            if (parseFloat(charges) > parseFloat($(".badge").html())) {
+                $(".alert").removeClass("hidden");
+                $(".alert").text("Insuficient Funds.");
+                valid = false;
+            }
         }
     }
     return valid;
@@ -159,7 +162,7 @@ var BindServices = function () {
 
 
 
-                $("#ddlServices").append($("<option></option>").val(value.SWserviceId).html(value.ServiceType).attr("rate", value.Rate).attr("Desc", value.Description));
+                $("#ddlServices").append($("<option></option>").val(value.SWserviceId).html(value.ServiceTypeRate).attr("rate", value.Rate).attr("Desc", value.Description));
                 rate = $("#ddlServices option:selected").attr("rate");
                 desc = $("#ddlServices option:selected").attr("Desc");
                 $("#rate").val(rate);
@@ -175,7 +178,7 @@ $("#ddlServices").on('change', function () {
     rate = $("#ddlServices option:selected").attr("rate");
     desc = $("#ddlServices option:selected").attr("Desc");
     $("#rate").val(rate);
-    $("#dvDescription").html(desc);
+    $("#dvDescription").text(desc);
 
 });
 $("#field-orderform-fields-quantity").focusout(function () {

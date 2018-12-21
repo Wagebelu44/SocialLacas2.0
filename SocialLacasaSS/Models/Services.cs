@@ -9,6 +9,7 @@ namespace SocialLacasa.Models
     {
         public int SWserviceId { get; set; }
         public string ServiceType { get; set; }
+        public string ServiceTypeRate { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
         public int MinOrder { get; set; }

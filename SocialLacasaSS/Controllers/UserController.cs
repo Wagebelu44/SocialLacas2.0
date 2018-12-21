@@ -154,6 +154,7 @@ namespace SocialLacasa.Controllers
                      MinOrder = item.Field<Int32>("MinOrder"),
                      MaxOrder = item.Field<Int32>("MaxOrder"),
                      Description = item.Field<string>("Description"),
+                     ServiceTypeRate = item.Field<string>("ServiceTypeRate"),
                  }).ToList();
             return View(lstServices);
         }

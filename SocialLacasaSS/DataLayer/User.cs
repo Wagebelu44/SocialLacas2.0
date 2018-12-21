@@ -382,7 +382,7 @@ namespace SocialLacasa.DataLayer
                 cmd.Parameters.AddWithValue("@Charge", charge);
                 cmd.Parameters.AddWithValue("@UserId", Convert.ToInt32(userId));
                 cmd.Parameters.AddWithValue("@SWorderId", orderid);
-
+                cmd.Parameters.AddWithValue("@onDate", DateTime.Now);
                 cn.Open();
                 cmd.ExecuteNonQuery();
                 cn.Close();
@@ -406,7 +406,7 @@ namespace SocialLacasa.DataLayer
                 cmd.Parameters.AddWithValue("@Subject", subject);
                 cmd.Parameters.AddWithValue("@TicketMessage", message);
                 cmd.Parameters.AddWithValue("@Status", status);
-
+                cmd.Parameters.AddWithValue("@onDate", DateTime.Now);
                 cn.Open();
                 cmd.ExecuteNonQuery();
                 cn.Close();
@@ -430,6 +430,7 @@ namespace SocialLacasa.DataLayer
                 cmd.Parameters.AddWithValue("@TicketId", Convert.ToInt32(ticketid));
                 cmd.Parameters.AddWithValue("@SentByCustomer", sentbycustomer);
                 cmd.Parameters.AddWithValue("@UserName", username);
+                cmd.Parameters.AddWithValue("@onDate", DateTime.Now);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
