@@ -69,7 +69,7 @@ namespace SocialLacasa.Controllers
         }
         public JsonResult APIShowStatus(int orderid)
         {
-            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$nmQIeRwB05ZMZyo4vvnlsOUrseQ7Z35bJHNBHItl2Sxi9cIqaqgKq&action=status&order=" + orderid;
+            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$3XzxOs0XVBCSpUZScxEjee8nJeSjbqiyiCS8yAjj2WMOVVG1HSteC&action=status&order=" + orderid;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
@@ -93,7 +93,7 @@ namespace SocialLacasa.Controllers
 
         public JsonResult APIShowBalance()
         {
-            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$nmQIeRwB05ZMZyo4vvnlsOUrseQ7Z35bJHNBHItl2Sxi9cIqaqgKq&action=balance";
+            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$3XzxOs0XVBCSpUZScxEjee8nJeSjbqiyiCS8yAjj2WMOVVG1HSteC&action=balance";
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
@@ -116,21 +116,29 @@ namespace SocialLacasa.Controllers
 
         public string placeorder(int serviceid, int quantity, string link)
         {
-            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$nmQIeRwB05ZMZyo4vvnlsOUrseQ7Z35bJHNBHItl2Sxi9cIqaqgKq&action=add&service=" + serviceid + "&link=" + link + "&quantity=" + quantity;
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "POST";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-            var response = (HttpWebResponse)request.GetResponse();
             string content = string.Empty;
-            using (var stream = response.GetResponseStream())
+
+            try
             {
-                using (var sr = new StreamReader(stream))
+                string url = "https://indiansmm.com/api/v2?api_token=$2y$10$3XzxOs0XVBCSpUZScxEjee8nJeSjbqiyiCS8yAjj2WMOVVG1HSteC&action=add&package=" + serviceid + "&link=" + link + "&quantity=" + quantity;
+                var request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "POST";
+                request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
+                request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+                var response = (HttpWebResponse)request.GetResponse();
+                using (var stream = response.GetResponseStream())
                 {
-                    content = sr.ReadToEnd();
+                    using (var sr = new StreamReader(stream))
+                    {
+                        content = sr.ReadToEnd();
+                    }
                 }
+                //var releases = JArray.Parse(content);
             }
-            //var releases = JArray.Parse(content);
+            catch (Exception ex)
+            {
+                content = "Error";
+            }
             return content;
         }
         public JsonResult PlaceOrder_Api(int serviceid, int quantity, string link)

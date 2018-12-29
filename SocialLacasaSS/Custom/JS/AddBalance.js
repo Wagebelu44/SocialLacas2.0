@@ -75,7 +75,8 @@ var checkBalance = function () {
             }
 
         },
-        error: function (err) { }
+        error: function (err) {
+            $("#divLoading").removeClass("show");}
     });
 
    
