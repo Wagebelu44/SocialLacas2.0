@@ -62,8 +62,10 @@ var checkBalance = function () {
                  var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
                 status = status.replace(/"/g, "");
                // alert(status);
+               var  numstatus = parseFloat(status);
+                var inusd = (numstatus / 68.0).toFixed(2);
                 $(".valalert").removeClass("hidden");
-                $(".valalert").text("Your current balance is : " + status);
+                $(".valalert").text("Your current balance is : " + inusd);
             }
             else { alert(data); }
 
