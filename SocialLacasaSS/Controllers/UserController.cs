@@ -158,5 +158,14 @@ namespace SocialLacasa.Controllers
                  }).ToList();
             return View(lstServices);
         }
+
+        public ActionResult AddBalance()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("SignIn", "Visitor");
+            }
+            return View();
+        }
     }
 }

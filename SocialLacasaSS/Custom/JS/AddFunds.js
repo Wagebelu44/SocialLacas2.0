@@ -22,7 +22,7 @@ var checkvalidity = function () {
 
 
 var callPayPal = function () {
-    if ($("field-paypal_email").val() == "") {
+    if ($("#field-paypal_email").val() == "") {
         $(".alert").removeClass("hidden");
         $(".alert").text("Please provide paypal email");
         return false;

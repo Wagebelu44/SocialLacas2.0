@@ -69,7 +69,7 @@ namespace SocialLacasa.Controllers
         }
         public JsonResult APIShowStatus(int orderid)
         {
-            string url = "https://socialwizards.com/api/v2?key=387f4a6cbf3c50effde8c70323374254&action=status&order=" + orderid;
+            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$nmQIeRwB05ZMZyo4vvnlsOUrseQ7Z35bJHNBHItl2Sxi9cIqaqgKq&action=status&order=" + orderid;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
@@ -89,9 +89,34 @@ namespace SocialLacasa.Controllers
             //status = status.Substring(0, status.Length - 1);
             return Json(content, JsonRequestBehavior.AllowGet);
         }
+
+
+        public JsonResult APIShowBalance()
+        {
+            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$nmQIeRwB05ZMZyo4vvnlsOUrseQ7Z35bJHNBHItl2Sxi9cIqaqgKq&action=balance";
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "POST";
+            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
+            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            var response = (HttpWebResponse)request.GetResponse();
+            string content = string.Empty;
+            using (var stream = response.GetResponseStream())
+            {
+                using (var sr = new StreamReader(stream))
+                {
+                    content = sr.ReadToEnd();
+                }
+            }
+
+            //var releases = JArray.Parse(content);
+            //string status = content.Substring(content.IndexOf(":") + 1, content.Length);
+            //status = status.Substring(0, status.Length - 1);
+            return Json(content, JsonRequestBehavior.AllowGet);
+        }
+
         public string placeorder(int serviceid, int quantity, string link)
         {
-            string url = "https://socialwizards.com/api/v2?key=387f4a6cbf3c50effde8c70323374254&action=add&service=" + serviceid + "&link=" + link + "&quantity=" + quantity;
+            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$nmQIeRwB05ZMZyo4vvnlsOUrseQ7Z35bJHNBHItl2Sxi9cIqaqgKq&action=add&service=" + serviceid + "&link=" + link + "&quantity=" + quantity;
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
@@ -441,6 +466,31 @@ namespace SocialLacasa.Controllers
             Session["discount"] = discount;
 
 
+        }
+
+
+
+        public JsonResult BalancePayPal(string cost)
+        {
+            //  string businessPaypalId = "shaheenbohra1989@gmail.com";
+            string businessPaypalId = "pirfirdouse@gmail.com";
+            //string businessPaypalId = "shruti.karva@gmail.com";
+
+            double itemCost = Convert.ToDouble(cost);
+            string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+            //string baseUrl = HttpContext.Current.Request.Url.AbsoluteUri.Replace(HttpContext.Current.Request.Url.PathAndQuery, "") + HttpContext.Current.Request.ApplicationPath;
+            if (!baseUrl.EndsWith("/"))
+                baseUrl += "/";
+            string redirect = "";
+            redirect += "https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=" + businessPaypalId;
+            redirect += "&amount=" + itemCost;
+            redirect += "&item_number=1";
+            redirect += "&currency_code= USD";
+            redirect += "&return=" + baseUrl + "User/AddFunds?status='ok'";
+            redirect += "&cancel_return=" + baseUrl + "User/NewOrder?status='cancel'";
+            redirect += "&notify_url=" + baseUrl + "User/NewOrder?status='ok'";
+
+            return Json(redirect, JsonRequestBehavior.AllowGet);
         }
 
     }
