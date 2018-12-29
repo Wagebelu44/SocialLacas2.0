@@ -38,14 +38,13 @@
                             <textarea class="form-control" rows="7" id="message" name="TicketForm[message]"></textarea>
                         </div>
                         <input type="hidden" name="_csrf" value="LA4gpygu774e1yeomt1rRdoARqtDph7ab5Vf1sV7rdhjZGjUSkCA-0SNStv2jx4ToDAf8xnXK6Ar4grjpgvMrA==">
-                        <button type="submit" class="btn btn-primary" onclick="submitTicket();">Submit ticket</button>
+                        <input type="button" class="btn btn-primary" onclick="submitTicket();" value="Submit ticket"/>
                     </form>
                 </div>
                 <div class="well tableBox">
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th></th>
                                 <th>Subject</th>
                                 <th>Status</th>
                                 <th class="nowrap">Last update</th>
@@ -56,7 +55,6 @@
                             @foreach (var d in Model)
                             {
                             <tr>
-                                <td>@d.TicketId</td>
                                 <td><a href='@string.Format("/user/TicketDetails?TicketId={0}",@d.TicketId)'>@d.Subject</a></td>
                                 <td>@d.Status</td>
                                 <td><span class="nowrap">@d.Date</span></td>

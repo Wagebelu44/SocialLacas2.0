@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
     $(".vsignup").addClass('active');
+    $("#divLoading").removeClass("show");
+
 
 
 
@@ -10,6 +12,8 @@ function checkavailability() {
     obj.username = $("#txtusername").val();
     obj.email = $("#txtemail").val();
     var serviceURL = '/Service/checkusername';
+    $("#divLoading").addClass("show");
+
     var aval = "0";
     $.ajax({
         type: "POST",
@@ -22,11 +26,15 @@ function checkavailability() {
     });
 
     function successFunc(data, status) {
+        $("#divLoading").removeClass("show");
+
 
          aval = data; 
     }
 
     function errorFunc(err) {
+        $("#divLoading").removeClass("show");
+
          aval = "0";
     }
     return aval;
@@ -36,6 +44,8 @@ function checkavailability() {
 
 function checkvalidity() {
     var valid = true;
+    var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
   
     
     if (($("#txtusername").val() == "")) {
@@ -53,16 +63,16 @@ function checkvalidity() {
         $(".alert").removeClass("hidden");
         $(".alert").text("Please enter email");
     }
-    else if ($("#txtemail").val() != "") {
-        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 
-        if (!expr.test($("#txtemail").val())) {
+
+        else if (!expr.test($("#txtemail").val())) {
             valid = false;
             $(".alert").removeClass("hidden");
             $(".alert").text("Please enter valid email");
         }
-    }
-    else if ($.trim($("#txtconfirm").val()) == $.trim($("#txtconfirm").val())) {
+    
+    else if ($("#txtconfirm").val() != ($("#txtpassword").val()))
+    {
         valid = false;
         $(".alert").removeClass("hidden");
         $(".alert").text("Passwords do not match");
@@ -81,10 +91,10 @@ var SaveUser = function () {
         obj.userName = $("#txtusername").val();
         obj.password = $("#txtpassword").val();
         obj.email = $("#txtemail").val();
-        aval = checkavailability();
+       // aval = checkavailability();
 
         if (isChecked == true) {
-            if (aval == "0") {
+            //if (aval == "0") {
                 $.ajax({
                     type: "POST",
                     url: serviceURL,
@@ -96,19 +106,26 @@ var SaveUser = function () {
                 });
 
                 function successFunc(data, status) {
-
-                    alert("User Saved.");
-                    window.location = '/';
+                    if (data != "0") {
+                        alert("Successfully signed up");
+                        localStorage["isAdmin"] = "0";
+                        window.location.href = "/User/NewOrder";
+                    }
+                    else {
+                        $(".alert").removeClass("hidden");
+                        $(".alert").text("User already exits!");
+                       // alert("User already exist");
+                    }
                 }
 
                 function errorFunc(err) {
                     alert(err.responseText);
                 }
-            }
-            else {
-                $(".alert").removeClass("hidden");
-                $(".alert").text("User already exits!");
-            }
+            //}
+            //else {
+            //    $(".alert").removeClass("hidden");
+            //    $(".alert").text("User already exits!");
+            //}
         }
         else {
             alert("Please accept the terms and conditions!")

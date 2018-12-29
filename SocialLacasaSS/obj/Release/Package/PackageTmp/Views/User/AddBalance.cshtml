@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "AddBalance";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @{
+        Html.RenderPartial("_UserTopMenu");
+    }
+</div>
+<div>
+    @{
+        Html.RenderPartial("_sidenav");
+    }
+</div>
+
+
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="well">
+                    <div>
+                        <button type="button" class="btn btn-primary" onclick="checkBalance();">Check Balance</button>
+                    </div>
+                    </br>
+                    <div class="alert alert-info balalert hidden"></div>
+
+                    <div class="alert alert-danger valalert hidden"></div>
+
+
+                    <form method="post" action="">
+                        <div class="form-group" id="email-grp">
+                            <label for="amount" class="control-label">Paypal email</label>
+                            <input type="text" class="form-control" name="AddFoundsForm[email]" id="field-paypal_email" value="hady-baraka777@hotmail.com" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="amount" class="control-label">Amount</label>
+                            <input type="number" class="form-control" name="AddFoundsForm[amount]" id="amount">
+                        </div>
+
+
+                        <input type="hidden" name="_csrf" value="eITRSkLnSsZOzIJzPNA2QXNNlFiHIM9iWwwxTFiVeVkM4IcIHZQ-9B6p1BVshn8xQX6jNshyrBYwfgI2PsYTKw==">
+                        <input type="button" value="pay" class="btn btn-primary" onclick="saveFunds();" />
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+
+    <script src="@Url.Content("~/Custom/JS/AddBalance.js")"></script>
+}

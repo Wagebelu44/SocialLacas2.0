@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
+
     $(".nav").removeClass("active");
     $(".tickets").addClass('active');
+    $("#divLoading").removeClass("show");
 
 
 
@@ -25,6 +27,8 @@ var submitTicket = function () {
         $(".alert").addClass("hidden");
 
         var serviceURL = '/Service/SubmitTicket';
+        $("#divLoading").addClass("show");
+
 
         var obj = {};
 
@@ -44,8 +48,12 @@ var submitTicket = function () {
         });
 
         function successFunc(data, status) {
+            $("#divLoading").removeClass("show");
+
             if (data[0] == "1") {
-                location.reload(true);
+
+                window.location.href = "/User/Tickets";
+
             }
             else {
                 alert("Something went wrong!")
@@ -53,6 +61,8 @@ var submitTicket = function () {
         }
 
         function errorFunc(err) {
+            $("#divLoading").removeClass("show");
+
             alert(err.responseText);
         }
     }

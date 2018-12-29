@@ -142,6 +142,10 @@ var SaveNewOrder = function () {
 var rate = 100;
 $(document).ready(function () {
     // var category = $("#CatagoryName").val();
+    var isAdmin = $("#hdnIsAdmin").val();
+    if (isAdmin == "1") {
+        checkBalance();
+    }
 
     BindServices();
 })
@@ -204,3 +208,36 @@ $("#field-orderform-fields-quantity").focusout(function () {
 
 
 });
+
+var checkBalance = function () {
+    $("#divLoading").addClass("show");
+    $.ajax({
+        type: "POST",
+        url: "/Service/APIShowBalance",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            if (data != null && data.indexOf(',') != -1) {
+                $("#divLoading").removeClass("show");
+                var array = data.split(",");
+                var arrstatus = array[0].split(":");
+                var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
+                status = status.replace(/"/g, "");
+                // alert(status);
+                var numstatus = parseFloat(status);
+                var inusd = (numstatus / 68.0).toFixed(2);
+                $(".mybal").text(inusd);
+            }
+            else {
+                $("#divLoading").removeClass("show");
+                alert(data);
+            }
+
+        },
+        error: function (err) {
+            $("#divLoading").removeClass("show");
+        }
+    });
+
+
+}

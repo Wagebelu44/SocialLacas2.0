@@ -47,6 +47,7 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
+                                <th>Order Id</th>
                                 <th class="width-40">Link</th>
                                 <th>Charge</th>
                                 <th class="nowrap">Start count</th>
@@ -61,6 +62,7 @@
                             {
                             <tr>
                                 <td>@row["Date"]</td>
+                                <td>@row["SWorderId"]</td>
                                 <td>@row["Link"]</td>
                                 <td>@row["Charge"]</td>
                                 <td>@row["StartCount"]</td>
@@ -123,5 +125,6 @@
             });
 
         }
+        $("tr td:contains('[')").parent().hide();
     </script>
 }

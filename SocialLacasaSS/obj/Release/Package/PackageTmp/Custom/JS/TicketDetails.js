@@ -2,6 +2,7 @@
     $(".nav").removeClass("active");
     $(".tickets").addClass('active');
 
+    $("#divLoading").removeClass("show");
 
 
 });
@@ -19,6 +20,7 @@ var checkvalidity = function () {
 var saveTicketMessage = function () {
     var valid = checkvalidity();
     if (valid == true) {
+        $("#divLoading").addClass("show");
 
         var serviceURL = '/Service/saveTicketMessage';
 
@@ -38,6 +40,8 @@ var saveTicketMessage = function () {
         });
 
         function successFunc(data, status) {
+            $("#divLoading").removeClass("show");
+
             if (data[0] == "1") {
                 //alert("New message saved.");
                 location.reload(true);
@@ -48,6 +52,8 @@ var saveTicketMessage = function () {
         }
 
         function errorFunc(err) {
+            $("#divLoading").removeClass("show");
+
             alert(err.responseText);
         }
     }

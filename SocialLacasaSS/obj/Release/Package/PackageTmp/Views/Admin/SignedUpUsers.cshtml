@@ -30,6 +30,7 @@
                                 <th>UserName</th>
 
                                 <th>Email</th>
+                                <th>Discount</th>
                                 <th></th>
 
 
@@ -38,19 +39,20 @@
                         <tbody>
                             @foreach (DataRow row in Model.Tables[0].Rows)
                             {
-                                <tr>
+                                <tr class="userrow">
                                     <td class="uid hidden">@row["UserId"]</td>
                                     <td>@row["Username"]</td>
                                     <td>@row["Email"]</td>
-                                    <td><button class="btn btn-primary" onclick="removeuser(this);">Remove User</button></td>
-
+                                    <td><input type="text" value="@row["Discount"]" id="txtdiscount_@row["UserId"]" disabled="disabled" class="clsdis" style="width:100px" /> <span id='spedit_@row["UserId"]' class="clsedit fa fa-edit" onclick="showUpdate(this);"></span><span id='spsave_@row["UserId"]' style="display:none" onclick="showEdit(this)"; class="clssave fa fa-save"></span></td>
+                                    <td><input type="button" class="btn btn-primary" onclick="removeuser(this);" value="Remove User" /></td>
+                                    @*<td><input type="hidden"value="@row["Discount"]"class="clsdis" /></td>*@
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
 
-                <ul class="pagination ">
+                <ul class="pagination hidden">
 
 
 
@@ -95,10 +97,46 @@
             $(document).ready(function () {
                 $(".nav").removeClass("active");
                 $(".adsignedup").addClass('active');
+                checkBalance();
 
 
 
             });
+
+            var checkBalance = function () {
+                $("#divLoading").addClass("show");
+                $.ajax({
+                    type: "POST",
+                    url: "/Service/APIShowBalance",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null && data.indexOf(',') != -1) {
+                            $("#divLoading").removeClass("show");
+                            var array = data.split(",");
+                            var arrstatus = array[0].split(":");
+                            var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
+                            status = status.replace(/"/g, "");
+                            // alert(status);
+                            var numstatus = parseFloat(status);
+                            var inusd = (numstatus / 68.0).toFixed(2);
+                            //   $(".valalert").removeClass("hidden");
+                            //   $(".valalert").text("Your current balance is : " + inusd);
+                            $(".mybal").text(inusd);
+                        }
+                        else {
+                            $("#divLoading").removeClass("show");
+                            alert(data);
+                        }
+
+                    },
+                    error: function (err) {
+                        $("#divLoading").removeClass("show");
+                    }
+                });
+
+
+            }
         </script>
     
 }

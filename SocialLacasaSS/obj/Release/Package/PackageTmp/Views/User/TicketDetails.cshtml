@@ -23,6 +23,7 @@
                 <div class="well  ">
                     @{ string subject = "";}
                     @{ string clsdir = "";}
+                    @{ string ticketMessage = "";}
                     @foreach (var d in Model)
                     {
                         if (d.SentByCustomer == true)
@@ -40,7 +41,35 @@
 
                             subject = d.Subject;
                             <div class="titcket-title">@d.Subject</div>
+                            <div class="col-md-1"></div>
+                            <div class="col-md-11">
+                                <div class="row ticket-message-block ticket-message-right">
+                                    <div class="ticket-message  text-right">
+                                        <div class="message">@d.TicketMessage</div>
+                                    </div>
+                                    <div class="info text-right">
+                                        <strong>@d.UserName</strong>
+                                        <small class="text-muted">@d.Date</small>
+                                    </div>
+                                </div>
+                            </div>
                         }
+                        @*if (ticketMessage != d.TicketMessage)
+            {
+                <div class="col-md-1"></div>
+                <div class="col-md-11">
+                    <div class="row ticket-message-block ticket-message-right">
+                        <div class="ticket-message  text-right">
+                            <div class="message">@d.TicketMessage</div>
+                        </div>
+                        <div class="info text-right">
+                            <strong>@d.UserName</strong>
+                            <small class="text-muted">@d.Date</small>
+                        </div>
+                    </div>
+                    </div>
+                    }*@
+
                         if (@d.Message != null)
                         {
                             <div class="row ticket-message-block @clsdir">
@@ -57,7 +86,7 @@
                                             <small class="text-muted">@d.Date</small>
                                         </div>
                                     </div>
-                            }
+                                }
                                 @if (d.SentByCustomer == false)
                                 {
                                     <div class="col-md-11">
@@ -71,7 +100,7 @@
                                     </div>
                                     <div class="col-md-1"></div>
                                 }
-                                </div>
+                            </div>
 
 
                         }

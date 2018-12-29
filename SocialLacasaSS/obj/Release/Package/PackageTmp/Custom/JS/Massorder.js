@@ -2,6 +2,12 @@
     $(".nav").removeClass("active");
     $(".massorder").addClass('active');
 
+    $("#divLoading").removeClass("show");
+
+    var isAdmin = $("#hdnIsAdmin").val();
+    if (isAdmin == "1") {
+        checkBalance();
+    }
 
 
 });
@@ -26,6 +32,7 @@ var CalculateTotalCharge = function () {
     }
 }
 var getObjectOrder = function () {
+    //get object
     var massOrders = $("#links").val();
     var massorderArray = massOrders.split("\n");
     $.each(massorderArray, function (index, item) {
@@ -54,6 +61,8 @@ var SaveMassOrder = function () {
         var obj = {};
         obj.MassOrder = objMassOrder;
         obj.funds = $(".badge").html();
+        $("#divLoading").addClass("show");
+
         $.ajax({
             type: "POST",
             url: serviceURL,
@@ -65,11 +74,15 @@ var SaveMassOrder = function () {
         });
 
         function successFunc(data, status) {
+            $("#divLoading").removeClass("show");
+
             if (data[0] == "1") {
                 alert("New order saved.");
                 location.reload(true);
             }
             else {
+                $("#divLoading").removeClass("show");
+
                 alert("Something went wrong!")
             }
         }
@@ -85,4 +98,37 @@ var SaveMassOrder = function () {
     else {
         return false;
     }
+}
+
+var checkBalance = function () {
+    $("#divLoading").addClass("show");
+    $.ajax({
+        type: "POST",
+        url: "/Service/APIShowBalance",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (data) {
+            if (data != null && data.indexOf(',') != -1) {
+                $("#divLoading").removeClass("show");
+                var array = data.split(",");
+                var arrstatus = array[0].split(":");
+                var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
+                status = status.replace(/"/g, "");
+                // alert(status);
+                var numstatus = parseFloat(status);
+                var inusd = (numstatus / 68.0).toFixed(2);
+                $(".mybal").text(inusd);
+            }
+            else {
+                $("#divLoading").removeClass("show");
+                alert(data);
+            }
+
+        },
+        error: function (err) {
+            $("#divLoading").removeClass("show");
+        }
+    });
+
+
 }

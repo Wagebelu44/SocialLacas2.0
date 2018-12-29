@@ -25,15 +25,15 @@
                     <table class="table ">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Date</th>
+                                <th>Order ID</th>
                                 <th class="width-40">Link</th>
                                 <th>Charge</th>
-                                <th class="nowrap">Start count</th>
+                                <th class="nowrap hidden">Start count</th>
                                 <th>Quantity</th>
                                 <th>Service</th>
                                 <th>Status</th>
-                                <th>Remains</th>
+                                <th class="hidden">Remains</th>
 
                             </tr>
                         </thead>
@@ -41,15 +41,15 @@
                             @foreach (DataRow row in Model.Tables[0].Rows)
                             {
                                 <tr>
-                                    <td>@row["OrderId"]</td>
                                     <td>@row["Date"]</td>
+                                    <td>@row["SWorderId"]</td>
                                     <td>@row["Link"]</td>
                                     <td>@row["Charge"]</td>
-                                    <td>@row["StartCount"]</td>
+                                    <td class="hidden">@row["StartCount"]</td>
                                     <td>@row["Quantity"]</td>
                                     <td>@row["Service"]</td>
-                                    <td>@row["Status"]</td>
-                                    <td>@row["Remains"]</td>
+                                    <td> <input type="button" class="btn btn-primary" value="Get Status" id="btnstatus" onclick="GetStatus(@row["SWorderId"])" /></td>
+                                    <td class="hidden">@row["Remains"]</td>
                                     @*<td><input type="button" id="btnPlaceOrder" class="btn btn-primary" value="Place Order"/></td>*@
                                 </tr>
                             }
@@ -57,7 +57,7 @@
                     </table>
                 </div>
 
-                <ul class="pagination ">
+                <ul class="pagination hidden">
 
 
 
@@ -100,10 +100,86 @@
         $(document).ready(function () {
             $(".nav").removeClass("active");
             $(".adneworder").addClass('active');
+            $("#divLoading").removeClass("show");
+            checkBalance();
+
 
 
 
         });
+        function GetStatus(SWorderid) {
+            callapi(SWorderid);
+        }
+        var callapi = function (SWorderid) {
+            var obj = {};
+            obj.orderid = SWorderid;
+            $("#divLoading").addClass("show");
+
+            $.ajax({
+                type: "POST",
+                url: "/Service/APIShowStatus",
+                data: JSON.stringify(obj),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data != null && data.indexOf(',') != -1) {
+                        $("#divLoading").removeClass("show");
+
+                        var array = data.split(",");
+                        var arrstatus = array[0].split(":");
+                        var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
+                        status = status.replace(/"/g, "");
+                        alert(status);
+                    }
+                    else {
+                        $("#divLoading").removeClass("show");
+
+                        alert(data);
+                    }
+
+                },
+                error: function (err) {
+                    $("#divLoading").removeClass("show");
+}
+            });
+
+        }
+        var checkBalance = function () {
+            $("#divLoading").addClass("show");
+            $.ajax({
+                type: "POST",
+                url: "/Service/APIShowBalance",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data != null && data.indexOf(',') != -1) {
+                        $("#divLoading").removeClass("show");
+                        var array = data.split(",");
+                        var arrstatus = array[0].split(":");
+                        var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
+                        status = status.replace(/"/g, "");
+                        // alert(status);
+                        var numstatus = parseFloat(status);
+                        var inusd = (numstatus / 68.0).toFixed(2);
+                     //   $(".valalert").removeClass("hidden");
+                     //   $(".valalert").text("Your current balance is : " + inusd);
+                        $(".mybal").text(inusd);
+                    }
+                    else {
+                        $("#divLoading").removeClass("show");
+                        alert(data);
+                    }
+
+                },
+                error: function (err) {
+                    $("#divLoading").removeClass("show");
+                }
+            });
+
+
+        }
+        $("tr td:contains('[')").parent().hide();
+
     </script>
 
 }

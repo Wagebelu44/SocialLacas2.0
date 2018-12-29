@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    $("#divLoading").removeClass("show");
+
     $(".vsignin").addClass('active');
 
 
@@ -26,7 +28,7 @@ var LoginUser = function () {
     if (valid == true) {
         $(".alert").addClass("hidden");
         var serviceURL = '/Service/CheckUser';
-
+        $("#divLoading").addClass("show")
         var obj = {};
         obj.userName = $("#txtusername").val();
         obj.password = $("#txtpassword").val();
@@ -42,6 +44,8 @@ var LoginUser = function () {
         });
 
         function successFunc(data, status) {
+            $("#divLoading").removeClass("show")
+
             if (data[0] != "") {
 
                 if (data[1] == "0") {
@@ -59,14 +63,19 @@ var LoginUser = function () {
             }
 
         }
+        function errorFunc(err) {
+            $("#divLoading").removeClass("show");
+
+            alert(err.responseText);
+
+
+        }
+
     }
     else {
         return false;
     }
 
-        function errorFunc(err) {
-            alert(err.responseText);
-        }
-    
+       
 
 }

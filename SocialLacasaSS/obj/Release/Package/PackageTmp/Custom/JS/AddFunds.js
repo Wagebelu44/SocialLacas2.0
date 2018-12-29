@@ -1,8 +1,12 @@
 ﻿$(document).ready(function () {
+
     $(".nav").removeClass("active");
     $(".addfunds").addClass('active');
+    $("#divLoading").removeClass("show");
 
-
+    if ($("#hdnAmount").val() != null) {
+        addfuncds();
+    }
 
 });
 
@@ -18,7 +22,7 @@ var checkvalidity = function () {
 
 
 var callPayPal = function () {
-    if ($("field-paypal_email").val() == "") {
+    if ($("#field-paypal_email").val() == "") {
         $(".alert").removeClass("hidden");
         $(".alert").text("Please provide paypal email");
         return false;
@@ -27,6 +31,8 @@ var callPayPal = function () {
         obj = {};
         obj.cost = $("#amount").val();
         var paypalurl = '/Service/PayPal';
+        $("#divLoading").addClass("show");
+
         $.ajax({
             type: "POST",
             url: paypalurl,
@@ -34,11 +40,16 @@ var callPayPal = function () {
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-                addfuncds();
+               // addfuncds();
                 var url = data;
+                $("#divLoading").removeClass("show");
+
                 window.location.href = url;
+
             },
             error: function (err) {
+                $("#divLoading").removeClass("show");
+
                 alert("Error in processing payment.")
             }
         });
@@ -96,7 +107,7 @@ var callBTH = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-            addfuncds();
+           // addfuncds();
             var url = data;
             window.location.href = url;
         },
@@ -109,13 +120,13 @@ var addfuncds = function () {
     var serviceURL = '/Service/SaveFunds';
 
     var obj = {};
-    obj.Method = $("#method").val();
-    obj.Amount = $("#amount").val();
+//    obj.Amount = $("#amount").val();
+    $("#divLoading").addClass("show");
 
     $.ajax({
         type: "POST",
         url: serviceURL,
-        data: JSON.stringify(obj),
+    //    data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: successFunc,
@@ -123,10 +134,14 @@ var addfuncds = function () {
     });
 
     function successFunc(data, status) {
+        $("#divLoading").removeClass("show");
+
         if (data[0] == "1") {
-            location.reload(true);
+            $(".badge").html(data[1]);
         }
         else {
+            $("#divLoading").removeClass("show");
+
             alert("Something went wrong!")
         }
     }

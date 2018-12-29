@@ -26,6 +26,7 @@
                         <thead>
                             <tr>
                                 <th>Date</th>
+                                <th>Order ID</th>
                                 <th class="width-40">Link</th>
                                 <th>Charge</th>
                                 <th class="nowrap hidden">Start count</th>
@@ -41,6 +42,7 @@
                             {
                                 <tr>
                                     <td>@row["Date"]</td>
+                                    <td>@row["SWorderId"]</td>
                                     <td>@row["Link"]</td>
                                     <td>@row["Charge"]</td>
                                     <td class="hidden">@row["StartCount"]</td>
@@ -99,6 +101,7 @@
             $(".nav").removeClass("active");
             $(".adneworder").addClass('active');
             $("#divLoading").removeClass("show");
+            checkBalance();
 
 
 
@@ -141,6 +144,42 @@
             });
 
         }
+        var checkBalance = function () {
+            $("#divLoading").addClass("show");
+            $.ajax({
+                type: "POST",
+                url: "/Service/APIShowBalance",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    if (data != null && data.indexOf(',') != -1) {
+                        $("#divLoading").removeClass("show");
+                        var array = data.split(",");
+                        var arrstatus = array[0].split(":");
+                        var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
+                        status = status.replace(/"/g, "");
+                        // alert(status);
+                        var numstatus = parseFloat(status);
+                        var inusd = (numstatus / 68.0).toFixed(2);
+                     //   $(".valalert").removeClass("hidden");
+                     //   $(".valalert").text("Your current balance is : " + inusd);
+                        $(".mybal").text(inusd);
+                    }
+                    else {
+                        $("#divLoading").removeClass("show");
+                        alert(data);
+                    }
+
+                },
+                error: function (err) {
+                    $("#divLoading").removeClass("show");
+                }
+            });
+
+
+        }
+        $("tr td:contains('[')").parent().hide();
+
     </script>
 
 }
