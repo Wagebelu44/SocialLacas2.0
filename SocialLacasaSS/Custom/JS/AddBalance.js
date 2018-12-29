@@ -50,6 +50,7 @@ var saveFunds = function () {
 }
 
 var checkBalance = function () {
+    $("#divLoading").addClass("show");
     $.ajax({
         type: "POST",
         url: "/Service/APIShowBalance",
@@ -57,6 +58,7 @@ var checkBalance = function () {
         dataType: "json",
         success: function (data) {
             if (data != null && data.indexOf(',') != -1) {
+                $("#divLoading").removeClass("show");
                 var array = data.split(",");
                 var arrstatus = array[0].split(":");
                  var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
@@ -67,7 +69,10 @@ var checkBalance = function () {
                 $(".valalert").removeClass("hidden");
                 $(".valalert").text("Your current balance is : " + inusd);
             }
-            else { alert(data); }
+            else {
+                $("#divLoading").removeClass("show");
+                alert(data);
+            }
 
         },
         error: function (err) { }
