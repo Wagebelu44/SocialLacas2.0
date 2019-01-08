@@ -167,5 +167,14 @@ namespace SocialLacasa.Controllers
             }
             return View();
         }
+
+        public ActionResult ContactUs()
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("SignIn", "Visitor");
+            }
+            return View();
+        }
     }
 }

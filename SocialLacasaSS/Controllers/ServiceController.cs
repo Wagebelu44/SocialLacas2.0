@@ -7,6 +7,8 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -69,12 +71,22 @@ namespace SocialLacasa.Controllers
         }
         public JsonResult APIShowStatus(int orderid)
         {
-            string url = "https://indiansmm.com/api/v2?api_token=$2y$10$3XzxOs0XVBCSpUZScxEjee8nJeSjbqiyiCS8yAjj2WMOVVG1HSteC&action=status&order=" + orderid;
+            string url = "https://drd3m.com/api.php";
             var request = (HttpWebRequest)WebRequest.Create(url);
+            var postdata = "key=f103b76d9826f8fdb5abdfe3157b367e";
+            postdata += "&action=status";
+            postdata += "&order=" + Convert.ToString(orderid);
+            var data = Encoding.ASCII.GetBytes(postdata);
             request.Method = "POST";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
+            request.ContentLength = data.Length;
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-            var response = (HttpWebResponse)request.GetResponse();
+
+            using (var stream = request.GetRequestStream()) {
+                stream.Write(data, 0, data.Length);
+            }
+
+                var response = (HttpWebResponse)request.GetResponse();
             string content = string.Empty;
             using (var stream = response.GetResponseStream())
             {
@@ -98,6 +110,7 @@ namespace SocialLacasa.Controllers
             request.Method = "POST";
             request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
             request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+
             var response = (HttpWebResponse)request.GetResponse();
             string content = string.Empty;
             using (var stream = response.GetResponseStream())
@@ -120,11 +133,20 @@ namespace SocialLacasa.Controllers
 
             try
             {
-                string url = "https://indiansmm.com/api/v2?api_token=$2y$10$3XzxOs0XVBCSpUZScxEjee8nJeSjbqiyiCS8yAjj2WMOVVG1HSteC&action=add&package=" + serviceid + "&link=" + link + "&quantity=" + quantity;
+                string url = "https://drd3m.com/api.php";
+                var postdata = "key=f103b76d9826f8fdb5abdfe3157b367e&action=add";
+                postdata += "&service=" + Convert.ToString(serviceid);
+                postdata += "&link=" + Convert.ToString(link);
+                postdata += "&quantity=" + Convert.ToString(quantity);
                 var request = (HttpWebRequest)WebRequest.Create(url);
+                var data = Encoding.ASCII.GetBytes(postdata);
+
                 request.Method = "POST";
                 request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
                 request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+                  using (var stream = request.GetRequestStream()) {
+                stream.Write(data, 0, data.Length);
+            }
                 var response = (HttpWebResponse)request.GetResponse();
                 using (var stream = response.GetResponseStream())
                 {
@@ -499,6 +521,40 @@ namespace SocialLacasa.Controllers
             redirect += "&notify_url=" + baseUrl + "User/NewOrder?status='ok'";
 
             return Json(redirect, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public string SendMail(string name, string UserEmail, string message)
+        {
+            var AccountName = "shruti.karva@gmail.com";
+            var AccountPwd = "karva1990shruti";
+            string isSent = "0";
+            try
+            {
+                SmtpClient client = new SmtpClient();
+                client.Port = 587;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential(AccountName, AccountPwd);
+                String body = "This enquiry is from: "+ name + '\n'+  message;
+                String subject = "From Social Lacasa";
+                MailMessage mm = new MailMessage(AccountName, UserEmail, subject, body);
+                mm.BodyEncoding = UTF8Encoding.UTF8;
+                mm.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                client.Send(mm);
+
+
+                isSent = "1";
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return isSent;
         }
 
     }

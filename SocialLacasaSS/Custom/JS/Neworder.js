@@ -40,6 +40,7 @@ $(document).ready(function () {
     $(".nav").removeClass("active");
     $(".neworderuser").addClass('active');
     $("#divLoading").removeClass("show");
+    var isAdmin = $("#hdnIsAdmin").val();
 
 
    
@@ -143,9 +144,9 @@ var rate = 100;
 $(document).ready(function () {
     // var category = $("#CatagoryName").val();
     var isAdmin = $("#hdnIsAdmin").val();
-    if (isAdmin == "1") {
-        checkBalance();
-    }
+    //if (isAdmin == "1") {
+    //    checkBalance();
+    //}
 
     BindServices();
 })
@@ -191,6 +192,8 @@ $("#ddlServices").on('change', function () {
 
 });
 $("#field-orderform-fields-quantity").focusout(function () {
+    var isAdmin = $("#hdnIsAdmin").val();
+
     if ($("#field-orderform-fields-quantity").val() != "") {
         var qu = $("#field-orderform-fields-quantity").val();
         var quantity = parseInt(qu);

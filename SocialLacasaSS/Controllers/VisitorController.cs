@@ -29,6 +29,11 @@ namespace SocialLacasa.Controllers
         {
             return View();
         }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
         
         public ActionResult SignIn()
         {

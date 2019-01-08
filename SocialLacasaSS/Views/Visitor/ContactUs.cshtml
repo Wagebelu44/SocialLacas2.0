@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "ContactUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div>
+    @{
+        Html.RenderPartial("_VisitorTopMenu");
+    }
+</div>
+
+<div class="content-wrapper user">
+    <div class="not-authenticate">
+        <div class="container">
+            <input type="hidden" value='@Session["isAdmin"]' id="hdnIsAdmin" />
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 centered">
+                    <div class="well well-float tableBox">
+
+                        <h2>Contact Us</h2>
+                        <div>
+                            <p><span>Connect with us</span></p>
+
+                            <p><span>Your questions and inquiries concern us.</span></p>
+
+                            <p><span>It is answered within 24 hours maximum.</span></p>
+
+                            <p><span>We always welcome your inquiries, you will continue with us.</span></p>
+
+                            <p><span>Technical support team is always at your service throughout the day / 7 days a week</span></p>
+
+                            <p><span>To get the best help, please follow the following:</span></p>
+
+                            <p><span>After you sign in, click on the ticket, select the appropriate section, type your message and sent the ticket, it is answered within 24 hours.</span></p>
+
+                            <p><span>In case you do not want to register, please contact us via mobile phone.</span></p>
+
+
+                            <p><span>Emergency Assistance:</span></p>
+                            <br />
+                            <p><span>Phone: </span></p>
+                            <p><span>Email: </span></p>
+
+
+
+
+
+
+                            <div class="login-area" style="width:94%;margin-bottom:20px;overflow:hidden;">
+                                <div class="alert alert-danger hidden topalert"></div>
+
+                                <form action="/en/home/pages/contact" method="post" accept-charset="utf-8">
+                                    <div></div>
+                                    <div class="form-group"><input required class="form-control" type="text" name="name" placeholder="Name" value="" id="txtname" /></div>
+                                    <div class="form-group"><input required class="form-control" type="email" name="email" placeholder="Email" value="" id="txtemail" /></div>
+                                    <div class="form-group"><textarea required class="form-control form-textarea" name="message" placeholder="Message" id="txtmsg"></textarea></div>
+                                    <div class="form-group">
+
+                                        <div class="pull-right flip">
+                                            <input class="btn btn-primary" type="button" onclick="sendmail();" value="Send" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<div class="container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <div class="well ">
+                                <div style="color: rgb(51, 51, 51); text-align: center;"><br></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="@Url.Content("~/Custom/JS/contact.js")"></script>
+
+
+}
+
+

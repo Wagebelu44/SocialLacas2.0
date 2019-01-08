@@ -26,6 +26,7 @@ body {
         background-image: url(//i.imgur.com/d3ungOa.png);
         background-color: white;
         font-family: 'Source Sans Pro', sans-serif;
+        height: -webkit-fill-available;
     }
 
     body > .container > .urer {
@@ -1014,6 +1015,8 @@ footer {
     background-color: #555555;
     color: #ffffff;
     text-align: left !important;
+    position:sticky;
+    bottom:0;
 }
 
 #signInModal .modal-dialog {
@@ -1603,13 +1606,11 @@ body.guest .navbar .navbar-nav > li > a {
 
 .well.signInWell {
     position: relative;
-    box-shadow: 0 0 25px -5px #f49d4c;
     border: 0;
     background:white;
     /*background-image: url('//i.imgur.com/oa2gxDf.png');*/
     background-repeat: no-repeat;
     background-position: 92% center, 340px top;
-    border-radius: 20px;
     background-size: auto, 260px 100%;
 }
 
