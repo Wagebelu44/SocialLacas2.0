@@ -27,6 +27,7 @@ body {
         background-color: white;
         font-family: 'Source Sans Pro', sans-serif;
         height: -webkit-fill-available;
+        background-repeat:repeat;
     }
 
     body > .container > .urer {
