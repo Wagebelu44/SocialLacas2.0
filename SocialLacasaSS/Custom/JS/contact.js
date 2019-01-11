@@ -1,7 +1,7 @@
 ﻿$(document).ready(function () {
     $(".nav").removeClass("active");
     $(".contactus").addClass('active');
-    $(".vcontact").addclass('active');
+    $(".vcontact").addClass('active');
 
 
     $("#divLoading").removeClass("show");
