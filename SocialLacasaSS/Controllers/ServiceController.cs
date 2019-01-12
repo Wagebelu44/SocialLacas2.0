@@ -3,6 +3,7 @@ using SocialLacasa.DataLayer;
 using SocialLacasa.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -69,38 +70,61 @@ namespace SocialLacasa.Controllers
 
             return Json("1", JsonRequestBehavior.AllowGet);
         }
+        //public JsonResult APIShowStatus(int orderid)
+        //{
+        //    string url = "https://drd3m.com/api.php";
+        //    var request = (HttpWebRequest)WebRequest.Create(url);
+        //    var postdata = "key=f103b76d9826f8fdb5abdfe3157b367e";
+        //    postdata += "&action=status";
+        //    postdata += "&order=" + Convert.ToString(orderid);
+        //    var data = Encoding.ASCII.GetBytes(postdata);
+        //    request.Method = "POST";
+        //    request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
+        //    request.ContentLength = data.Length;
+        //    request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+
+        //    using (var stream = request.GetRequestStream()) {
+        //        stream.Write(data, 0, data.Length);
+        //    }
+
+        //        var response = (HttpWebResponse)request.GetResponse();
+        //    string content = string.Empty;
+        //    using (var stream = response.GetResponseStream())
+        //    {
+        //        using (var sr = new StreamReader(stream))
+        //        {
+        //            content = sr.ReadToEnd();
+        //        }
+        //    }
+
+        //    //var releases = JArray.Parse(content);
+        //    //string status = content.Substring(content.IndexOf(":") + 1, content.Length);
+        //    //status = status.Substring(0, status.Length - 1);
+        //    return Json(content, JsonRequestBehavior.AllowGet);
+        //}
+
+
         public JsonResult APIShowStatus(int orderid)
         {
             string url = "https://drd3m.com/api.php";
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            var postdata = "key=f103b76d9826f8fdb5abdfe3157b367e";
-            postdata += "&action=status";
-            postdata += "&order=" + Convert.ToString(orderid);
-            var data = Encoding.ASCII.GetBytes(postdata);
-            request.Method = "POST";
-            request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
-            request.ContentLength = data.Length;
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            string responseString = string.Empty;
 
-            using (var stream = request.GetRequestStream()) {
-                stream.Write(data, 0, data.Length);
-            }
-
-                var response = (HttpWebResponse)request.GetResponse();
-            string content = string.Empty;
-            using (var stream = response.GetResponseStream())
+            using (var client = new WebClient())
             {
-                using (var sr = new StreamReader(stream))
-                {
-                    content = sr.ReadToEnd();
-                }
-            }
+                var values = new NameValueCollection();
+                values["key"] = "f103b76d9826f8fdb5abdfe3157b367e";
+                values["action"] = "status";
+                values["order"] = Convert.ToString(orderid);
 
-            //var releases = JArray.Parse(content);
-            //string status = content.Substring(content.IndexOf(":") + 1, content.Length);
-            //status = status.Substring(0, status.Length - 1);
-            return Json(content, JsonRequestBehavior.AllowGet);
+                var response = client.UploadValues(url, values);
+                //"{\"charge\":\"0.9000\",\"start_count\":\"3\",\"status\":\"Completed\",\"remains\":\"0\"}"
+                responseString = Encoding.Default.GetString(response);
+            }
+            return Json(responseString, JsonRequestBehavior.AllowGet);
         }
+
+
+
 
 
         public JsonResult APIShowBalance()
@@ -127,6 +151,45 @@ namespace SocialLacasa.Controllers
             return Json(content, JsonRequestBehavior.AllowGet);
         }
 
+        //public string placeorder(int serviceid, int quantity, string link)
+        //{
+        //    string content = string.Empty;
+
+        //    try
+        //    {
+        //        string url = "https://drd3m.com/api.php";
+        //        var postdata = "key=f103b76d9826f8fdb5abdfe3157b367e&action=add";
+        //        postdata += "&service=" + Convert.ToString(serviceid);
+        //        postdata += "&link=" + Convert.ToString(link);
+        //        postdata += "&quantity=" + Convert.ToString(quantity);
+        //        var request = (HttpWebRequest)WebRequest.Create(url);
+        //        var data = Encoding.ASCII.GetBytes(postdata);
+
+        //        request.Method = "POST";
+        //        request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
+        //        request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+        //          using (var stream = request.GetRequestStream()) {
+        //        stream.Write(data, 0, data.Length);
+        //    }
+        //        var response = (HttpWebResponse)request.GetResponse();
+        //        using (var stream = response.GetResponseStream())
+        //        {
+        //            using (var sr = new StreamReader(stream))
+        //            {
+        //                content = sr.ReadToEnd();
+        //            }
+        //        }
+        //        //var releases = JArray.Parse(content);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        content = "Error";
+        //    }
+        //    return content;
+        //}
+
+
+
         public string placeorder(int serviceid, int quantity, string link)
         {
             string content = string.Empty;
@@ -134,26 +197,25 @@ namespace SocialLacasa.Controllers
             try
             {
                 string url = "https://drd3m.com/api.php";
-                var postdata = "key=f103b76d9826f8fdb5abdfe3157b367e&action=add";
-                postdata += "&service=" + Convert.ToString(serviceid);
-                postdata += "&link=" + Convert.ToString(link);
-                postdata += "&quantity=" + Convert.ToString(quantity);
-                var request = (HttpWebRequest)WebRequest.Create(url);
-                var data = Encoding.ASCII.GetBytes(postdata);
+               
 
-                request.Method = "POST";
-                request.UserAgent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
-                request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-                  using (var stream = request.GetRequestStream()) {
-                stream.Write(data, 0, data.Length);
-            }
-                var response = (HttpWebResponse)request.GetResponse();
-                using (var stream = response.GetResponseStream())
+                using (var client = new WebClient())
                 {
-                    using (var sr = new StreamReader(stream))
-                    {
-                        content = sr.ReadToEnd();
-                    }
+                    var values = new NameValueCollection();
+                    values["key"] = "f103b76d9826f8fdb5abdfe3157b367e";
+                    values["action"] = "add";
+                    values["service"] = Convert.ToString(serviceid);
+                    values["link"]= Convert.ToString(link);
+                    values["quantity"] = Convert.ToString(quantity);
+
+
+                    var response = client.UploadValues(url, values);
+                    //"{\"charge\":\"0.9000\",\"start_count\":\"3\",\"status\":\"Completed\",\"remains\":\"0\"}"
+                    content = Encoding.Default.GetString(response);
+                    content = content.Replace('"',' ');
+                    content = content.Replace(@"\", " ");
+                    content = content.Trim();
+
                 }
                 //var releases = JArray.Parse(content);
             }
@@ -163,6 +225,8 @@ namespace SocialLacasa.Controllers
             }
             return content;
         }
+
+
         public JsonResult PlaceOrder_Api(int serviceid, int quantity, string link)
         {
             string orderid = "0";

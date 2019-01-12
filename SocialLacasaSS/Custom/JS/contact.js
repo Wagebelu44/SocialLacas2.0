@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿﻿$(document).ready(function () {
     $(".nav").removeClass("active");
     $(".contactus").addClass('active');
     $(".vcontact").addClass('active');
@@ -49,7 +49,7 @@ var checkBalance = function () {
 
 function checkvalidity() {
     var valid = false;
-    if (($("#txtname").val() != "") && ($("#txtemail").val() != "") && ($("#txtmsg").val()!="")) {
+    if (($("#txtname").val() != "") && ($("#txtemail").val() != "") && ($("#txtmsg").val() != "")) {
         valid = true;
     }
     else {

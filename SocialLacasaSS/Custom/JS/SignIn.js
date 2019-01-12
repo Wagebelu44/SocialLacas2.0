@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿﻿$(document).ready(function () {
     $("#divLoading").removeClass("show");
 
     $(".vsignin").addClass('active');
@@ -18,11 +18,11 @@ function checkvalidity() {
         $(".alert").text("Please enter username and password");
 
     }
-    
+
 
 }
 var LoginUser = function () {
-  //  localStorage["isAdmin"] = $("#hdnIsAdmin").val();
+    //  localStorage["isAdmin"] = $("#hdnIsAdmin").val();
 
     checkvalidity();
     if (valid == true) {
@@ -76,6 +76,6 @@ var LoginUser = function () {
         return false;
     }
 
-       
+
 
 }

@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿﻿$(document).ready(function () {
     $(".accountuser").addClass('active');
     $("#divLoading").removeClass("show");
 
@@ -14,7 +14,7 @@
 function validate() {
     var isAdmin = $("#hdnIsAdmin").val();
     var valid = true;
-    if (($("#username").val() == "") && (isAdmin!="1")) {
+    if (($("#username").val() == "") && (isAdmin != "1")) {
         $(".alert").removeClass("hidden");
         $(".alert").text("Please enter username");
         valid = false;
@@ -29,8 +29,7 @@ function validate() {
         $(".alert").text("Please enter new password");
         valid = false;
     }
-    else if ($("#confirm").val() == "")
-    {
+    else if ($("#confirm").val() == "") {
         $(".alert").removeClass("hidden");
         $(".alert").text("Please confirm password");
         valid = false;
@@ -74,11 +73,11 @@ changePassword = function () {
         function successFunc(data, status) {
             $("#divLoading").removeClass("show");
 
-            if ((data == "0")|| (data == "-1")) {
+            if ((data == "0") || (data == "-1")) {
                 alert("Password changed successfully");
                 window.location.href("/visitor/signin");
             }
-        else {
+            else {
                 alert("Invalid username or password")
             }
 

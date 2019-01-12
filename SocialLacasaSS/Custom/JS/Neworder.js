@@ -1,4 +1,4 @@
-﻿function checkvalidity() {
+﻿﻿function checkvalidity() {
     var valid = true;
     if ($("#field-orderform-fields-link").val() == "") {
         $(".topalert").removeClass("hidden");
@@ -24,16 +24,16 @@
         var isAdmin = $("#hdnIsAdmin").val();
         if (isAdmin != "1") {
             if (parseFloat(charges) > parseFloat($(".badge").html())) {
-              //  $(".topalert").removeClass("hidden");
-               // $(".alert").text("Insuficient Funds.");
+                //  $(".topalert").removeClass("hidden");
+                // $(".alert").text("Insuficient Funds.");
                 alert("Insufficient funds");
                 valid = false;
             }
         }
     }
     return valid;
-       
-    }
+
+}
 
 
 $(document).ready(function () {
@@ -43,7 +43,7 @@ $(document).ready(function () {
     var isAdmin = $("#hdnIsAdmin").val();
 
 
-   
+
 
 });
 
@@ -71,14 +71,14 @@ var callapi = function () {
                 }
                 else {
                     AddOrder(data);
-                   // alert("Order Placed");
+                    // alert("Order Placed");
                 }
 
             }
         },
         error: function (err) {
             $("#divLoading").removeClass("show");
-}
+        }
     });
 
 }
@@ -113,7 +113,7 @@ var AddOrder = function (id) {
             alert("Order Placed");
             $(".badge").html(data[1]);
             window.location = window.location;
-            
+
         }
         else {
             $("#divLoading").removeClass("show");
@@ -125,11 +125,11 @@ var AddOrder = function (id) {
     function errorFunc(err) {
         $("#divLoading").removeClass("show");
         alert("Check Order Quantity");
-       // alert(err.responseText);
+        // alert(err.responseText);
     }
 }
 var SaveNewOrder = function () {
-    var valid =checkvalidity();
+    var valid = checkvalidity();
     if (valid == true) {
         $(".alert").addClass("hidden");
         callapi();
@@ -167,8 +167,8 @@ var BindServices = function () {
             $.each(res, function (data, value) {
                 //  quantity = parseInt($("#field-orderform-fields-quantity").val());
 
-               // rate = value.Rate;
-               // $("#rate").val(rate);
+                // rate = value.Rate;
+                // $("#rate").val(rate);
 
 
 

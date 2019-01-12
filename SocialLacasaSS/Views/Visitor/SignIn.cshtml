@@ -1,94 +1,105 @@
-﻿
+﻿﻿
 @{
     ViewBag.Title = "SignIn";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
-    @{
-        Html.RenderPartial("_VisitorTopMenu");
-    }
-</div>
-    <div class="guest">
-        <div class="row" style="padding-top: 1%">
-            <div>
-                <img src="~/Images/logo1.png" width=450 height=200 style="margin: auto; display: block" />
-            </div>
-            <div class="col-md-12" style="align-content: center; align-items: center">
-                <h3 style="text-align:center;color:#103684;font-family:'Bell MT'">Buy Social media followers with Best Quality and Quickest Delivery At Social Lacasa</h3>
-            </div>
+@*<div>
+        @{
+            Html.RenderPartial("_VisitorTopMenu");
+        }
+    </div>*@
+<div class="guest">
+    <div class="row">
+        <div>
+            <img src="~/Images/logo1.png" width=450 height=200 style="margin: auto; display: block" />
         </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 centered">
-                    <div class="col-md-12">
-                        <h4 style="text-align:center;font-family:'Bell MT'">Facebook, Twitter, Instagram, Google Plus....the list goes on when it comes to selecting a social media channel for your business..Socialise your business globally and let the audience talk about your products and services flamboyantly </h4>
-                    </div>
-                    <div class="well centered" style="align-content: center; align-items: center" tabindex="-1" role="dialog">
-                        <br><br>
-                        <div class="modal-dialog modal-md" role="document" style="align-content: center">
-                            <div class="modal-content" style="width : 80%; margin:0 auto">
-                                <div class="modal-body">
-                                    <div class="col-md-12">
-                                        <p style="text-align:center;color:#103684;font-family:'Bell MT'">Members Login</p>
-                                    </div>
-                                    <div class="signInWell">
-                                        <form method="post" action="/auth" id="signInForm" style="text-align: center">
-                                            <div class="alert alert-danger hidden"></div>
-                                            <div class="form-group">
-                                                <label style="display:none;" for="username" class="control-label">Username</label>
-                                                <input type="text" class="form-control" id="txtusername" name="username" placeholder="Username" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label style="display:none;" for="password" class="control-label">Password</label>
-                                                <input type="password" class="form-control" id="txtpassword" name="password" placeholder="Password" required>
-                                            </div>
-                                            <button type="button" class="btn btn-primary" style="width: 90%; margin:0 auto" onclick="LoginUser();">Sign in</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+        <div class="col-md-12" style="align-content: center; align-items: center">
+            <h3 style="text-align:center;color:#103684;font-family:'Bell MT'">Buy Social media followers with Best Quality and Quickest Delivery At Social Lacasa</h3>
+        </div>
+    </div>
 
-                            <div class="modal-content" style="width : 80%; margin:0 auto">
-                                <div class="modal-body" style="text-align: center">
-                                    <div class="col-md-12">
-                                        <p style="text-align:center;color:#103684;font-family:'Bell MT'">Don't Have a Account?</p>
-                                    </div>
-                                    <a href="/Visitor/SignUp" class="btn btn-primary" style="width: 90%; margin:0 auto">
-                                        Register</a>
-</div>
-                            </div>
-
-                            <div class="modal-content" style="width : 80%; margin:0 auto">
-                                <div class="modal-body">
-                                    <div class="col-md-12">
-                                        <p style="text-align:center;color:#103684;font-family:'Bell MT'">Suscribe to our newsletter</p>
-                                    </div>
-                                    <div class="signInWell">
-                                        <form method="post" action="/auth" id="signInForm" style="text-align: center">
-                                            <div class="alert alert-danger hidden"></div>
-                                            <div class="form-group">
-                                                <label style="display:none;" for="username" class="control-label">Username</label>
-                                                <input type="text" class="form-control" id="txtusername" name="username" placeholder="Username" required>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary" style="width: 90%; margin:0 auto">Subscribe</button>
-                                        </form>
-                                    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 centered">
+                <div class="col-md-12">
+                    <h4 style="text-align:center;font-family:'Bell MT'">Facebook, Twitter, Instagram, Google Plus....the list goes on when it comes to selecting a social media channel for your business..Socialise your business globally and let the audience talk about your products and services flamboyantly </h4>
+                </div>
+                <div class="well centered" style="align-content: center; align-items: center" tabindex="-1" role="dialog">
+                    <br><br>
+                    <div class="modal-dialog modal-md" role="document" style="align-content: center">
+                        <div class="modal-content" style="width : 80%; margin:0 auto">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <p style="color:#103684;font-family:'Bell MT'">Members Login</p>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <p style="text-align:center;color:#103684;font-family:'Bell MT'">We accept</p>
-                            </div>
-                            <div>
-                                <img src="~/Images/pp.png.png" style="margin: auto; display: block" />
+                                <div class="signInWell">
+                                    <form method="post" action="/auth" id="signInForm" style="text-align: center">
+                                        <div class="alert alert-danger hidden"></div>
+                                        <div class="input-group">
+                                            <label style="display:none;" for="username" class="control-label">Username</label>
+                                            <input type="text" class="form-control" id="txtusername" name="username" placeholder="Username" required> <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        </div>
+                                        <br />
+                                        <div class="input-group">
+                                            <label style="display:none;" for="password" class="control-label">Password</label>
+                                            <input type="password" class="form-control" id="txtpassword" name="password" placeholder="Password" required> <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        </div>
+                                        <br />
+                                        <button type="button" class="btn btn-success" style="width: 100%; margin:0 auto" onclick="LoginUser();">Sign in</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
 
+                        <div class="modal-content" style="width : 80%; margin:0 auto">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <p style="color:#103684;font-family:'Bell MT'">Don't Have a Account?</p>
+                                </div>
+                                <a href="/Visitor/SignUp" class="btn btn-primary" style="width: 100%; margin:0 auto">
+                                    Register for free
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="modal-content" style="width : 80%; margin:0 auto">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <p style="color:#103684;font-family:'Bell MT'">Suscribe to our newsletter</p>
+                                </div>
+                                <div class="signInWell">
+                                    <form method="post" action="/auth" id="signInForm" style="text-align: center">
+                                        <div class="alert alert-danger hidden"></div>
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label style="display:none;" for="username" class="control-label">Username</label>
+                                                <input type="text" class="form-control" id="txtusername" name="username" placeholder="Username" required>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="submit" class="btn btn-default" margin:0 auto">Subscribe</button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p style="text-align:center;color:#103684;font-family:'Bell MT'">We accept</p>
+                        </div>
+                        <div>
+                            <img src="~/Images/pp.png.png" style="margin: auto; display: block" />
+                        </div>
+                        <div class="col-md-12" style="text-align:center">
+                            <a href="/Visitor/ContactUs">Contact Us</a> | <a href="/Visitor/Terms">Terms</a> | <a href="/Visitor/Services">Services</a> | <a href="">English</a> | <a href="">عربى</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
@@ -97,54 +108,53 @@
 
 
 
-
-                <script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
-
+<script src='https://www.google.com/recaptcha/api.js?hl=en'></script>
 
 
-                @section Scripts
+
+@section Scripts
 {
 
-                    <script src="@Url.Content("~/Custom/JS/SignIn.js")"></script>
-                    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-                    <script>
-                        $(document).ready(function () {
-                            var letCollapseWidth = false,
-                                paddingValue = 30,
-                                sumWidth = $('.navbar-right-block').width() + $('.navbar-left-block').width() + $('.navbar-brand').width() + paddingValue;
-                            if (location.pathname == "/") {
-                                $('body').addClass('guest');
-                                $('body').addClass('homePage');
+    <script src="@Url.Content("~/Custom/JS/SignIn.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script>
+        $(document).ready(function () {
+            var letCollapseWidth = false,
+                paddingValue = 30,
+                sumWidth = $('.navbar-right-block').width() + $('.navbar-left-block').width() + $('.navbar-brand').width() + paddingValue;
+            if (location.pathname == "/") {
+                $('body').addClass('guest');
+                $('body').addClass('homePage');
 
-                            $(window).on('resize', function () {
-                                navbarResizerFunc();
-                            });
+                $(window).on('resize', function () {
+                    navbarResizerFunc();
+                });
 
-                            var navbarResizerFunc = function navbarResizerFunc() {
-                                if (sumWidth <= $(window).width()) {
-                                    if (letCollapseWidth && letCollapseWidth <= $(window).width()) {
-                                        $('#navbar').addClass('navbar-collapse');
-                                        $('#navbar').removeClass('navbar-collapsed');
-                                        $('nav').removeClass('navbar-collapsed-before');
-                                        letCollapseWidth = false;
-                                    }
-                                } else {
-                                    $('#navbar').removeClass('navbar-collapse');
-                                    $('#navbar').addClass('navbar-collapsed');
-                                    $('nav').addClass('navbar-collapsed-before');
-                                    letCollapseWidth = $(window).width();
-                                }
-                            };
+                var navbarResizerFunc = function navbarResizerFunc() {
+                    if (sumWidth <= $(window).width()) {
+                        if (letCollapseWidth && letCollapseWidth <= $(window).width()) {
+                            $('#navbar').addClass('navbar-collapse');
+                            $('#navbar').removeClass('navbar-collapsed');
+                            $('nav').removeClass('navbar-collapsed-before');
+                            letCollapseWidth = false;
+                        }
+                    } else {
+                        $('#navbar').removeClass('navbar-collapse');
+                        $('#navbar').addClass('navbar-collapsed');
+                        $('nav').addClass('navbar-collapsed-before');
+                        letCollapseWidth = $(window).width();
+                    }
+                };
 
-                            if ($(window).width() >= 768) {
-                                navbarResizerFunc();
-                            }
-                        });
-
-                       
-                           
-                    </script>
-
-
-
+                if ($(window).width() >= 768) {
+                    navbarResizerFunc();
                 }
+            });
+
+
+
+    </script>
+
+
+
+}

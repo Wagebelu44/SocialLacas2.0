@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿﻿$(document).ready(function () {
 
     $(".nav").removeClass("active");
     $(".addfunds").addClass('active');
@@ -36,11 +36,11 @@ var callPayPal = function () {
         $.ajax({
             type: "POST",
             url: paypalurl,
-             data: JSON.stringify(obj),
+            data: JSON.stringify(obj),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: function (data) {
-               // addfuncds();
+                // addfuncds();
                 var url = data;
                 $("#divLoading").removeClass("show");
 
@@ -66,14 +66,14 @@ var callWebMoney = function () {
     $.ajax({
         type: "POST",
         url: paypalurl,
-         data: JSON.stringify(obj),
+        data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
             alert(data);
-           // addfuncds();
-           // var url = data;
-          //  window.location.href = url;
+            // addfuncds();
+            // var url = data;
+            //  window.location.href = url;
         },
         error: function (err) {
             alert("Error in processing payment.")
@@ -107,7 +107,7 @@ var callBTH = function () {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (data) {
-           // addfuncds();
+            // addfuncds();
             var url = data;
             window.location.href = url;
         },
@@ -120,13 +120,13 @@ var addfuncds = function () {
     var serviceURL = '/Service/SaveFunds';
 
     var obj = {};
-//    obj.Amount = $("#amount").val();
+    //    obj.Amount = $("#amount").val();
     $("#divLoading").addClass("show");
 
     $.ajax({
         type: "POST",
         url: serviceURL,
-    //    data: JSON.stringify(obj),
+        //    data: JSON.stringify(obj),
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: successFunc,
@@ -152,8 +152,7 @@ var addfuncds = function () {
 }
 var saveFunds = function () {
     var valid = checkvalidity();
-    if (valid == true)
-    {
+    if (valid == true) {
         $(".alert").addClass("hidden");
 
         var paymentMethod = $("#order_type").val();

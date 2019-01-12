@@ -1,4 +1,4 @@
-﻿@using System.Data
+﻿﻿@using System.Data
 @model DataSet
 @{
     ViewBag.Title = "PlaceOrder";
@@ -19,10 +19,11 @@
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="row">
+            <input type="button" class="btn btn-primary" onclick="exporte();" value="Export Report" />
             <div class="col-lg-12">
                 <div class="well well-float tableBox">
 
-                    <table class="table ">
+                    <table class="table " id="od">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -31,9 +32,9 @@
                                 <th>Charge</th>
                                 <th class="nowrap hidden">Start count</th>
                                 <th>Quantity</th>
-                                <th>Service</th>
-                                <th>Status</th>
-                                <th class="hidden">Remains</th>
+                                <th class="no_export">Service</th>
+                                <th class="no_export">Status</th>
+                                <th class="hidden no_export">Remains</th>
 
                             </tr>
                         </thead>
@@ -48,7 +49,7 @@
                                     <td class="hidden">@row["StartCount"]</td>
                                     <td>@row["Quantity"]</td>
                                     <td>@row["Service"]</td>
-                                    <td> <input type="button" class="btn btn-primary" value="Get Status" id="btnstatus" onclick="GetStatus(@row["SWorderId"])" /></td>
+                                    <td class="no_export"> <input type="button" class="btn btn-primary" value="Get Status" id="btnstatus" onclick="GetStatus(@row["SWorderId"])" /></td>
                                     <td class="hidden">@row["Remains"]</td>
                                     @*<td><input type="button" id="btnPlaceOrder" class="btn btn-primary" value="Place Order"/></td>*@
                                 </tr>
@@ -93,7 +94,12 @@
 {
 
     <script src="@Url.Content("~/Custom/JS/SignedUpUser.js")"></script>
-
+    <script type="text/javascript" src="//unpkg.com/xlsx/dist/shim.min.js"></script>
+    <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script type="text/javascript" src="//unpkg.com/blob.js@1.0.1/Blob.js"></script>
+    <script type="text/javascript" src="//unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.js"></script>
 
 
     <script>
@@ -101,7 +107,7 @@
             $(".nav").removeClass("active");
             $(".adneworder").addClass('active');
             $("#divLoading").removeClass("show");
-           // checkBalance();
+            // checkBalance();
 
 
 
@@ -126,7 +132,7 @@
                         $("#divLoading").removeClass("show");
 
                         var array = data.split(",");
-                        var arrstatus = array[0].split(":");
+                        var arrstatus = array[2].split(":");
                         var status = arrstatus[1].substr(1, arrstatus[1].length - 1)
                         status = status.replace(/"/g, "");
                         alert(status);
@@ -140,7 +146,7 @@
                 },
                 error: function (err) {
                     $("#divLoading").removeClass("show");
-}
+                }
             });
 
         }
@@ -161,8 +167,8 @@
                         // alert(status);
                         var numstatus = parseFloat(status);
                         var inusd = (numstatus / 68.0).toFixed(2);
-                     //   $(".valalert").removeClass("hidden");
-                     //   $(".valalert").text("Your current balance is : " + inusd);
+                        //   $(".valalert").removeClass("hidden");
+                        //   $(".valalert").text("Your current balance is : " + inusd);
                         $(".mybal").text(inusd);
                     }
                     else {
@@ -180,6 +186,13 @@
         }
         $("tr td:contains('[')").parent().hide();
 
+        var exporte = function () {
+            $("#divLoading").addClass("show");
+            var wb = XLSX.utils.table_to_book(document.getElementById("od"), { sheet: "Orders" });
+            var fname = 'Report(Orders).xlsx';
+            XLSX.writeFile(wb, fname);
+            $("#divLoading").removeClass("show");
+        }
     </script>
 
 }

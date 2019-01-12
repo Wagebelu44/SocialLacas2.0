@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿﻿$(document).ready(function () {
     $(".nav").removeClass("active");
     $(".massorder").addClass('active');
 
@@ -19,7 +19,7 @@ function checkvalidity() {
         $(".alert").text("Please enter correct links");
         valid = false;
     }
-   
+
     return valid;
 
 }
