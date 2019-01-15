@@ -212,9 +212,7 @@ namespace SocialLacasa.Controllers
                     var response = client.UploadValues(url, values);
                     //"{\"charge\":\"0.9000\",\"start_count\":\"3\",\"status\":\"Completed\",\"remains\":\"0\"}"
                     content = Encoding.Default.GetString(response);
-                    content = content.Replace('"',' ');
-                    content = content.Replace(@"\", " ");
-                    content = content.Trim();
+                   
 
                 }
                 //var releases = JArray.Parse(content);
@@ -235,6 +233,9 @@ namespace SocialLacasa.Controllers
             {
                 string[] arrorder = result.Split(':');
                 orderid = arrorder[1].Substring(0, arrorder[1].Length - 1);
+                orderid = orderid.Replace('"', ' ');
+                orderid = orderid.Replace(@"\", " ");
+                orderid = orderid.Trim();
                 //  orderid = result.Substring(result.IndexOf(":") + 1, result.Length);
                 //  orderid = orderid.Substring(0, orderid.Length - 1);
             }//var releases = JArray.Parse(result);
